@@ -1,0 +1,24 @@
+{
+  "name": "cep_vrts",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "sass": "^1.43.4",
+    "types-for-adobe": "^6.0.1",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.4"
+  },
+  "main": "index.js",
+  "license": "yes"
+}
