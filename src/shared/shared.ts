@@ -1,1 +1,1 @@
-export const ns = 'com.nitro.cep';
+export const ns = "com.nitro.cep";

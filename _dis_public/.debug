@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+  <Extension Id="com.nitro.cep.main">
+    <HostList>
+      <Host Name="AEFT" Port="8850"/>
+      <Host Name="PPRO" Port="8851"/>
+      <Host Name="FLPR" Port="8852"/>
+    </HostList>
+  </Extension>
+  <Extension Id="com.nitro.cep.settings">
+    <HostList>
+      <Host Name="AEFT" Port="8853"/>
+      <Host Name="PPRO" Port="8854"/>
+      <Host Name="FLPR" Port="8855"/>
+    </HostList>
+  </Extension>
+</ExtensionList>
