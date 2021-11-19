@@ -68,10 +68,20 @@ export const cep = (opts: CepOptions) => {
   } = opts;
   return {
     name: "cep",
+    // transformIndexHtml(code: string) {
+    //   only runs on dev
+    //   console.log(index);
+    //   const jsFileName = Object.keys(bundle).find(
+    //     (key) => key.split(".").pop() === "js"
+    //   );
+    //   htmlTemplate({
+    //     ...cepConfig,
+    //     debugReact,
+    //     jsFileName,
+    //   })
+    //   return "test123";
+    // },
     writeBundles(args, bundle) {
-      console.log("WRITE BUNDLE");
-      console.log(args);
-      console.log(bundle);
       const jsFileName = Object.keys(bundle).find(
         (key) => key.split(".").pop() === "js"
       );
@@ -111,21 +121,16 @@ export const cep = (opts: CepOptions) => {
       }
     },
     async generateBundle(output: any, bundle: any) {
-      console.log("GENNNNNN BUNDLE");
-      console.log(Object.keys(bundle));
-
       const jsFileName = Object.keys(bundle).find(
         (key) => key.split(".").pop() === "js"
       );
 
-      console.log(bundle[jsFileName]);
       // fix paths
       bundle[jsFileName].code = bundle[jsFileName].code.replace(
         /(\/assets\/)/g,
         "./assets/"
       );
 
-      console.log("JS FILENAME", jsFileName);
       console.log(
         `${conColors.green}cep process: ${
           (isPackage && "zxp package") || (isProduction && "build") || "dev"

@@ -13,7 +13,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import scss from "rollup-plugin-scss";
 import image from "@rollup/plugin-image";
 
-import { cep, jsxInclude, customFunction } from "./rollup-cep-plugin/index.js";
+import { cep, jsxInclude, customFunction } from "./vite-cep-plugin/index.js";
 import cepConfig from "./cep.config.json";
 
 const extensions = [".js", ".ts", ".tsx"];
@@ -28,20 +28,9 @@ const cepVars = {
   debugReact: false,
 };
 
-function vitePlug() {
-  const output = {
-    name: "vite-plug",
-    handleHotUpdate({ server }) {
-      console.log("HOT UPDATE");
-    },
-  };
-  return output;
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // vitePlug(),
     react({
       // fastRefresh: true,
       // babel: {
@@ -113,5 +102,3 @@ export default defineConfig({
     outDir: "dist/cep",
   },
 });
-
-// TODO: use transformIndexHtml https://vitejs.dev/guide/api-plugin.html#transformindexhtml
