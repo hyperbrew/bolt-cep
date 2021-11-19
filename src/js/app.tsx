@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { FaBolt } from "react-icons/fa";
 import logo from "./logo.svg";
-import "./app-main.scss";
+import "./app.scss";
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0);
 
   return (
     <div className="app">
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
-        <p>Bolt CEP</p>
+        <h1>Bolt CEP</h1>
         <FaBolt />
-
         <p>Vite + React + TypeScript + Scss</p>
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
@@ -20,7 +19,7 @@ function App() {
           </button>
         </p>
         <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
+          Edit <code>app.tsx</code> and save to test HMR updates.
         </p>
         <p>
           <a
@@ -44,6 +43,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
