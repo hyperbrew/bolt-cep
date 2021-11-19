@@ -13,6 +13,8 @@ import { htmlTemplate } from "./templates/html-template";
 import { runCustomFunction } from "./lib/custom-function";
 
 import { cepFunction } from "./types";
+import index from "rollup-plugin-node-builtins";
+import { ResolvedConfig } from "vite";
 
 const homedir = os.homedir();
 
@@ -40,7 +42,7 @@ const makeSymlink = (dist: string, dest: string) => {
 
 interface CepOptions {
   // attributes: any;
-  config: any;
+  cepConfig: any;
   dir: string;
   isProduction: boolean;
   isPackage: boolean;
@@ -54,7 +56,7 @@ interface CepOptions {
 export const cep = (opts: CepOptions) => {
   const {
     // attributes,
-    config,
+    cepConfig,
     dir,
     isProduction,
     isPackage,
@@ -66,19 +68,75 @@ export const cep = (opts: CepOptions) => {
   } = opts;
   return {
     name: "cep",
+    writeBundles(args, bundle) {
+      console.log("WRITE BUNDLE");
+      console.log(args);
+      console.log(bundle);
+      const jsFileName = Object.keys(bundle).find(
+        (key) => key.split(".").pop() === "js"
+      );
+      const indexHtmlFile = {
+        type: "asset",
+
+        source: htmlTemplate({
+          ...cepConfig,
+          debugReact,
+          jsFileName,
+        }),
+        name: "CEP HTML Build File",
+        fileName: `panel.html`,
+      };
+      //@ts-ignore
+      this.emitFile(indexHtmlFile);
+      return bundle;
+    },
+    configResolved(config: ResolvedConfig) {
+      if (config.env["MODE"] === "development") {
+        const panelHtmlFile = {
+          type: "asset",
+          source: devHtmlTemplate({
+            ...cepConfig,
+            url: isProduction
+              ? cepConfig.finalURL
+              : `http://localhost:${cepConfig.port}/`,
+          }),
+          name: "CEP HTML Dev File",
+          fileName: "panel.html",
+        };
+        fs.writeFileSync(
+          path.join("dist", "cep", "panel.html"),
+          panelHtmlFile.source
+        );
+        log("dev html file created", true);
+      }
+    },
     async generateBundle(output: any, bundle: any) {
-      console.log("");
+      console.log("GENNNNNN BUNDLE");
+      console.log(Object.keys(bundle));
+
+      const jsFileName = Object.keys(bundle).find(
+        (key) => key.split(".").pop() === "js"
+      );
+
+      console.log(bundle[jsFileName]);
+      // fix paths
+      bundle[jsFileName].code = bundle[jsFileName].code.replace(
+        /(\/assets\/)/g,
+        "./assets/"
+      );
+
+      console.log("JS FILENAME", jsFileName);
       console.log(
         `${conColors.green}cep process: ${
           (isPackage && "zxp package") || (isProduction && "build") || "dev"
         }`
       );
       if (isPackage) {
-        signZXP(config, path.join(dir, cepDist), zxpDir);
+        signZXP(cepConfig, path.join(dir, cepDist), zxpDir);
       } else {
         const manifestFile = {
           type: "asset",
-          source: prettifyXml(manifestTemplate(config), {
+          source: prettifyXml(manifestTemplate(cepConfig), {
             indent: 2,
             newline: "\n",
           }),
@@ -92,55 +150,34 @@ export const cep = (opts: CepOptions) => {
         const debugFile = {
           type: "asset",
 
-          source: prettifyXml(debugTemplate(config)),
+          source: prettifyXml(debugTemplate(cepConfig)),
           name: "CEP Debug File",
           fileName: path.join(".debug"),
         };
         //@ts-ignore
         this.emitFile(debugFile);
         log("debug file created", true);
+
         const indexHtmlFile = {
           type: "asset",
 
-          source: htmlTemplate({ ...config, debugReact }),
+          source: htmlTemplate({ ...cepConfig, debugReact, jsFileName }),
           name: "CEP HTML Build File",
-          fileName: path.join(
-            siteDist,
-
-            isProduction && isLocal ? config.mainPath : "index.html"
-          ),
+          fileName: "panel.html",
         };
         //@ts-ignore
-        // this.emitFile(indexHtmlFile);
-        log("html file created", true);
+        this.emitFile(indexHtmlFile);
+        log("panel html file created", true);
 
-        if (!isProduction || !isLocal) {
-          // dev html to forward to production html for live-reload
-          const panelHtmlFile = {
-            type: "asset",
-            source: devHtmlTemplate({
-              ...config,
-              url: isProduction
-                ? config.finalURL
-                : `http://localhost:${config.port}/`,
-            }),
-            name: "CEP HTML Dev File",
-
-            fileName: path.join(config.mainPath),
-          };
-          //@ts-ignore
-          // this.emitFile(panelHtmlFile);
-          log("dev html file created", true);
-        }
         try {
           const symlinkPath =
-            config.symlink === "global"
+            cepConfig.symlink === "global"
               ? ccGlobalExtensionFolder
               : ccLocalExtensionFolder;
           const res = makeSymlink(
             path.join(dir, cepDist),
 
-            path.join(symlinkPath, config.id)
+            path.join(symlinkPath, cepConfig.id)
           );
           if (!res[0]) {
             log("symlink already exists", true);

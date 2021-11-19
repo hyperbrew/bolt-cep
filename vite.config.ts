@@ -28,10 +28,22 @@ const cepVars = {
   debugReact: false,
 };
 
+function vitePlug() {
+  const output = {
+    name: "vite-plug",
+    handleHotUpdate({ server }) {
+      console.log("HOT UPDATE");
+    },
+  };
+  return output;
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    // vitePlug(),
     react({
+      // fastRefresh: true,
       // babel: {
       //   // exclude: /node_modules/,
       //   babelrc: false,
@@ -76,7 +88,7 @@ export default defineConfig({
       // },
     }),
     cep({
-      config: cepConfig,
+      cepConfig: cepConfig,
       dir: `${__dirname}/${cepVars.devDist}`,
       siteDist: cepVars.siteDist,
       cepDist: cepVars.cepDist,
@@ -88,6 +100,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    watch: {},
     rollupOptions: {
       output: {
         manualChunks: undefined,
@@ -101,5 +114,4 @@ export default defineConfig({
   },
 });
 
-// TODO: Fix paths from / to ./ in html and js
-// TODO: Move Script tag from head to body after <div>
+// TODO: use transformIndexHtml https://vitejs.dev/guide/api-plugin.html#transformindexhtml

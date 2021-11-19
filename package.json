@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "watch": "tsc && vite build --watch true",
+    "build": "tsc && vite build --watch false",
+    "serve": "vite preview "
   },
   "dependencies": {
     "react": "^17.0.0",

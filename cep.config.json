@@ -5,8 +5,8 @@
   "isLocal": "false",
   "bundleJSX": "true",
 
-  "port": 8080,
-  "finalURL": "http://localhost:8080/",
+  "port": 3000,
+  "finalURL": "http://localhost:3000/",
   "symlink": "local",
   "startingDebugPort": 8860,
 
@@ -38,7 +38,7 @@
   "iconDarkNormalRollOver": "./src/assets/light-icon.png",
   "iconNormalRollOver": "./src/assets/dark-icon.png",
   "parameters": ["--enable-nodejs", "--mixed-context"],
-  "mainPath": "index.html",
+  "mainPath": "panel.html",
   "scriptPath": "jsx/index.js",
   "width": 500,
   "height": 550,
@@ -48,10 +48,6 @@
       "name": "main",
       "panelDisplayName": "Nitro CEP",
       "autoVisible": "true"
-    },
-    {
-      "name": "settings",
-      "autoVisible": "false"
     }
   ],
 
