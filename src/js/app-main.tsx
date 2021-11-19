@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { FaBolt } from "react-icons/fa";
 import logo from "./logo.svg";
-import "./app.scss";
+import "./app-main.scss";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,7 +10,10 @@ function App() {
     <div className="app">
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
-        <p>Vite + React + SCSS + in a CEP panel</p>
+        <p>Bolt CEP</p>
+        <FaBolt />
+
+        <p>Vite + React + TypeScript + Scss</p>
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}

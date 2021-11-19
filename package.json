@@ -1,15 +1,18 @@
 {
-  "name": "cep_vrts",
+  "name": "bolt-cep",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "debug": "cross-env DEBUG_REACT=true vite build --watch true",
+    "tools": "react-devtools",
     "watch": "tsc && vite build --watch true",
     "build": "tsc && vite build --watch false",
-    "serve": "vite preview "
+    "serve": "vite preview"
   },
   "dependencies": {
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -35,8 +38,10 @@
     "babel-plugin-transform-scss": "^1.1.0",
     "babel-preset-env": "^1.7.0",
     "core-js": "3",
+    "cross-env": "^7.0.3",
     "fs-extra": "^10.0.0",
     "prettify-xml": "^1.2.0",
+    "react-devtools": "^4.21.0",
     "react-require": "^1.0.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-copy": "^1.0.4",

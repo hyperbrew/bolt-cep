@@ -13,7 +13,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import scss from "rollup-plugin-scss";
 import image from "@rollup/plugin-image";
 
-import { cep, jsxInclude, customFunction } from "./vite-cep-plugin/index.js";
+import { cep, jsxInclude } from "./vite-cep-plugin/index.js";
 import cepConfig from "./cep.config.json";
 
 const extensions = [".js", ".ts", ".tsx"];
@@ -25,7 +25,7 @@ const cepVars = {
   isProd: true,
   isPackage: false,
   isLocal: true,
-  debugReact: false,
+  debugReact: process.env.DEBUG_REACT === "true",
 };
 
 // https://vitejs.dev/config/

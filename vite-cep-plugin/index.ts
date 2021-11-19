@@ -10,10 +10,6 @@ import { manifestTemplate } from "./templates/manifest-template";
 import { debugTemplate } from "./templates/debug-template";
 import { devHtmlTemplate } from "./templates/dev-html-template";
 import { htmlTemplate } from "./templates/html-template";
-import { runCustomFunction } from "./lib/custom-function";
-
-import { cepFunction } from "./types";
-import index from "rollup-plugin-node-builtins";
 import { ResolvedConfig } from "vite";
 
 const homedir = os.homedir();
@@ -236,14 +232,4 @@ export const jsxInclude = (opts = {}) => {
       };
     },
   };
-};
-
-export const customFunction = ({
-  cepFunction,
-  value,
-}: {
-  cepFunction: cepFunction;
-  value: string;
-}) => {
-  runCustomFunction({ cepFunction, value });
 };

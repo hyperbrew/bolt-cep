@@ -1,19 +1,14 @@
 {
   "pluginId": 1053086,
   "socketPort": 12341,
-
-  "isLocal": "false",
   "bundleJSX": "true",
-
   "port": 3000,
   "finalURL": "http://localhost:3000/",
   "symlink": "local",
   "startingDebugPort": 8860,
-
   "version": "1.0.0",
-
-  "id": "com.nitro.cep",
-  "displayName": "Nitro CEP",
+  "id": "com.bolt.cep",
+  "displayName": "Bolt CEP",
   "extensionManifestVersion": "6.0",
   "requiredRuntimeVersion": "9.0",
 
@@ -46,7 +41,7 @@
   "panels": [
     {
       "name": "main",
-      "panelDisplayName": "Nitro CEP",
+      "panelDisplayName": "Bolt CEP",
       "autoVisible": "true"
     }
   ],
@@ -55,7 +50,7 @@
     "country": "US",
     "province": "CA",
     "org": "MyCompany",
-    "name": "com.nitro.cep",
+    "name": "com.vite-react.cep",
     "password": "mypassword",
     "tsa": "http://timestamp.digicert.com/"
   },
