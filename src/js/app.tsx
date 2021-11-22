@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaBolt } from "react-icons/fa";
+import { FaBolt, FaSync } from "react-icons/fa";
 import logo from "./logo.svg";
 import "./app.scss";
 

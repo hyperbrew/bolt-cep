@@ -15,6 +15,7 @@ import image from "@rollup/plugin-image";
 
 import { cep, jsxInclude } from "./vite-cep-plugin/index.js";
 import cepConfig from "./cep.config.json";
+import path from "path";
 
 const extensions = [".js", ".ts", ".tsx"];
 
@@ -27,6 +28,9 @@ const cepVars = {
   isLocal: true,
   debugReact: process.env.DEBUG_REACT === "true",
 };
+
+const root = path.resolve(__dirname, "src", "js");
+const outDir = path.resolve(__dirname, "dist", "cep");
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -88,17 +92,29 @@ export default defineConfig({
       debugReact: cepVars.debugReact,
     }),
   ],
+  root,
+
   build: {
+    emptyOutDir: true,
     watch: {},
     rollupOptions: {
+      input: {
+        main: path.resolve(root, "index.html"),
+        settings: path.resolve(root, "settings", "index.html"),
+        // nested: path.resolve(__dirname, 'nested/index.html')
+      },
       output: {
-        manualChunks: undefined,
+        // manualChunks: undefined,
         // esModule: false,
-        // preserveModules: false,
-        format: "iife",
+        preserveModules: false,
+        format: "cjs",
       },
     },
     target: "chrome88",
-    outDir: "dist/cep",
+    outDir,
+    // outDir: "dist/cep",
   },
 });
+
+// TODO: in js Change require("./") to require(__dirname +"/assets")
+// TODO: in html fix path to js and css

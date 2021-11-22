@@ -64,20 +64,41 @@ export const cep = (opts: CepOptions) => {
   } = opts;
   return {
     name: "cep",
-    // transformIndexHtml(code: string) {
-    //   only runs on dev
-    //   console.log(index);
-    //   const jsFileName = Object.keys(bundle).find(
-    //     (key) => key.split(".").pop() === "js"
-    //   );
-    //   htmlTemplate({
-    //     ...cepConfig,
-    //     debugReact,
-    //     jsFileName,
-    //   })
-    //   return "test123";
-    // },
+    transformIndexHtml(code: string, opts) {
+      // only runs on build
+      console.log("TRANSFORMER INCOMING");
+
+      const cssFileNameMatch = code.match(/(href=\".*.css\")/);
+      const cssFileName =
+        cssFileNameMatch &&
+        cssFileNameMatch.pop().replace('href="', "").replace('"', "");
+      const jsFileNameMatch = code.match(/(src=\".*.js\")/);
+      const jsFileName =
+        jsFileNameMatch &&
+        jsFileNameMatch.pop().replace('src="', "").replace('"', "");
+
+      // TODO: Make this less hacky
+      opts.bundle[jsFileName.substr(1)].code = opts.bundle[
+        jsFileName.substr(1)
+      ].code.replace(
+        'require("./',
+        'cep_node.require(cep_node.global["__dir"+"name"] + "/assets/'
+      );
+
+      const html = htmlTemplate({
+        ...cepConfig,
+        debugReact,
+        jsFileName,
+        cssFileName,
+      });
+      // console.log("cssFileName: ::: ", cssFileName);
+      // console.log("jsFileName: ::: ", jsFileName);
+      // console.log("html: ::: ", html);
+      return html;
+      return code;
+    },
     writeBundles(args, bundle) {
+      console.log("WRITES BUNDEL");
       const jsFileName = Object.keys(bundle).find(
         (key) => key.split(".").pop() === "js"
       );
@@ -158,6 +179,8 @@ export const cep = (opts: CepOptions) => {
         //@ts-ignore
         this.emitFile(debugFile);
         log("debug file created", true);
+
+        // console.log("BUNDLEEEE", Object.keys(bundle));
 
         const indexHtmlFile = {
           type: "asset",
