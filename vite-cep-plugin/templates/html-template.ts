@@ -17,7 +17,8 @@ export const htmlTemplate = ({
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link rel="icon" type="image/x-icon" href=".assets/favicon.ico"> -->
     <title>${displayName}</title>
-    <link rel="stylesheet" href=".${cssFileName}">
+    <link rel="stylesheet" href="..${cssFileName}">
+    <script src="https://unpkg.com/browser-cjs/require.min.js"></script>
     </head>
     <body>
       <div id="root"></div>
@@ -28,7 +29,7 @@ export const htmlTemplate = ({
       <script src="http://localhost:8097"></script>`
           : ``
       }
-      <script src=".${jsFileName}"></script>
+      <script src="..${jsFileName}"></script>
   </body>
 </html>
 `;

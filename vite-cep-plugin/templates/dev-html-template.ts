@@ -9,6 +9,7 @@ export const devHtmlTemplate = ({
 <html>
   <head>
     <title>${displayName}</title>
+    <script src="https://unpkg.com/browser-cjs/require.min.js"></script>
   </head>
 
   <body>

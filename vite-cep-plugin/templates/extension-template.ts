@@ -31,7 +31,7 @@ export const extensionTemplate = ({
 <Extension Id="${id}.${name}">
 <DispatchInfo >
   <Resources>
-    <MainPath>./${mainPath}</MainPath>
+    <MainPath>${mainPath}</MainPath>
     <CEFCommandLine>
       ${parameters
         .map((item) => `<Parameter>${item.toString()}</Parameter>`)

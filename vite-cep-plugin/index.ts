@@ -11,6 +11,7 @@ import { debugTemplate } from "./templates/debug-template";
 import { devHtmlTemplate } from "./templates/dev-html-template";
 import { htmlTemplate } from "./templates/html-template";
 import { ResolvedConfig } from "vite";
+import { basename } from "path/posix";
 
 const homedir = os.homedir();
 
@@ -78,12 +79,31 @@ export const cep = (opts: CepOptions) => {
         jsFileNameMatch.pop().replace('src="', "").replace('"', "");
 
       // TODO: Make this less hacky
-      opts.bundle[jsFileName.substr(1)].code = opts.bundle[
-        jsFileName.substr(1)
-      ].code.replace(
-        'require("./',
-        'cep_node.require(cep_node.global["__dir"+"name"] + "/assets/'
-      );
+      const jsName = jsFileName.substr(1);
+
+      let newCode = opts.bundle[jsName].code;
+
+      // newCode = newCode.replace(
+      //   /(require\("\.\/)/g,
+      //   'require("../assets/'
+      //   // 'cep_node.require(cep_node.global["__dir"+"name"] + "/assets/'
+      // );
+
+      const matches = newCode.match(/(\=require\(\".*\"\)\;)/);
+      matches.map((match) => {
+        console.log("MATCH :: ", matches);
+        const jsPath = match.match(/\".*\"/);
+        const jsBasename = path.basename(jsPath[0]);
+        if (jsPath) {
+          newCode = newCode.replace(
+            match,
+            `=typeof cep_node !== 'undefined'?cep_node.require(cep_node.global["__dir"+"name"] + "/assets/${jsBasename}):require("../assets/${jsBasename});`
+          );
+        }
+      });
+      newCode = newCode.replace(`="./assets`, `="../assets`);
+
+      opts.bundle[jsName].code = newCode;
 
       const html = htmlTemplate({
         ...cepConfig,
@@ -95,7 +115,7 @@ export const cep = (opts: CepOptions) => {
       // console.log("jsFileName: ::: ", jsFileName);
       // console.log("html: ::: ", html);
       return html;
-      return code;
+      // return code;
     },
     writeBundles(args, bundle) {
       console.log("WRITES BUNDEL");

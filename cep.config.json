@@ -33,15 +33,21 @@
   "iconDarkNormalRollOver": "./src/assets/light-icon.png",
   "iconNormalRollOver": "./src/assets/dark-icon.png",
   "parameters": ["--enable-nodejs", "--mixed-context"],
-  "mainPath": "panel.html",
   "scriptPath": "jsx/index.js",
   "width": 500,
   "height": 550,
 
   "panels": [
     {
+      "mainPath": "./main/index.html",
       "name": "main",
       "panelDisplayName": "Bolt CEP",
+      "autoVisible": "true"
+    },
+    {
+      "mainPath": "./settings/index.html",
+      "name": "settings",
+      "panelDisplayName": "Bolt CEP - Settings",
       "autoVisible": "true"
     }
   ],

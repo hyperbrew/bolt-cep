@@ -35,6 +35,9 @@ const outDir = path.resolve(__dirname, "dist", "cep");
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    // commonjs({
+    //   include: /node_modules/,
+    // }),
     react({
       // fastRefresh: true,
       // babel: {
@@ -99,12 +102,12 @@ export default defineConfig({
     watch: {},
     rollupOptions: {
       input: {
-        main: path.resolve(root, "index.html"),
+        main: path.resolve(root, "main", "index.html"),
         settings: path.resolve(root, "settings", "index.html"),
         // nested: path.resolve(__dirname, 'nested/index.html')
       },
       output: {
-        // manualChunks: undefined,
+        manualChunks: {},
         // esModule: false,
         preserveModules: false,
         format: "cjs",
