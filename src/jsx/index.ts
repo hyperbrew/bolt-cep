@@ -1,5 +1,5 @@
 //@include './lib/json2.js'
-import "./lib/json2.js";
+// import "./lib/json2.js";
 
 //@ts-ignore
 import { ns } from "../shared/shared.ts";

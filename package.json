@@ -2,11 +2,11 @@
   "name": "bolt-cep",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode developemnt",
     "debug": "cross-env DEBUG_REACT=true vite build --watch true",
     "tools": "react-devtools",
     "watch": "tsc && vite build --watch true",
-    "build": "tsc && vite build --watch false",
+    "build": "rimraf dist/* && tsc && vite build --watch false",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -44,6 +44,7 @@
     "prettify-xml": "^1.2.0",
     "react-devtools": "^4.21.0",
     "react-require": "^1.0.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.60.1",
     "rollup-plugin-multi-input": "^1.3.1",
     "rollup-plugin-node-builtins": "^2.1.2",

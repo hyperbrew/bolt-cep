@@ -20,9 +20,10 @@ const Main = () => {
     console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
   }
 
-  // useEffect(() => {
-  //   evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
-  // }, []);
+  useEffect(() => {
+    console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
+    evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+  }, []);
 
   return (
     <div className="app">

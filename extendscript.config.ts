@@ -1,6 +1,5 @@
 import rollup, { RollupOptions, OutputOptions } from "rollup";
 import { uglify } from "rollup-plugin-uglify";
-import multiInput from "rollup-plugin-multi-input";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
@@ -11,7 +10,8 @@ export const extendscriptConfig = (
   extendscriptEntry: string,
   outPath: string,
   cepConfig: any,
-  extensions: string[]
+  extensions: string[],
+  isProduction: boolean
 ) => {
   console.log(outPath);
   const config: RollupOptions = {
@@ -79,12 +79,16 @@ export const extendscriptConfig = (
       }),
       replace({
         "Object.freeze": "",
+        preventAssignment: true,
       }),
-      //   jsxInclude(),
+      // TODO: MAKE JSXINCLUDE WORK WITH JSON AGAIN!!!
+      // jsxInclude(),
+      // jsxInclude(),
     ],
   };
 
   async function build() {
+    console.log("BUILD EXTENDSCRIPT");
     const bundle = await rollup.rollup(config);
     console.log("watchFiles", bundle.watchFiles); // an array of file names this bundle depends on
 
@@ -108,5 +112,26 @@ export const extendscriptConfig = (
     await bundle.close();
   }
 
-  build();
+  const watch = async () => {
+    console.log("WATCH EXTENDSCRIPT");
+    const watcher = rollup.watch(config);
+
+    watcher.on("event", (event) => {});
+
+    // This will make sure that bundles are properly closed after each run
+    watcher.on("event", ({ result }: any) => {
+      if (result) {
+        result.close();
+      }
+    });
+
+    // stop watching
+    watcher.close();
+  };
+
+  if (isProduction) {
+    build();
+  } else {
+    watch();
+  }
 };

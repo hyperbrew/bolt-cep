@@ -31,8 +31,11 @@ const cepVars = {
   debugReact: process.env.DEBUG_REACT === "true",
 };
 
+const src = path.resolve(__dirname, "src");
 const root = path.resolve(__dirname, "src", "js");
 const outDir = path.resolve(__dirname, "dist", "cep");
+
+const isProduction = process.env.NODE_ENV === "production";
 
 let input = {};
 cepConfig.panels.map((panel) => {
@@ -105,8 +108,10 @@ export default defineConfig({
   root,
 
   build: {
-    emptyOutDir: true,
-    watch: {},
+    // emptyOutDir: true,
+    watch: {
+      include: "src/jsx/**",
+    },
     rollupOptions: {
       input,
       output: {
@@ -127,5 +132,6 @@ extendscriptConfig(
   `src/jsx/index.ts`,
   outPathExtendscript,
   cepConfig,
-  extensions
+  extensions,
+  isProduction
 );
