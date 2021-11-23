@@ -27,6 +27,7 @@ Write in React and TypeScript start building your app like lightning!
 ## Quickstart
 
 - Install: `yarn`
+- First Build: `yarn build`
 - Develop: `yarn dev`
 - Debug React: `yarn debug` && `yarn tools`
 - Build: `yarn build`

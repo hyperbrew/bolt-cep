@@ -11,7 +11,6 @@ import { debugTemplate } from "./templates/debug-template";
 import { devHtmlTemplate } from "./templates/dev-html-template";
 import { htmlTemplate } from "./templates/html-template";
 import { ResolvedConfig } from "vite";
-import { basename } from "path/posix";
 
 const homedir = os.homedir();
 
@@ -86,7 +85,8 @@ export const cep = (opts: CepOptions) => {
       let newCode = opts.bundle[jsName].code;
 
       const matches = newCode.match(/(\=require\(\".*\"\)\;)/);
-      matches.map((match: string) => {
+
+      matches?.map((match: string) => {
         const jsPath = match.match(/\".*\"/);
         const jsBasename = path.basename(jsPath[0]);
         if (jsPath) {
@@ -109,27 +109,6 @@ export const cep = (opts: CepOptions) => {
       });
       return html;
     },
-
-    // writeBundles(args, bundle) {
-    //   console.log("WRITES BUNDEL");
-    //   const jsFileName = Object.keys(bundle).find(
-    //     (key) => key.split(".").pop() === "js"
-    //   );
-    //   const indexHtmlFile = {
-    //     type: "asset",
-
-    //     source: htmlTemplate({
-    //       ...cepConfig,
-    //       debugReact,
-    //       jsFileName,
-    //     }),
-    //     name: "CEP HTML Build File",
-    //     fileName: `panel.html`,
-    //   };
-    //   //@ts-ignore
-    //   this.emitFile(indexHtmlFile);
-    //   return bundle;
-    // },
     configResolved(config: ResolvedConfig) {
       if (config.env["MODE"] === "development") {
         Object.keys(config.build.rollupOptions.input).map((key: string) => {
@@ -195,19 +174,6 @@ export const cep = (opts: CepOptions) => {
         //@ts-ignore
         this.emitFile(debugFile);
         log("debug file created", true);
-
-        // console.log("BUNDLEEEE", Object.keys(bundle));
-
-        // const indexHtmlFile = {
-        //   type: "asset",
-
-        //   source: htmlTemplate({ ...cepConfig, debugReact, jsFileName }),
-        //   name: "CEP HTML Build File",
-        //   fileName: "panel.html",
-        // };
-        // //@ts-ignore
-        // this.emitFile(indexHtmlFile);
-        // log("panel html file created", true);
 
         try {
           const symlinkPath =

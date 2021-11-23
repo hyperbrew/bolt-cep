@@ -32,6 +32,11 @@ const cepVars = {
 const root = path.resolve(__dirname, "src", "js");
 const outDir = path.resolve(__dirname, "dist", "cep");
 
+let input = {};
+cepConfig.panels.map((panel) => {
+  input[panel.name] = path.resolve(root, panel.mainPath);
+});
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -101,11 +106,7 @@ export default defineConfig({
     emptyOutDir: true,
     watch: {},
     rollupOptions: {
-      input: {
-        main: path.resolve(root, "main", "index.html"),
-        settings: path.resolve(root, "settings", "index.html"),
-        // nested: path.resolve(__dirname, 'nested/index.html')
-      },
+      input,
       output: {
         manualChunks: {},
         // esModule: false,
@@ -115,9 +116,5 @@ export default defineConfig({
     },
     target: "chrome88",
     outDir,
-    // outDir: "dist/cep",
   },
 });
-
-// TODO: in js Change require("./") to require(__dirname +"/assets")
-// TODO: in html fix path to js and css
