@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import App from "./app";
+import "../index.scss";
+import Settings from "./settings";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Settings />
   </React.StrictMode>,
   document.getElementById("root")
 );

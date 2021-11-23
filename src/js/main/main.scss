@@ -39,4 +39,21 @@
 
 button {
   font-size: calc(10px + 2vmin);
+  background-color: #3f4653;
+  padding: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  outline: none;
+}
+button:hover {
+  background-color: #515b6d;
+}
+
+.button-group {
+  display: flex;
+  row-gap: 1rem;
+  column-gap: 1rem;
 }

@@ -2,10 +2,12 @@ export const htmlTemplate = ({
   displayName,
   debugReact,
   jsFileName,
+  cssFileNames,
 }: {
   displayName: string;
   debugReact: string;
   jsFileName: string;
+  cssFileNames: string[];
 }) => `
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +15,11 @@ export const htmlTemplate = ({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
     <title>${displayName}</title>
-    <!-- <link rel="stylesheet" href="./index.css"> -->
+    ${cssFileNames
+      .map((file) => `<link rel="stylesheet" href="..${file}">`)
+      .join("\n\t\t")}
+    <script src="https://unpkg.com/browser-cjs/require.min.js"></script>
     </head>
     <body>
       <div id="root"></div>
@@ -26,7 +30,7 @@ export const htmlTemplate = ({
       <script src="http://localhost:8097"></script>`
           : ``
       }
-      <script src="./${jsFileName}"></script>
+      <script src="..${jsFileName}"></script>
   </body>
 </html>
 `;

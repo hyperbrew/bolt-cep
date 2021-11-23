@@ -46,3 +46,5 @@ export const safeCreate = (dir: string) => {
     return [false, e];
   }
 };
+
+export const posix = (str: string) => str.replace(/\\/g, "/");

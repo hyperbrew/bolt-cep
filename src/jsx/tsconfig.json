@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es3",
+    "noLib": true,
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["../../node_modules/types-for-adobe/AfterEffects/2018"],
+    "outDir": "../../dist/cep/jsx"
+  },
+  "include": ["./**/*"]
+}

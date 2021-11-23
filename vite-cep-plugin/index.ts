@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
-import { log, conColors } from "./lib/lib";
+import { log, conColors, posix } from "./lib/lib";
 import { signZXP } from "./lib/zxp";
 import { manifestTemplate } from "./templates/manifest-template";
 import { debugTemplate } from "./templates/debug-template";
@@ -64,56 +64,82 @@ export const cep = (opts: CepOptions) => {
   } = opts;
   return {
     name: "cep",
-    // transformIndexHtml(code: string) {
-    //   only runs on dev
-    //   console.log(index);
-    //   const jsFileName = Object.keys(bundle).find(
-    //     (key) => key.split(".").pop() === "js"
-    //   );
-    //   htmlTemplate({
-    //     ...cepConfig,
-    //     debugReact,
-    //     jsFileName,
-    //   })
-    //   return "test123";
-    // },
-    writeBundles(args, bundle) {
-      const jsFileName = Object.keys(bundle).find(
-        (key) => key.split(".").pop() === "js"
-      );
-      const indexHtmlFile = {
-        type: "asset",
+    transformIndexHtml(code: string, opts) {
+      // console.log("HTML Transform");
+      const isDev = opts.server !== undefined;
+      if (isDev) {
+        return code;
+      }
+      let cssFileNameMatches = code.match(/(href=\".*.css\")/g);
+      const cssFileNames =
+        cssFileNameMatches &&
+        Array.from(cssFileNameMatches).map((file) =>
+          file.replace('href="', "").replace('"', "")
+        );
+      const jsFileNameMatch = code.match(/(src=\".*.js\")/);
+      const jsFileName =
+        jsFileNameMatch &&
+        jsFileNameMatch.pop().replace('src="', "").replace('"', "");
 
-        source: htmlTemplate({
-          ...cepConfig,
-          debugReact,
-          jsFileName,
-        }),
-        name: "CEP HTML Build File",
-        fileName: `panel.html`,
-      };
-      //@ts-ignore
-      this.emitFile(indexHtmlFile);
-      return bundle;
+      // TODO: better require transformations
+      const jsName = jsFileName.substr(1);
+
+      let newCode = opts.bundle[jsName].code;
+
+      const matches = newCode.match(
+        /(\=require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)\;)/g
+      );
+
+      matches?.map((match: string) => {
+        const jsPath = match.match(/\".*\"/);
+        const jsBasename = path.basename(jsPath[0]);
+        if (jsPath) {
+          newCode = newCode.replace(
+            match,
+            `=typeof cep_node !== 'undefined'?cep_node.require(cep_node.global["__dir"+"name"] + "/assets/${jsBasename}):require("../assets/${jsBasename});`
+          );
+        }
+      });
+      newCode = newCode.replace(`="./assets`, `="../assets`);
+      newCode = newCode.replace(`="/assets`, `="../assets`);
+      opts.bundle[jsName].code = newCode;
+
+      const sharedBundle = Object.keys(opts.bundle).find(
+        (key) => key.includes("jsx-runtime") && key.includes(".js")
+      );
+      opts.bundle[sharedBundle].code = opts.bundle[sharedBundle].code
+        .replace(`="./assets`, `="../assets`)
+        .replace(`="/assets`, `="../assets`);
+
+      const html = htmlTemplate({
+        ...cepConfig,
+        debugReact,
+        jsFileName,
+        cssFileNames,
+      });
+      return html;
     },
     configResolved(config: ResolvedConfig) {
       if (config.env["MODE"] === "development") {
-        const panelHtmlFile = {
-          type: "asset",
-          source: devHtmlTemplate({
-            ...cepConfig,
-            url: isProduction
-              ? cepConfig.finalURL
-              : `http://localhost:${cepConfig.port}/`,
-          }),
-          name: "CEP HTML Dev File",
-          fileName: "panel.html",
-        };
-        fs.writeFileSync(
-          path.join("dist", "cep", "panel.html"),
-          panelHtmlFile.source
-        );
-        log("dev html file created", true);
+        Object.keys(config.build.rollupOptions.input).map((key: string) => {
+          const filePath = config.build.rollupOptions.input[key];
+          const relativePath = path.relative(config.root, filePath);
+          const destPath = path.resolve(config.build.outDir, relativePath);
+          console.log(destPath);
+          console.log(posix(relativePath));
+
+          const panelHtmlFile = {
+            type: "asset",
+            source: devHtmlTemplate({
+              ...cepConfig,
+              url: `http://localhost:${cepConfig.port}/${posix(relativePath)}`,
+            }),
+            name: "CEP HTML Dev File",
+            fileName: "index.html",
+          };
+          fs.writeFileSync(destPath, panelHtmlFile.source);
+          log("dev html file created", true);
+        });
       }
     },
     async generateBundle(output: any, bundle: any) {
@@ -159,17 +185,6 @@ export const cep = (opts: CepOptions) => {
         this.emitFile(debugFile);
         log("debug file created", true);
 
-        const indexHtmlFile = {
-          type: "asset",
-
-          source: htmlTemplate({ ...cepConfig, debugReact, jsFileName }),
-          name: "CEP HTML Build File",
-          fileName: "panel.html",
-        };
-        //@ts-ignore
-        this.emitFile(indexHtmlFile);
-        log("panel html file created", true);
-
         try {
           const symlinkPath =
             cepConfig.symlink === "global"
@@ -197,20 +212,16 @@ export const cep = (opts: CepOptions) => {
 export const jsxInclude = (opts = {}) => {
   const foundIncludes: string[] = [];
   return {
-    name: "ExtendScript Include Resolver",
-
-    renderChunk: (code: string, id: string) => {
-      code = [...foundIncludes, code].join("\r");
-      return {
-        code: code,
-      };
+    name: "extendscript-include-resolver",
+    generateBundle: (output: any, bundle: any) => {
+      const esFile = Object.keys(bundle).pop();
+      bundle[esFile].code = [...foundIncludes, bundle[esFile].code].join("\r");
     },
-
     transform: (code: string, id: string) => {
-      const matches = code.match(/\/\/\@include(.*)('|")(.*)('|")(.*)/g);
+      const matches = code.match(/^\/\/(\s|)\@include(.*)/g);
       if (matches) {
         matches.map((match: string) => {
-          const innerMatches = match.match(/('|")(.*)('|")/);
+          const innerMatches = match.match(/(?:'|").*(?:'|")/);
           const firstMatch = innerMatches?.pop();
           if (firstMatch) {
             const relativeDir = firstMatch.replace(/(\"|\')/g, "");
@@ -227,9 +238,7 @@ export const jsxInclude = (opts = {}) => {
           }
         });
       }
-      return {
-        code: code,
-      };
+      return code;
     },
   };
 };
