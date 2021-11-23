@@ -12,10 +12,10 @@ const Main = () => {
 
   async function jsxTest() {
     // console.log(
-    //   await evalES(
-    //     `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
-    //     true
-    //   )
+    evalES(
+      `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
+      true
+    );
     // );
     console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
   }
