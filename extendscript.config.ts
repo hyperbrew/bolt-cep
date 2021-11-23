@@ -81,51 +81,26 @@ export const extendscriptConfig = (
         "Object.freeze": "",
         preventAssignment: true,
       }),
-      // TODO: MAKE JSXINCLUDE WORK WITH JSON AGAIN!!!
-      // jsxInclude(),
-      // jsxInclude(),
+      jsxInclude(),
     ],
   };
 
   async function build() {
-    console.log("BUILD EXTENDSCRIPT");
     const bundle = await rollup.rollup(config);
-    console.log("watchFiles", bundle.watchFiles); // an array of file names this bundle depends on
-
-    // generate output specific code in-memory
-    // you can call this function multiple times on the same bundle object
-    // const { output } = await bundle.generate(config.output);
-
-    // for (const chunkOrAsset of output) {
-    //   if (chunkOrAsset.type === "asset") {
-    //     console.log("Asset", chunkOrAsset);
-    //   } else {
-    //     console.log("Chunk", chunkOrAsset.modules);
-    //   }
-    // }
-
-    // or write the bundle to disk
 
     await bundle.write(config.output as OutputOptions);
 
-    // closes the bundle
     await bundle.close();
   }
 
   const watch = async () => {
-    console.log("WATCH EXTENDSCRIPT");
     const watcher = rollup.watch(config);
-
     watcher.on("event", (event) => {});
-
-    // This will make sure that bundles are properly closed after each run
     watcher.on("event", ({ result }: any) => {
       if (result) {
         result.close();
       }
     });
-
-    // stop watching
     watcher.close();
   };
 

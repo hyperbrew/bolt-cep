@@ -76,7 +76,6 @@ export const cep = (opts: CepOptions) => {
         Array.from(cssFileNameMatches).map((file) =>
           file.replace('href="', "").replace('"', "")
         );
-      console.log("CSS", cssFileNameMatches);
       const jsFileNameMatch = code.match(/(src=\".*.js\")/);
       const jsFileName =
         jsFileNameMatch &&
@@ -92,7 +91,6 @@ export const cep = (opts: CepOptions) => {
       );
 
       matches?.map((match: string) => {
-        console.log("MATCHHHH :: ", match);
         const jsPath = match.match(/\".*\"/);
         const jsBasename = path.basename(jsPath[0]);
         if (jsPath) {
@@ -214,20 +212,16 @@ export const cep = (opts: CepOptions) => {
 export const jsxInclude = (opts = {}) => {
   const foundIncludes: string[] = [];
   return {
-    name: "ExtendScript Include Resolver",
-
-    renderChunk: (code: string, id: string) => {
-      code = [...foundIncludes, code].join("\r");
-      return {
-        code: code,
-      };
+    name: "extendscript-include-resolver",
+    generateBundle: (output: any, bundle: any) => {
+      const esFile = Object.keys(bundle).pop();
+      bundle[esFile].code = [...foundIncludes, bundle[esFile].code].join("\r");
     },
-
     transform: (code: string, id: string) => {
-      const matches = code.match(/\/\/\@include(.*)('|")(.*)('|")(.*)/g);
+      const matches = code.match(/^\/\/(\s|)\@include(.*)/g);
       if (matches) {
         matches.map((match: string) => {
-          const innerMatches = match.match(/('|")(.*)('|")/);
+          const innerMatches = match.match(/(?:'|").*(?:'|")/);
           const firstMatch = innerMatches?.pop();
           if (firstMatch) {
             const relativeDir = firstMatch.replace(/(\"|\')/g, "");
@@ -244,9 +238,7 @@ export const jsxInclude = (opts = {}) => {
           }
         });
       }
-      return {
-        code: code,
-      };
+      return code;
     },
   };
 };

@@ -2,4 +2,5 @@
 
 export const helloWorld = () => {
   alert("Hello from After Effects.");
+  // alert(JSON.stringify({ test: 90 }));
 };
