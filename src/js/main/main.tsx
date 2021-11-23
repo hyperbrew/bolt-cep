@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
 import { os, path, fs } from "../lib/node";
-import { cep, cep_node, csi, evalES } from "../lib/utils";
+import { csi, evalES } from "../lib/utils";
 
 import logo from "../logo.svg";
 
@@ -36,7 +36,7 @@ const Main = () => {
               alert(
                 `Node.js ${process.version}\nPlatform: ${
                   os.platform
-                }\nFolder: ${path.basename(cep_node.global.__dirname)}`
+                }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
               )
             }
           >

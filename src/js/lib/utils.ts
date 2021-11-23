@@ -4,10 +4,12 @@ import { ns } from "../../shared/shared";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
-//@ts-ignore
-export const cep_node: ICEP_Node = cep_node;
-//@ts-ignore
-export const cep: ICEP = cep_node;
+// //@ts-ignore
+// export const cep_node: ICEP_Node =
+//   //@ts-ignore
+//   typeof cep_node !== "undefined" ? cep_node : {};
+// //@ts-ignore
+// export const cep: ICEP = typeof cep !== "undefined" ? cep : {};
 
 export const evalES = (script: string, isGlobal = false): Promise<string> => {
   return new Promise(function (resolve, reject) {
@@ -67,66 +69,3 @@ export const vulcanListen = (id: string, callback: Function) => {
     null
   );
 };
-
-declare class ICEP_Node {
-  global: any;
-  process: any;
-  buffer: any;
-  require: any;
-}
-declare class ICEP {
-  encoding: {
-    Base64: "Base64" | string;
-    UTF8: "UTF-8" | string;
-    convertion: {
-      utf8_to_b64: (...params: any) => {};
-      b64_to_utf8: (...params: any) => {};
-      binary_to_b64: (...params: any) => {};
-      b64_to_binary: (...params: any) => {};
-      ascii_to_b64: (...params: any) => {};
-    };
-  };
-  fs: {
-    ERR_CANT_READ: number;
-    ERR_CANT_WRITE: number;
-    ERR_FILE_EXISTS: number;
-    ERR_INVALID_PARAMS: number;
-    ERR_NOT_DIRECTORY: number;
-    ERR_NOT_FILE: number;
-    ERR_NOT_FOUND: number;
-    ERR_OUT_OF_SPACE: number;
-    ERR_UNKNOWN: number;
-    ERR_UNSUPPORTED_ENCODING: number;
-    NO_ERROR: number;
-    chmod: (...params: any) => {};
-    deleteFile: (...params: any) => {};
-    makedir: (...params: any) => {};
-    readFile: (...params: any) => {};
-    readdir: (...params: any) => {};
-    rename: (...params: any) => {};
-    showOpenDialog: (...params: any) => {};
-    showOpenDialogEx: (...params: any) => {};
-    showSaveDialogEx: (...params: any) => {};
-    stat: (...params: any) => {};
-    writeFile: (...params: any) => {};
-  };
-  process: {
-    ERR_EXCEED_MAX_NUM_PROCESS: number;
-    createProcess: (...params: any) => {};
-    getWorkingDirectory: (...params: any) => {};
-    isRunning: (...params: any) => {};
-    onquit: (...params: any) => {};
-    stderr: (...params: any) => {};
-    stdin: (...params: any) => {};
-    stdout: (...params: any) => {};
-    terminate: (...params: any) => {};
-    waitfor: (...params: any) => {};
-  };
-  util: {
-    DEPRECATED_API: number;
-    ERR_INVALID_URL: number;
-    openURLInDefaultBrowser: (...params: any) => {};
-    registerExtensionUnloadCallback: (...params: any) => {};
-    storeProxyCredentials: (...params: any) => {};
-  };
-}
