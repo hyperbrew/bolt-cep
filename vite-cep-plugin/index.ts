@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
-import { log, conColors } from "./lib/lib";
+import { log, conColors, posix } from "./lib/lib";
 import { signZXP } from "./lib/zxp";
 import { manifestTemplate } from "./templates/manifest-template";
 import { debugTemplate } from "./templates/debug-template";
@@ -66,9 +66,11 @@ export const cep = (opts: CepOptions) => {
   return {
     name: "cep",
     transformIndexHtml(code: string, opts) {
-      // only runs on build
-      console.log("TRANSFORMER INCOMING");
-
+      // console.log("HTML Transform");
+      const isDev = opts.server !== undefined;
+      if (isDev) {
+        return code;
+      }
       const cssFileNameMatch = code.match(/(href=\".*.css\")/);
       const cssFileName =
         cssFileNameMatch &&
@@ -78,20 +80,13 @@ export const cep = (opts: CepOptions) => {
         jsFileNameMatch &&
         jsFileNameMatch.pop().replace('src="', "").replace('"', "");
 
-      // TODO: Make this less hacky
+      // TODO: better require transformations
       const jsName = jsFileName.substr(1);
 
       let newCode = opts.bundle[jsName].code;
 
-      // newCode = newCode.replace(
-      //   /(require\("\.\/)/g,
-      //   'require("../assets/'
-      //   // 'cep_node.require(cep_node.global["__dir"+"name"] + "/assets/'
-      // );
-
       const matches = newCode.match(/(\=require\(\".*\"\)\;)/);
-      matches.map((match) => {
-        console.log("MATCH :: ", matches);
+      matches.map((match: string) => {
         const jsPath = match.match(/\".*\"/);
         const jsBasename = path.basename(jsPath[0]);
         if (jsPath) {
@@ -102,6 +97,7 @@ export const cep = (opts: CepOptions) => {
         }
       });
       newCode = newCode.replace(`="./assets`, `="../assets`);
+      newCode = newCode.replace(`="/assets`, `="../assets`);
 
       opts.bundle[jsName].code = newCode;
 
@@ -111,50 +107,50 @@ export const cep = (opts: CepOptions) => {
         jsFileName,
         cssFileName,
       });
-      // console.log("cssFileName: ::: ", cssFileName);
-      // console.log("jsFileName: ::: ", jsFileName);
-      // console.log("html: ::: ", html);
       return html;
-      // return code;
     },
-    writeBundles(args, bundle) {
-      console.log("WRITES BUNDEL");
-      const jsFileName = Object.keys(bundle).find(
-        (key) => key.split(".").pop() === "js"
-      );
-      const indexHtmlFile = {
-        type: "asset",
 
-        source: htmlTemplate({
-          ...cepConfig,
-          debugReact,
-          jsFileName,
-        }),
-        name: "CEP HTML Build File",
-        fileName: `panel.html`,
-      };
-      //@ts-ignore
-      this.emitFile(indexHtmlFile);
-      return bundle;
-    },
+    // writeBundles(args, bundle) {
+    //   console.log("WRITES BUNDEL");
+    //   const jsFileName = Object.keys(bundle).find(
+    //     (key) => key.split(".").pop() === "js"
+    //   );
+    //   const indexHtmlFile = {
+    //     type: "asset",
+
+    //     source: htmlTemplate({
+    //       ...cepConfig,
+    //       debugReact,
+    //       jsFileName,
+    //     }),
+    //     name: "CEP HTML Build File",
+    //     fileName: `panel.html`,
+    //   };
+    //   //@ts-ignore
+    //   this.emitFile(indexHtmlFile);
+    //   return bundle;
+    // },
     configResolved(config: ResolvedConfig) {
       if (config.env["MODE"] === "development") {
-        const panelHtmlFile = {
-          type: "asset",
-          source: devHtmlTemplate({
-            ...cepConfig,
-            url: isProduction
-              ? cepConfig.finalURL
-              : `http://localhost:${cepConfig.port}/`,
-          }),
-          name: "CEP HTML Dev File",
-          fileName: "panel.html",
-        };
-        fs.writeFileSync(
-          path.join("dist", "cep", "panel.html"),
-          panelHtmlFile.source
-        );
-        log("dev html file created", true);
+        Object.keys(config.build.rollupOptions.input).map((key: string) => {
+          const filePath = config.build.rollupOptions.input[key];
+          const relativePath = path.relative(config.root, filePath);
+          const destPath = path.resolve(config.build.outDir, relativePath);
+          console.log(destPath);
+          console.log(posix(relativePath));
+
+          const panelHtmlFile = {
+            type: "asset",
+            source: devHtmlTemplate({
+              ...cepConfig,
+              url: `http://localhost:${cepConfig.port}/${posix(relativePath)}`,
+            }),
+            name: "CEP HTML Dev File",
+            fileName: "index.html",
+          };
+          fs.writeFileSync(destPath, panelHtmlFile.source);
+          log("dev html file created", true);
+        });
       }
     },
     async generateBundle(output: any, bundle: any) {
@@ -202,16 +198,16 @@ export const cep = (opts: CepOptions) => {
 
         // console.log("BUNDLEEEE", Object.keys(bundle));
 
-        const indexHtmlFile = {
-          type: "asset",
+        // const indexHtmlFile = {
+        //   type: "asset",
 
-          source: htmlTemplate({ ...cepConfig, debugReact, jsFileName }),
-          name: "CEP HTML Build File",
-          fileName: "panel.html",
-        };
-        //@ts-ignore
-        this.emitFile(indexHtmlFile);
-        log("panel html file created", true);
+        //   source: htmlTemplate({ ...cepConfig, debugReact, jsFileName }),
+        //   name: "CEP HTML Build File",
+        //   fileName: "panel.html",
+        // };
+        // //@ts-ignore
+        // this.emitFile(indexHtmlFile);
+        // log("panel html file created", true);
 
         try {
           const symlinkPath =
