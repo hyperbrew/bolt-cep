@@ -70,10 +70,13 @@ export const cep = (opts: CepOptions) => {
       if (isDev) {
         return code;
       }
-      const cssFileNameMatch = code.match(/(href=\".*.css\")/);
-      const cssFileName =
-        cssFileNameMatch &&
-        cssFileNameMatch.pop().replace('href="', "").replace('"', "");
+      let cssFileNameMatches = code.match(/(href=\".*.css\")/g);
+      const cssFileNames =
+        cssFileNameMatches &&
+        Array.from(cssFileNameMatches).map((file) =>
+          file.replace('href="', "").replace('"', "")
+        );
+      console.log("CSS", cssFileNameMatches);
       const jsFileNameMatch = code.match(/(src=\".*.js\")/);
       const jsFileName =
         jsFileNameMatch &&
@@ -84,9 +87,12 @@ export const cep = (opts: CepOptions) => {
 
       let newCode = opts.bundle[jsName].code;
 
-      const matches = newCode.match(/(\=require\(\".*\"\)\;)/);
+      const matches = newCode.match(
+        /(\=require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)\;)/g
+      );
 
       matches?.map((match: string) => {
+        console.log("MATCHHHH :: ", match);
         const jsPath = match.match(/\".*\"/);
         const jsBasename = path.basename(jsPath[0]);
         if (jsPath) {
@@ -98,14 +104,20 @@ export const cep = (opts: CepOptions) => {
       });
       newCode = newCode.replace(`="./assets`, `="../assets`);
       newCode = newCode.replace(`="/assets`, `="../assets`);
-
       opts.bundle[jsName].code = newCode;
+
+      const sharedBundle = Object.keys(opts.bundle).find(
+        (key) => key.includes("jsx-runtime") && key.includes(".js")
+      );
+      opts.bundle[sharedBundle].code = opts.bundle[sharedBundle].code
+        .replace(`="./assets`, `="../assets`)
+        .replace(`="/assets`, `="../assets`);
 
       const html = htmlTemplate({
         ...cepConfig,
         debugReact,
         jsFileName,
-        cssFileName,
+        cssFileNames,
       });
       return html;
     },

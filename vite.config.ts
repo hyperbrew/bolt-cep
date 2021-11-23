@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import rollup from "rollup";
 import react from "@vitejs/plugin-react";
 import babel from "@rollup/plugin-babel";
 import usePluginImport from "vite-plugin-importer";
@@ -16,6 +17,7 @@ import image from "@rollup/plugin-image";
 import { cep, jsxInclude } from "./vite-cep-plugin/index.js";
 import cepConfig from "./cep.config.json";
 import path from "path";
+import { extendscriptConfig } from "./extendscript.config.js";
 
 const extensions = [".js", ".ts", ".tsx"];
 
@@ -118,3 +120,12 @@ export default defineConfig({
     outDir,
   },
 });
+
+console.log("rollup es3 build");
+const outPathExtendscript = path.join("dist", "cep", "jsx", "index.js");
+extendscriptConfig(
+  `src/jsx/index.ts`,
+  outPathExtendscript,
+  cepConfig,
+  extensions
+);

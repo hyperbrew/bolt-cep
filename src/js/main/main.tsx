@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
 import { os, path, fs } from "../lib/node";
-import { csi, evalES } from "../lib/utils";
+import { csi, evalES, evalFile } from "../lib/utils";
 
 import logo from "../logo.svg";
 
@@ -11,14 +11,18 @@ const Main = () => {
   const [count, setCount] = useState(0);
 
   async function jsxTest() {
-    console.log(
-      await evalES(
-        `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
-        true
-      )
-    );
-    // console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
+    // console.log(
+    //   await evalES(
+    //     `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
+    //     true
+    //   )
+    // );
+    console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
   }
+
+  // useEffect(() => {
+  //   evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+  // }, []);
 
   return (
     <div className="app">

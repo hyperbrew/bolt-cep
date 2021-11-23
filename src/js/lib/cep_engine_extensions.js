@@ -1,3 +1,5 @@
+// FOR REFERENCE ONLY -- THIS FILE IS NOT BUNDLED
+
 /**************************************************************************************************
 *
 * ADOBE SYSTEMS INCORPORATED
