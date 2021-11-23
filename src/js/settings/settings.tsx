@@ -1,8 +1,8 @@
 import { FaBolt, FaSync } from "react-icons/fa";
-import logo from "./logo.svg";
-import "./app.scss";
+import logo from "../logo.svg";
+import "./settings.scss";
 
-const App = () => {
+const Settings = () => {
   return (
     <div className="app">
       <header className="app-header">
@@ -15,4 +15,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Settings;
