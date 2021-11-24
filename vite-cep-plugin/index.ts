@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
-import { log, conColors, posix } from "./lib/lib";
+import { log, conColors, posix, resetLog } from "./lib/lib";
 import { signZXP } from "./lib/zxp";
 import { manifestTemplate } from "./templates/manifest-template";
 import { debugTemplate } from "./templates/debug-template";
@@ -38,7 +38,6 @@ const makeSymlink = (dist: string, dest: string) => {
 };
 
 interface CepOptions {
-  // attributes: any;
   cepConfig: any;
   dir: string;
   isProduction: boolean;
@@ -63,6 +62,22 @@ export const cep = (opts: CepOptions) => {
     cepDist,
     zxpDir,
   } = opts;
+
+  if (cepConfig && cepConfig.panels) {
+    console.clear();
+    console.log(`${conColors.green}CEP Panels Served at:`);
+    console.log("");
+    cepConfig.panels.map((panel) => {
+      const relativePath = panel.mainPath;
+      const name = panel.name;
+      console.log(
+        `${conColors.white}   > ${name}: ${conColors.cyan}http://localhost:5000/${name}/`
+      );
+    });
+    resetLog();
+    console.log("");
+  }
+
   return {
     name: "cep",
     transformIndexHtml(code: string, opts) {
@@ -122,15 +137,19 @@ export const cep = (opts: CepOptions) => {
       });
       return html;
     },
+    // configureServer(server, extra) {
+    //   console.log(server);
+    //   // return extra;
+    // },
     configResolved(config: ResolvedConfig) {
-      if (config.env["MODE"] === "development") {
+      if (!isProduction) {
+        console.clear();
+        console.log(`${conColors.green}CEP Panels Served at:`);
+        console.log("");
         Object.keys(config.build.rollupOptions.input).map((key: string) => {
           const filePath = config.build.rollupOptions.input[key];
           const relativePath = path.relative(config.root, filePath);
           const destPath = path.resolve(config.build.outDir, relativePath);
-          console.log(destPath);
-          console.log(posix(relativePath));
-
           const panelHtmlFile = {
             type: "asset",
             source: devHtmlTemplate({
@@ -141,7 +160,11 @@ export const cep = (opts: CepOptions) => {
             fileName: "index.html",
           };
           fs.writeFileSync(destPath, panelHtmlFile.source);
-          log("dev html file created", true);
+          console.log(
+            `${conColors.white}   > ${path.dirname(relativePath)}: ${
+              conColors.cyan
+            }http://localhost:3000/${posix(path.dirname(relativePath))}/`
+          );
         });
       }
     },
@@ -177,23 +200,23 @@ export const cep = (opts: CepOptions) => {
         this.emitFile(manifestFile);
         log("manifest created", true);
 
-        const menuFile = {
-          type: "asset",
-          source: menuHtmlTemplate({
-            displayName: cepConfig.displayName,
-            menu: cepConfig.panels.map((panel) => {
-              return {
-                name: panel.name,
-                url: panel.mainPath,
-              };
-            }),
-          }),
-          name: "Menu File",
-          fileName: path.join("index.html"),
-        };
+        // const menuFile = {
+        //   type: "asset",
+        //   source: menuHtmlTemplate({
+        //     displayName: cepConfig.displayName,
+        //     menu: cepConfig.panels.map((panel) => {
+        //       return {
+        //         name: panel.name,
+        //         url: panel.mainPath,
+        //       };
+        //     }),
+        //   }),
+        //   name: "Menu File",
+        //   fileName: path.join("index.html"),
+        // };
         //@ts-ignore
-        this.emitFile(menuFile);
-        log("menu created", true);
+        // this.emitFile(menuFile);
+        // log("menu created", true);
 
         const debugFile = {
           type: "asset",

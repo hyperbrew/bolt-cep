@@ -99,14 +99,15 @@ export default defineConfig({
       siteDist: cepVars.siteDist,
       cepDist: cepVars.cepDist,
       zxpDir: `${__dirname}/${cepVars.devDist}/zxp`,
-      isProduction: cepVars.isProd,
+      isProduction: isProduction,
       isPackage: cepVars.isPackage,
       isLocal: cepVars.isLocal,
       debugReact: cepVars.debugReact,
     }),
   ],
   root,
-
+  clearScreen: false,
+  server: {},
   build: {
     // emptyOutDir: true,
     watch: {
@@ -126,7 +127,7 @@ export default defineConfig({
   },
 });
 
-console.log("rollup es3 build");
+// rollup es3 build
 const outPathExtendscript = path.join("dist", "cep", "jsx", "index.js");
 extendscriptConfig(
   `src/jsx/index.ts`,
