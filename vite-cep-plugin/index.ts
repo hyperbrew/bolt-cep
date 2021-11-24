@@ -108,9 +108,11 @@ export const cep = (opts: CepOptions) => {
       const sharedBundle = Object.keys(opts.bundle).find(
         (key) => key.includes("jsx-runtime") && key.includes(".js")
       );
-      opts.bundle[sharedBundle].code = opts.bundle[sharedBundle].code
-        .replace(`="./assets`, `="../assets`)
-        .replace(`="/assets`, `="../assets`);
+      if (sharedBundle && opts.bundle[sharedBundle]) {
+        opts.bundle[sharedBundle].code = opts.bundle[sharedBundle].code
+          .replace(`="./assets`, `="../assets`)
+          .replace(`="/assets`, `="../assets`);
+      }
 
       const html = htmlTemplate({
         ...cepConfig,

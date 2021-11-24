@@ -10,14 +10,8 @@ import "./main.scss";
 const Main = () => {
   const [count, setCount] = useState(0);
 
-  async function jsxTest() {
-    // console.log(
-    evalES(
-      `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
-      true
-    );
-    // );
-    console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
+  function jsxTest() {
+    console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
   }
 
   useEffect(() => {

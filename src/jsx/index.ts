@@ -6,10 +6,14 @@ import { ns } from "../shared/shared.ts";
 import * as aeft from "./aeft";
 import * as ilst from "./ilst";
 import * as anim from "./anim";
+import * as ppro from "./ppro";
 
 let main;
 
 switch (BridgeTalk.appName) {
+  case "premierepro":
+    main = ppro;
+    break;
   case "aftereffects":
     main = aeft;
     break;
