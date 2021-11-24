@@ -71,7 +71,7 @@ export const cep = (opts: CepOptions) => {
       const relativePath = panel.mainPath;
       const name = panel.name;
       console.log(
-        `${conColors.white}   > ${name}: ${conColors.cyan}http://localhost:5000/${name}/`
+        `${conColors.white}   > ${name}: ${conColors.cyan}http://localhost:${cepConfig.servePort}/${name}/`
       );
     });
     resetLog();
@@ -163,7 +163,9 @@ export const cep = (opts: CepOptions) => {
           console.log(
             `${conColors.white}   > ${path.dirname(relativePath)}: ${
               conColors.cyan
-            }http://localhost:3000/${posix(path.dirname(relativePath))}/`
+            }http://localhost:${cepConfig.port}/${posix(
+              path.dirname(relativePath)
+            )}/`
           );
         });
       }

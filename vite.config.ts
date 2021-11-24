@@ -107,7 +107,9 @@ export default defineConfig({
   ],
   root,
   clearScreen: false,
-  server: {},
+  server: {
+    port: isProduction ? cepConfig.servePort : cepConfig.port,
+  },
   build: {
     // emptyOutDir: true,
     watch: {

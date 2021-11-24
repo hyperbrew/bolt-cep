@@ -3,6 +3,7 @@
   "socketPort": 12341,
   "bundleJSX": "true",
   "port": 3000,
+  "servePort": 5000,
   "finalURL": "http://localhost:3000/",
   "symlink": "local",
   "startingDebugPort": 8860,
