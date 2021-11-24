@@ -11,6 +11,7 @@ import { debugTemplate } from "./templates/debug-template";
 import { devHtmlTemplate } from "./templates/dev-html-template";
 import { htmlTemplate } from "./templates/html-template";
 import { ResolvedConfig } from "vite";
+import { menuHtmlTemplate } from "./templates/menu-html-template";
 
 const homedir = os.homedir();
 
@@ -173,6 +174,24 @@ export const cep = (opts: CepOptions) => {
         //@ts-ignore
         this.emitFile(manifestFile);
         log("manifest created", true);
+
+        const menuFile = {
+          type: "asset",
+          source: menuHtmlTemplate({
+            displayName: cepConfig.displayName,
+            menu: cepConfig.panels.map((panel) => {
+              return {
+                name: panel.name,
+                url: panel.mainPath,
+              };
+            }),
+          }),
+          name: "Menu File",
+          fileName: path.join("index.html"),
+        };
+        //@ts-ignore
+        this.emitFile(menuFile);
+        log("menu created", true);
 
         const debugFile = {
           type: "asset",
