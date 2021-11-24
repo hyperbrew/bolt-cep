@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
 import { os, path, fs } from "../lib/node";
-import { csi, evalES, evalFile } from "../lib/utils";
+import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
 import logo from "../logo.svg";
 
@@ -57,23 +57,21 @@ const Main = () => {
           Edit <code>app.tsx</code> and save to test HMR updates.
         </p>
         <p>
-          <a
+          <button
             className="app-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() => openLinkInBrowser("https://reactjs.org")}
           >
             Learn React
-          </a>
+          </button>
           {" | "}
-          <a
+          <button
             className="app-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() =>
+              openLinkInBrowser("https://vitejs.dev/guide/features.html")
+            }
           >
             Vite Docs
-          </a>
+          </button>
         </p>
       </header>
     </div>

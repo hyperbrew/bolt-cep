@@ -4,12 +4,14 @@ import { ns } from "../../shared/shared";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
-// //@ts-ignore
-// export const cep_node: ICEP_Node =
-//   //@ts-ignore
-//   typeof cep_node !== "undefined" ? cep_node : {};
-// //@ts-ignore
-// export const cep: ICEP = typeof cep !== "undefined" ? cep : {};
+
+export const openLinkInBrowser = (url: string) => {
+  if (window.cep) {
+    csi.openURLInDefaultBrowser(url);
+  } else {
+    location.href = url;
+  }
+};
 
 export const evalES = (script: string, isGlobal = false): Promise<string> => {
   return new Promise(function (resolve, reject) {
