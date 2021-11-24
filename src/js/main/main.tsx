@@ -21,8 +21,10 @@ const Main = () => {
   }
 
   useEffect(() => {
-    console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
-    evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+    if (window.cep) {
+      console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
+      evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+    }
   }, []);
 
   return (
