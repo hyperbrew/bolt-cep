@@ -26,12 +26,33 @@ Write in React and TypeScript start building your app like lightning!
 
 ## Quickstart
 
-- Install: `yarn`
-- First Build: `yarn build`
-- Develop: `yarn dev`
-- Debug React: `yarn debug` && `yarn tools`
-- Build: `yarn build`
-- Serve (browser preview only): `yarn serve`
+`yarn`
+
+- Installs all dependencies
+
+`yarn build`
+
+- Runs initial build
+- Creates cep folder structure
+- Creates symlink to extensions folder
+
+`yarn dev`
+
+- Runs in dev mode with HMR Hot-reloading.
+- Both JS and ExtendScript folders re-build on changes.
+- Viewable in browser via localhost:3000/panel/
+  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc.)
+
+`yarn serve`
+
+- Serve files after running `yarn build`
+- Viewable in browser via localhost:5000/panel/
+  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc.)
+
+`yarn debug && yarn tools`
+
+- Adds snippet for debugging with React Dev Tools
+- Launches standalone React Dev Tools
 
 ---
 
@@ -114,7 +135,7 @@ evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
 
 ## Limitations
 
-- Built for Adobe CC 2019 and above (frontend bundles to ES6)
+- Built for Adobe CC 2020 and up
 
 ---
 
