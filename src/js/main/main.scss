@@ -52,6 +52,10 @@ button:hover {
   background-color: #515b6d;
 }
 
+button:active {
+  background-color: #516d55;
+}
+
 .button-group {
   display: flex;
   row-gap: 1rem;

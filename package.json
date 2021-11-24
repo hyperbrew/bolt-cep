@@ -53,7 +53,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "sass": "^1.43.4",
     "tsd-jsdoc": "^2.5.0",
-    "types-for-adobe": "^6.0.1",
+    "types-for-adobe": "https://github.com/bbb999/Types-for-Adobe",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",
     "vite-plugin-importer": "^0.2.5"

@@ -4327,6 +4327,10 @@ types-for-adobe@^6.0.1:
   resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-6.0.1.tgz#567fb3971ee8464d3693b8d3ed0e9a0c9988c34b"
   integrity sha512-kEW6ne8deCUrVua5sYRnb3kRRvVLicwzhnKbqbus585o9LyQjklbo3XDsfIzWiF2aA0oFjgcE5B1Bz+EWQG0nw==
 
+"types-for-adobe@https://github.com/bbb999/Types-for-Adobe":
+  version "6.0.1"
+  resolved "https://github.com/bbb999/Types-for-Adobe#c34df41331f7ff9cb4cd92352c8ecb2adbd449bf"
+
 typescript@^3.2.1:
   version "3.9.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
