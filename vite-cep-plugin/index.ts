@@ -38,6 +38,13 @@ const makeSymlink = (dist: string, dest: string) => {
   }
 };
 
+const injectRequire = fs.readFileSync(
+  path.join(__dirname, "./lib/require-js.js"),
+  {
+    encoding: "utf-8",
+  }
+);
+
 interface CepOptions {
   cepConfig: CEP_Config;
   dir: string;
@@ -132,6 +139,7 @@ export const cep = (opts: CepOptions) => {
         debugReact,
         jsFileName,
         cssFileNames,
+        injectRequire,
       });
       return html;
     },
@@ -153,6 +161,7 @@ export const cep = (opts: CepOptions) => {
             source: devHtmlTemplate({
               ...cepConfig,
               url: `http://localhost:${cepConfig.port}/${posix(relativePath)}`,
+              injectRequire,
             }),
             name: "CEP HTML Dev File",
             fileName: "index.html",

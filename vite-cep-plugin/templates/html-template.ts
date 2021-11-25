@@ -3,10 +3,12 @@ export const htmlTemplate = ({
   debugReact,
   jsFileName,
   cssFileNames,
+  injectRequire,
 }: {
   displayName: string;
   debugReact: boolean;
   jsFileName: string;
+  injectRequire: string;
   cssFileNames: string[];
 }) => `
 <!DOCTYPE html>
@@ -16,6 +18,7 @@ export const htmlTemplate = ({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>${displayName}</title>
+    <script>${injectRequire}</script>
     ${cssFileNames
       .map((file) => `<link rel="stylesheet" href="..${file}">`)
       .join("\n\t\t")}

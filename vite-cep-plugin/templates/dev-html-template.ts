@@ -1,9 +1,11 @@
 export const devHtmlTemplate = ({
   displayName,
   url,
+  injectRequire,
 }: {
   displayName: string;
   url: string;
+  injectRequire: string;
 }) => `
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@ export const devHtmlTemplate = ({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>${displayName}</title>
-    <script src="https://unpkg.com/browser-cjs/require.min.js"></script>
+    <script>${injectRequire}</script>
   </head>
 
   <body>
