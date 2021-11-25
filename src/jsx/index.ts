@@ -1,14 +1,17 @@
+/// <reference path="../../node_modules/types-for-adobe/shared/global.d.ts" />
+/// <reference path="../../node_modules/types-for-adobe/shared/JavaScript.d.ts" />
+
 // @include './lib/json2.js'
 
-//@ts-ignore
-import { ns } from "../shared/shared.ts";
+import { ns } from "../shared/shared";
 
 import * as aeft from "./aeft";
 import * as ilst from "./ilst";
 import * as anim from "./anim";
 import * as ppro from "./ppro";
+import * as phxs from "./phxs";
 
-let main;
+let main: any;
 
 switch (BridgeTalk.appName) {
   case "premierepro":
@@ -19,6 +22,9 @@ switch (BridgeTalk.appName) {
     break;
   case "illustrator":
     main = ilst;
+    break;
+  case "photoshop":
+    main = phxs;
     break;
   default:
     //@ts-ignore
