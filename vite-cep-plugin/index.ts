@@ -43,28 +43,25 @@ interface CepOptions {
   dir: string;
   isProduction: boolean;
   isPackage: boolean;
-  isLocal: boolean;
   debugReact: boolean;
-  siteDist: string;
+  isServe: boolean;
   cepDist: string;
   zxpDir: string;
 }
 
 export const cep = (opts: CepOptions) => {
   const {
-    // attributes,
     cepConfig,
     dir,
     isProduction,
     isPackage,
-    isLocal,
+    isServe,
     debugReact,
-    siteDist,
     cepDist,
     zxpDir,
   } = opts;
 
-  if (cepConfig && cepConfig.panels) {
+  if (cepConfig && cepConfig.panels && isServe) {
     console.clear();
     console.log(`${conColors.green}CEP Panels Served at:`);
     console.log("");
@@ -171,6 +168,12 @@ export const cep = (opts: CepOptions) => {
         });
       }
     },
+    writeBundle() {
+      console.log("FINISH");
+      if (isPackage) {
+        return signZXP(cepConfig, path.join(dir, cepDist), zxpDir);
+      }
+    },
     async generateBundle(output: any, bundle: any) {
       const jsFileName = Object.keys(bundle).find(
         (key) => key.split(".").pop() === "js"
@@ -187,70 +190,68 @@ export const cep = (opts: CepOptions) => {
           (isPackage && "zxp package") || (isProduction && "build") || "dev"
         }`
       );
-      if (isPackage) {
-        signZXP(cepConfig, path.join(dir, cepDist), zxpDir);
-      } else {
-        const manifestFile = {
-          type: "asset",
-          source: prettifyXml(manifestTemplate(cepConfig), {
-            indent: 2,
-            newline: "\n",
-          }),
-          name: "CEP Manifest File",
-          fileName: path.join("CSXS", "manifest.xml"),
-        };
-        //@ts-ignore
-        this.emitFile(manifestFile);
-        log("manifest created", true);
 
-        // const menuFile = {
-        //   type: "asset",
-        //   source: menuHtmlTemplate({
-        //     displayName: cepConfig.displayName,
-        //     menu: cepConfig.panels.map((panel) => {
-        //       return {
-        //         name: panel.name,
-        //         url: panel.mainPath,
-        //       };
-        //     }),
-        //   }),
-        //   name: "Menu File",
-        //   fileName: path.join("index.html"),
-        // };
-        //@ts-ignore
-        // this.emitFile(menuFile);
-        // log("menu created", true);
+      const manifestFile = {
+        type: "asset",
+        source: prettifyXml(manifestTemplate(cepConfig), {
+          indent: 2,
+          newline: "\n",
+        }),
+        name: "CEP Manifest File",
+        fileName: path.join("CSXS", "manifest.xml"),
+      };
+      //@ts-ignore
+      this.emitFile(manifestFile);
+      log("manifest created", true);
 
-        const debugFile = {
-          type: "asset",
+      // const menuFile = {
+      //   type: "asset",
+      //   source: menuHtmlTemplate({
+      //     displayName: cepConfig.displayName,
+      //     menu: cepConfig.panels.map((panel) => {
+      //       return {
+      //         name: panel.name,
+      //         url: panel.mainPath,
+      //       };
+      //     }),
+      //   }),
+      //   name: "Menu File",
+      //   fileName: path.join("index.html"),
+      // };
+      //@ts-ignore
+      // this.emitFile(menuFile);
+      // log("menu created", true);
 
-          source: prettifyXml(debugTemplate(cepConfig)),
-          name: "CEP Debug File",
-          fileName: path.join(".debug"),
-        };
-        //@ts-ignore
-        this.emitFile(debugFile);
-        log("debug file created", true);
+      const debugFile = {
+        type: "asset",
 
-        try {
-          const symlinkPath =
-            cepConfig.symlink === "global"
-              ? ccGlobalExtensionFolder
-              : ccLocalExtensionFolder;
-          const res = makeSymlink(
-            path.join(dir, cepDist),
+        source: prettifyXml(debugTemplate(cepConfig)),
+        name: "CEP Debug File",
+        fileName: path.join(".debug"),
+      };
+      //@ts-ignore
+      this.emitFile(debugFile);
+      log("debug file created", true);
 
-            path.join(symlinkPath, cepConfig.id)
-          );
-          if (!res[0]) {
-            log("symlink already exists", true);
-          } else {
-            log("symlink created", true);
-          }
-        } catch (e) {
-          console.warn(e);
+      try {
+        const symlinkPath =
+          cepConfig.symlink === "global"
+            ? ccGlobalExtensionFolder
+            : ccLocalExtensionFolder;
+        const res = makeSymlink(
+          path.join(dir, cepDist),
+
+          path.join(symlinkPath, cepConfig.id)
+        );
+        if (!res[0]) {
+          log("symlink already exists", true);
+        } else {
+          log("symlink created", true);
         }
+      } catch (e) {
+        console.warn(e);
       }
+
       console.log("");
     },
   };

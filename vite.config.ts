@@ -8,21 +8,17 @@ import { extendscriptConfig } from "./extendscript.config.js";
 
 const extensions = [".js", ".ts", ".tsx"];
 
-const cepVars = {
-  devDist: "dist",
-  siteDist: "cep",
-  cepDist: "cep",
-  isProd: true,
-  isPackage: false,
-  isLocal: true,
-  debugReact: process.env.DEBUG_REACT === "true",
-};
+const devDist = "dist";
+const cepDist = "cep";
 
 const src = path.resolve(__dirname, "src");
-const root = path.resolve(__dirname, "src", "js");
+const root = path.resolve(src, "js");
 const outDir = path.resolve(__dirname, "dist", "cep");
 
+const debugReact = process.env.DEBUG_REACT === "true";
 const isProduction = process.env.NODE_ENV === "production";
+const isPackage = process.env.ZXP_PACKAGE === "true";
+const isServe = process.env.SERVE_PANEL === "true";
 
 let input = {};
 cepConfig.panels.map((panel) => {
@@ -35,14 +31,13 @@ export default defineConfig({
     react(),
     cep({
       cepConfig,
-      dir: `${__dirname}/${cepVars.devDist}`,
-      siteDist: cepVars.siteDist,
-      cepDist: cepVars.cepDist,
-      zxpDir: `${__dirname}/${cepVars.devDist}/zxp`,
-      isProduction: isProduction,
-      isPackage: cepVars.isPackage,
-      isLocal: cepVars.isLocal,
-      debugReact: cepVars.debugReact,
+      isProduction,
+      isPackage,
+      isServe,
+      debugReact,
+      dir: `${__dirname}/${devDist}`,
+      cepDist: cepDist,
+      zxpDir: `${__dirname}/${devDist}/zxp`,
     }),
   ],
   root,

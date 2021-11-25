@@ -54,6 +54,10 @@ Write in React and TypeScript start building your app like lightning!
 - Adds snippet for debugging with React Dev Tools
 - Launches standalone React Dev Tools
 
+`yarn zxp`
+
+- Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
+
 ---
 
 ## Config
@@ -136,10 +140,3 @@ evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
 ## Limitations
 
 - Built for Adobe CC 2020 and up
-
----
-
-## Roadmap
-
-1. Add ZXP Bundling
-2. Add additional CEP debug tools

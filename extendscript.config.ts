@@ -18,7 +18,6 @@ export const extendscriptConfig = (
     input: extendscriptEntry,
     treeshake: false,
     output: {
-      // file: path.join(fullSitePath, "jsx", "index.js"),
       file: outPath,
       format: "iife",
     },
@@ -87,9 +86,7 @@ export const extendscriptConfig = (
 
   async function build() {
     const bundle = await rollup.rollup(config);
-
     await bundle.write(config.output as OutputOptions);
-
     await bundle.close();
   }
 

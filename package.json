@@ -7,7 +7,8 @@
     "tools": "react-devtools",
     "watch": "tsc && vite build --watch true",
     "build": "rimraf dist/* && tsc && vite build --watch false",
-    "serve": "vite preview"
+    "zxp": "tsc && cross-env ZXP_PACKAGE=true vite build --watch false",
+    "serve": "cross-env SERVE_PANEL=true vite preview"
   },
   "dependencies": {
     "react": "^17.0.0",
