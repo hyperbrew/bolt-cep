@@ -12,6 +12,7 @@ import { devHtmlTemplate } from "./templates/dev-html-template";
 import { htmlTemplate } from "./templates/html-template";
 import { ResolvedConfig } from "vite";
 import { menuHtmlTemplate } from "./templates/menu-html-template";
+import { CEP_Config } from "./cep-config";
 
 const homedir = os.homedir();
 
@@ -38,7 +39,7 @@ const makeSymlink = (dist: string, dest: string) => {
 };
 
 interface CepOptions {
-  cepConfig: any;
+  cepConfig: CEP_Config;
   dir: string;
   isProduction: boolean;
   isPackage: boolean;

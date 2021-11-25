@@ -5,7 +5,7 @@ export const htmlTemplate = ({
   cssFileNames,
 }: {
   displayName: string;
-  debugReact: string;
+  debugReact: boolean;
   jsFileName: string;
   cssFileNames: string[];
 }) => `

@@ -1,21 +1,8 @@
 import { defineConfig } from "vite";
-import rollup from "rollup";
 import react from "@vitejs/plugin-react";
-import babel from "@rollup/plugin-babel";
-import usePluginImport from "vite-plugin-importer";
 
-import builtins from "rollup-plugin-node-builtins";
-// import replace from '@rollup/plugin-replace';
-import nodeResolve from "@rollup/plugin-node-resolve";
-import copyNode from "rollup-plugin-node-copy";
-
-import commonjs from "@rollup/plugin-commonjs";
-
-import scss from "rollup-plugin-scss";
-import image from "@rollup/plugin-image";
-
-import { cep, jsxInclude } from "./vite-cep-plugin/index.js";
-import cepConfig from "./cep.config.json";
+import { cep } from "./vite-cep-plugin/index.js";
+import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./extendscript.config.js";
 
@@ -45,56 +32,9 @@ cepConfig.panels.map((panel) => {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // commonjs({
-    //   include: /node_modules/,
-    // }),
-    react({
-      // fastRefresh: true,
-      // babel: {
-      //   // exclude: /node_modules/,
-      //   babelrc: false,
-      //   // babelHelpers: "runtime",
-      //   presets: [
-      //     [
-      //       "env",
-      //       {
-      //         targets: {
-      //           chrome: "80",
-      //         },
-      //       },
-      //     ],
-      //     // [
-      //     //   "@babel/preset-env",
-      //     //   {
-      //     //     useBuiltIns: "entry",
-      //     //   },
-      //     // ],
-      //     "@babel/preset-react",
-      //     "@babel/preset-typescript",
-      //   ],
-      //   plugins: [
-      //     // "react-require",
-      //     //   "@babel/plugin-syntax-dynamic-import",
-      //     //   "@babel/plugin-proposal-class-properties",
-      //     //   [
-      //     //     "@babel/plugin-proposal-object-rest-spread",
-      //     //     {
-      //     //       useBuiltIns: true,
-      //     //     },
-      //     //   ],
-      //     //   [
-      //     //     "@babel/plugin-transform-runtime",
-      //     //     {
-      //     //       helpers: true,
-      //     //       regenerator: true,
-      //     //       useESModules: false,
-      //     //     },
-      //     //   ],
-      //   ],
-      // },
-    }),
+    react(),
     cep({
-      cepConfig: cepConfig,
+      cepConfig,
       dir: `${__dirname}/${cepVars.devDist}`,
       siteDist: cepVars.siteDist,
       cepDist: cepVars.cepDist,

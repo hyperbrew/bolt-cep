@@ -1,1 +1,2 @@
-export const ns = "com.bolt.cep";
+import config from "../../cep.config";
+export const ns = config.id;

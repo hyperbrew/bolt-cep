@@ -8,7 +8,7 @@ A Modern CEP Boilerplate.
 
 Build your React CEP Panel app with HMR (Hot Module Reloading).
 
-Adjust manifest settings in your cep.config.json. Running in dev mode will hot-reload upon changes.
+Adjust manifest settings in your cep.config.ts. Running in dev mode will hot-reload upon changes.
 
 Build to create your consolidated production-ready CEP panel.
 
@@ -39,7 +39,7 @@ Write in React and TypeScript start building your app like lightning!
 `yarn dev`
 
 - Runs in dev mode with HMR Hot-reloading.
-- Both JS and ExtendScript folders re-build on changes.
+- Both JS and ExtendScript folders re-build on changes
 - Viewable in browser via localhost:3000/panel/
   - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc.)
 
@@ -58,7 +58,7 @@ Write in React and TypeScript start building your app like lightning!
 
 ## Config
 
-Update your CEP build and package settings in `cep.config.json`
+Update your CEP build and package settings in `cep.config.ts` safely typed
 
 Add your custom id in `src/js/shared.ts` as your scoped namepsace for ExtendScript
 
@@ -70,7 +70,7 @@ Write ExtendScript code in `src/jsx/main.ts`
 
 ## CEP Panel Structure
 
-Each panel is treated as it's own page, with shared code for efficiency. The Boilerplate currently comes with 2 panels, `main` and `settings`. These are configured in the `cep.config.json`.
+Each panel is treated as it's own page, with shared code for efficiency. The Boilerplate currently comes with 2 panels, `main` and `settings`. These are configured in the `cep.config.ts`.
 
 Each panel can be edited in their respective folders:
 
@@ -85,7 +85,7 @@ src
         └─ index.tsx
 ```
 
-To add panels, add an item to the panels object in `cep.config.json`, and duplicate the folder structure and adjust as needed.
+To add panels, add an item to the panels object in `cep.config.ts`, and duplicate the folder structure and adjust as needed.
 
 ---
 
@@ -113,7 +113,7 @@ To add support for additional host apps:
 
 - Add additional app module files (aeft.ts, anim.ts, etc).
 - Extend the main `switch()` in `scr/jsx/index.ts` with your additional.
-- Add the host to your `cep.config.json` file.
+- Add the host to your `cep.config.ts` file.
 
 ---
 

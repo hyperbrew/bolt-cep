@@ -1,27 +1,18 @@
+import { CEP_Config } from "../cep-config";
 import { extensionTemplate } from "./extension-template";
-export const manifestTemplate = (props: {
-  extensionManifestVersion: string;
-  id: string;
-  displayName: string;
-  version: string;
-  scriptPath: string;
-  hosts: [{ name: string; version: string }];
-  requiredRuntimeVersion: string;
-  panels: [{ name: string }];
-}) => {
+export const manifestTemplate = (props: CEP_Config) => {
   const {
     extensionManifestVersion,
     id,
     displayName,
     version,
-    scriptPath,
     hosts,
     requiredRuntimeVersion,
     panels,
   } = props;
   return `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ExtensionManifest
-    Version="${extensionManifestVersion}" 
+    Version="${extensionManifestVersion.toFixed(1)}" 
     ExtensionBundleId="${id}"
     ExtensionBundleVersion="${version}"
     ExtensionBundleName="${displayName}" 
@@ -44,7 +35,7 @@ export const manifestTemplate = (props: {
 			<Locale Code="All" />
 		</LocaleList>
 		<RequiredRuntimeList>
-			<RequiredRuntime Name="CSXS" Version="${requiredRuntimeVersion}" />
+			<RequiredRuntime Name="CSXS" Version="${requiredRuntimeVersion.toFixed(1)}" />
 		</RequiredRuntimeList>
 	</ExecutionEnvironment>
 	<DispatchInfoList>
@@ -56,7 +47,6 @@ export const manifestTemplate = (props: {
         parameters: newProps.parameters,
         autoVisible: newProps.autoVisible,
         mainPath: newProps.mainPath,
-        scriptPath: newProps.scriptPath,
         type: newProps.type,
         panelDisplayName: newProps.panelDisplayName,
         width: newProps.width,

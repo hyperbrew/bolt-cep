@@ -1,22 +1,7 @@
-export const debugTemplate = ({
-  id,
-  hosts,
-  startingDebugPort,
-  panels,
-}: {
-  id: string;
-  hosts: [
-    {
-      name: string;
-    }
-  ];
-  startingDebugPort: number;
-  panels: [
-    {
-      name: string;
-    }
-  ];
-}) => {
+import { CEP_Config } from "../cep-config";
+
+export const debugTemplate = (props: CEP_Config) => {
+  const { id, hosts, startingDebugPort, panels } = props;
   let port = startingDebugPort;
   return `
 <?xml version="1.0" encoding="UTF-8"?>

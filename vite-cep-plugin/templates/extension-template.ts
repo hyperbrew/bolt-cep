@@ -1,3 +1,5 @@
+import { CEP_Extended_Panel } from "../cep-config";
+
 export const extensionTemplate = ({
   id,
   name,
@@ -12,22 +14,7 @@ export const extensionTemplate = ({
   iconDarkNormal,
   iconNormalRollOver,
   iconDarkNormalRollOver,
-}: {
-  id: string;
-  name: string;
-  parameters: string[];
-  autoVisible: string;
-  mainPath: string;
-  scriptPath: string;
-  type: string;
-  panelDisplayName: string;
-  width: string;
-  height: string;
-  iconNormal: string;
-  iconDarkNormal: string;
-  iconNormalRollOver: string;
-  iconDarkNormalRollOver: string;
-}) => `
+}: CEP_Extended_Panel) => `
 <Extension Id="${id}.${name}">
 <DispatchInfo >
   <Resources>

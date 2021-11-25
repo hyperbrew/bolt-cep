@@ -3,14 +3,16 @@ import path from "path";
 import { execSync } from "child_process";
 
 import { removeIfExists, safeCreate, log } from "./lib";
+import { CEP_Config } from "../cep-config";
 
-export const signZXP = (config: any, input: string, zxpDir: string) => {
+export const signZXP = (config: CEP_Config, input: string, zxpDir: string) => {
   const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : `./ZXPSignCmd`;
+  const name = config.id;
   const data = config.zxp;
-  const output = path.join(zxpDir, `${data.name}.zxp`);
-  const certPath = `${data.name}-cert.p12`;
+  const output = path.join(zxpDir, `${name}.zxp`);
+  const certPath = `${name}-cert.p12`;
 
-  const signPrepStr = `${zxpCmd} -selfSignedCert ${data.country} ${data.province} ${data.org} ${data.name} ${data.password} ${certPath}`;
+  const signPrepStr = `${zxpCmd} -selfSignedCert ${data.country} ${data.province} ${data.org} ${name} ${data.password} ${certPath}`;
   const signStr = `${zxpCmd} -sign "${input}" "${output}" ${certPath} ${data.password} -tsa ${data.tsa}`;
   const cwdDir = path.join(__dirname, "rollup-cep-plugin", "bin");
 

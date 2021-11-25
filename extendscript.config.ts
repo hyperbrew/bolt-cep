@@ -4,12 +4,12 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
 import { jsxInclude } from "./vite-cep-plugin";
-import path from "path";
+import { CEP_Config } from "./vite-cep-plugin/cep-config";
 
 export const extendscriptConfig = (
   extendscriptEntry: string,
   outPath: string,
-  cepConfig: any,
+  cepConfig: CEP_Config,
   extensions: string[],
   isProduction: boolean
 ) => {
