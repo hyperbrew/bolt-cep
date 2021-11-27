@@ -137,6 +137,35 @@ evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
 
 ---
 
+## A Note on Routers
+
+If you would like to set up a routing system like react-router, be aware that you'll have to make adjustments for CEP. React Router for instance bases the router path off of `window.location.pathname` which in the browser resolves to the page:
+
+`/main/index.html`
+
+yet in CEP context resolves to the full system path:
+
+`file:///C:/Users/Username/AppData/Roaming/Adobe/CEP/extensions/com.bolt.cep/main/index.html`
+
+To solve this, you'll need to adjust the router basename for each context, here is one way of accomplishing that with the panel named `main`:
+
+```
+const posix = (str: string) => str.replace(/\\/g, "/");
+
+const cepBasename = window.cep_node
+  ? `${posix(window.cep_node.global.__dirname)}/`
+  : "/main/";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Router basename={cepBasename}>
+    [...]
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
 ## Limitations
 
 - Built for Adobe CC 2020 and up
