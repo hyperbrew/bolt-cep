@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-import { cep } from "./vite-cep-plugin/index.js";
+import { cep, copyNode } from "./vite-cep-plugin/index.js";
 import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./extendscript.config.js";
@@ -39,6 +39,13 @@ export default defineConfig({
       cepDist: cepDist,
       zxpDir: `${__dirname}/${devDist}/zxp`,
     }),
+    copyNode({
+      packages: cepConfig.installModules || [],
+      src: "./",
+      dest: "dist/cep",
+      // symlink: !isProd,
+      symlink: false,
+    }),
   ],
   root,
   clearScreen: false,
@@ -50,6 +57,9 @@ export default defineConfig({
     watch: {
       include: "src/jsx/**",
     },
+    // commonjsOptions: {
+    //   transformMixedEsModules: true,
+    // },
     rollupOptions: {
       input,
       output: {

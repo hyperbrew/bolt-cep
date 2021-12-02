@@ -137,6 +137,36 @@ evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
 
 ---
 
+## Troubleshooting Modules
+
+Node.js Built-in modules can be imported from the `src/js/lib/node.ts` file.
+
+```
+import { os, path, fs } from "../lib/node";
+```
+
+To use 3rd party libraries, first attempt to use with the standard import syntax.
+
+```
+import { FaBolt } from "react-icons/fa";
+```
+
+If the import syntax fails, you can resort to the Node.js `require()` syntax,
+
+```
+const unzipper = require("unzipper");
+```
+
+but make sure to add those modules to the `installModules:[]` array inside your `cep.config.ts` file.
+
+```
+  installModules: ["unzipper"],
+```
+
+Also if they're Node.js-specific modules, it's best to place the requires inside functions so they are only required at runtime and don't break your panel when previewing in the browser.
+
+---
+
 ## A Note on Routers
 
 If you would like to set up a routing system like react-router, be aware that you'll have to make adjustments for CEP. React Router for instance bases the router path off of `window.location.pathname` which in the browser resolves to the page:

@@ -1,6 +1,8 @@
 import os from "os";
 import path from "path";
 
+import copyN from "./copy-node";
+
 import fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
@@ -55,7 +57,7 @@ interface CepOptions {
   cepDist: string;
   zxpDir: string;
 }
-
+export const copyNode = copyN;
 export const cep = (opts: CepOptions) => {
   const {
     cepConfig,
@@ -108,7 +110,7 @@ export const cep = (opts: CepOptions) => {
       let newCode = opts.bundle[jsName].code;
 
       const matches = newCode.match(
-        /(\=require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)\;)/g
+        /(\=require\(\"\.([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,))/g
       );
 
       matches?.map((match: string) => {
