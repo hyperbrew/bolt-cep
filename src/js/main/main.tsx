@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
-import { os, path, fs } from "../lib/node";
+import { os, path } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
 import logo from "../logo.svg";
@@ -13,6 +13,14 @@ const Main = () => {
   function jsxTest() {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
   }
+
+  const nodeTest = () => {
+    alert(
+      `Node.js ${process.version}\nPlatform: ${
+        os.platform
+      }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
+    );
+  };
 
   useEffect(() => {
     if (window.cep) {
@@ -32,15 +40,7 @@ const Main = () => {
           <button onClick={() => setCount((count) => count + 1)}>
             Count is: {count}
           </button>
-          <button
-            onClick={() =>
-              alert(
-                `Node.js ${process.version}\nPlatform: ${
-                  os.platform
-                }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
-              )
-            }
-          >
+          <button onClick={nodeTest}>
             <FaNodeJs />
           </button>
           <button onClick={jsxTest}>

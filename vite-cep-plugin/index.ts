@@ -1,7 +1,7 @@
 import os from "os";
 import path from "path";
 
-import copyN from "./copy-node";
+import copyN, { copyModules, unique } from "./copy-node";
 
 import fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
@@ -15,6 +15,7 @@ import { htmlTemplate } from "./templates/html-template";
 import { ResolvedConfig } from "vite";
 import { menuHtmlTemplate } from "./templates/menu-html-template";
 import { CEP_Config } from "./cep-config";
+import { nodeBuiltIns } from "./lib/node-built-ins";
 
 const homedir = os.homedir();
 
@@ -47,6 +48,8 @@ const injectRequire = fs.readFileSync(
   }
 );
 
+let foundPackages = [];
+
 interface CepOptions {
   cepConfig: CEP_Config;
   dir: string;
@@ -56,6 +59,7 @@ interface CepOptions {
   isServe: boolean;
   cepDist: string;
   zxpDir: string;
+  packages: string[];
 }
 export const copyNode = copyN;
 export const cep = (opts: CepOptions) => {
@@ -68,6 +72,7 @@ export const cep = (opts: CepOptions) => {
     debugReact,
     cepDist,
     zxpDir,
+    packages,
   } = opts;
 
   if (cepConfig && cepConfig.panels && isServe) {
@@ -109,10 +114,23 @@ export const cep = (opts: CepOptions) => {
 
       let newCode = opts.bundle[jsName].code;
 
+      const allRequires = newCode.match(
+        /(require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,))/g
+      );
+      if (allRequires) {
+        const requireNames = allRequires.map((req: string) =>
+          req.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0].replace(/\"/g, "")
+        );
+        const copyModules = requireNames.filter(
+          (name: string) =>
+            !nodeBuiltIns.includes(name) && ![".", "/", "\\"].includes(name[0])
+        );
+        foundPackages = foundPackages.concat(copyModules);
+      }
+
       const matches = newCode.match(
         /(\=require\(\"\.([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,))/g
       );
-
       matches?.map((match: string) => {
         const jsPath = match.match(/\".*\"/);
         const jsBasename = path.basename(jsPath[0]);
@@ -180,6 +198,13 @@ export const cep = (opts: CepOptions) => {
       }
     },
     writeBundle() {
+      // console.log(" BUILD END");
+      const src = "./";
+      const dest = "dist/cep";
+      const symlink = false;
+      const allPackages = unique(packages.concat(foundPackages));
+      copyModules({ packages: allPackages, src, dest, symlink });
+
       console.log("FINISH");
       if (isPackage) {
         return signZXP(cepConfig, path.join(dir, cepDist), zxpDir);

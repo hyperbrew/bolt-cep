@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs-extra";
 
-const unique = (array) => {
+export const unique = (array) => {
   return array.filter((v, i, a) => a.indexOf(v) === i);
 };
 
@@ -31,28 +31,34 @@ const nodeSolve = ({ src, pkg, keepDevDependencies }) => {
   return allDependencies || [];
 };
 
+export const copyModules = ({ packages, src, dest, symlink }) => {
+  const allPkg = packages.flatMap((pkg) =>
+    nodeSolve({ src, pkg, keepDevDependencies: false })
+  );
+  const uniqePkg = unique(allPkg);
+  console.log(
+    `Copying ${packages.length} Node Module(s) (${
+      uniqePkg.length
+    } Dependencies) : ${packages.join(",")}`
+  );
+  fs.ensureDirSync(path.join(dest, "node_modules"));
+  uniqePkg.map((pkg) => {
+    const fullSrcPath = path.join(process.cwd(), src, "node_modules", pkg);
+    const fullDstPath = path.join(process.cwd(), dest, "node_modules", pkg);
+    fs.ensureDirSync(path.dirname(fullDstPath));
+    if (!symlink) {
+      fs.copySync(fullSrcPath, fullDstPath);
+    } else {
+      fs.ensureSymlink(fullSrcPath, fullDstPath, "dir");
+    }
+  });
+};
+
 const rollupNodeCopyPlugin = ({ packages, src, dest, symlink }) => {
   return {
     name: "copy-node-modules",
     buildEnd: async () => {
-      const allPkg = packages.flatMap((pkg) =>
-        nodeSolve({ src, pkg, keepDevDependencies: false })
-      );
-      const uniqePkg = unique(allPkg);
-      console.log(
-        `Copying ${packages.length} Node Module(s) (${uniqePkg.length} Dependencies)`
-      );
-      fs.ensureDirSync(path.join(dest, "node_modules"));
-      uniqePkg.map((pkg) => {
-        const fullSrcPath = path.join(process.cwd(), src, "node_modules", pkg);
-        const fullDstPath = path.join(process.cwd(), dest, "node_modules", pkg);
-        fs.ensureDirSync(path.dirname(fullDstPath));
-        if (!symlink) {
-          fs.copySync(fullSrcPath, fullDstPath);
-        } else {
-          fs.ensureSymlink(fullSrcPath, fullDstPath, "dir");
-        }
-      });
+      copyModules({ packages, src, dest, symlink });
     },
   };
 };

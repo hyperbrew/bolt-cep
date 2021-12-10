@@ -22,7 +22,6 @@ export const htmlTemplate = ({
     ${cssFileNames
       .map((file) => `<link rel="stylesheet" href="..${file}">`)
       .join("\n\t\t")}
-    <script src="https://unpkg.com/browser-cjs/require.min.js"></script>
     </head>
     <body>
       <div id="root"></div>

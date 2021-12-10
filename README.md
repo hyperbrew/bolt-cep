@@ -164,13 +164,13 @@ To use 3rd party libraries, first attempt to use with the standard import syntax
 import { FaBolt } from "react-icons/fa";
 ```
 
-If the import syntax fails, you can resort to the Node.js `require()` syntax,
+If the import syntax fails (typically with modules that use the Node.js runtime) you can resort to the Node.js `require()` syntax,
 
 ```
 const unzipper = require("unzipper");
 ```
 
-but make sure to add those modules to the `installModules:[]` array inside your `cep.config.ts` file.
+The build system will detect any non-built-in Node.js modules using `require()` and copy them to the output `node_modules` folder, but if a package is missed, you can add it explicitly to the `installModules:[]` array inside your `cep.config.ts` file.
 
 ```
   installModules: ["unzipper"],
