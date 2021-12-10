@@ -42,12 +42,16 @@ const config: CEP_Config = {
       name: "main",
       panelDisplayName: "Bolt CEP",
       autoVisible: true,
+      width: 600,
+      height: 650,
     },
     {
       mainPath: "./settings/index.html",
       name: "settings",
       panelDisplayName: "Bolt CEP - Settings",
       autoVisible: true,
+      width: 700,
+      height: 750,
     },
   ],
 
