@@ -44,6 +44,8 @@ export interface CEP_Panel {
   name: string;
   panelDisplayName: string;
   autoVisible: boolean;
+  width?: number;
+  height?: number;
 }
 
 export interface CEP_Extended_Panel extends CEP_Panel {
