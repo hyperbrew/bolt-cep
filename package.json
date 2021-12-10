@@ -57,7 +57,8 @@
     "types-for-adobe": "https://github.com/bbb999/Types-for-Adobe",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",
-    "vite-plugin-importer": "^0.2.5"
+    "vite-plugin-importer": "^0.2.5",
+    "vite-cep-plugin": "https://github.com/hyperbrew/vite-cep-plugin"
   },
   "main": "index.js",
   "license": "MIT"

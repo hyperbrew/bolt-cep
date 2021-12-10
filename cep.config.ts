@@ -1,4 +1,4 @@
-import { CEP_Config } from "./vite-cep-plugin/cep-config";
+import { CEP_Config } from "vite-cep-plugin/cep-config";
 
 const config: CEP_Config = {
   port: 3000,

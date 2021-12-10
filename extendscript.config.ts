@@ -3,8 +3,8 @@ import { uglify } from "rollup-plugin-uglify";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
-import { jsxInclude } from "./vite-cep-plugin";
-import { CEP_Config } from "./vite-cep-plugin/cep-config";
+import { jsxInclude } from "vite-cep-plugin";
+import { CEP_Config } from "vite-cep-plugin/cep-config";
 
 export const extendscriptConfig = (
   extendscriptEntry: string,
