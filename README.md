@@ -137,6 +137,19 @@ evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
 
 ---
 
+## GitHub Actions ZXP Releases
+
+This repo comes with a configured GitHub Action workflow to build a ZXP and add to the releases each time a git tag is added.
+
+```
+git tag 1.0.0
+git push origin --tags
+```
+
+Then your new build will be available under releases (e.g. https://github.com/hyperbrew/bolt-cep/releases)
+
+---
+
 ## Troubleshooting Modules
 
 Node.js Built-in modules can be imported from the `src/js/lib/node.ts` file.
