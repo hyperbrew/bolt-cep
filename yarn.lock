@@ -4438,6 +4438,13 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
+"vite-cep-plugin@https://github.com/hyperbrew/vite-cep-plugin":
+  version "0.0.1"
+  resolved "https://github.com/hyperbrew/vite-cep-plugin#c665f95e3b173331380fe00fe51b92e06d2555ac"
+  dependencies:
+    fs-extra "^10.0.0"
+    prettify-xml "^1.2.0"
+
 vite-plugin-importer@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/vite-plugin-importer/-/vite-plugin-importer-0.2.5.tgz#2363dc0d97d4ecec530ee40171310a17c2db077e"

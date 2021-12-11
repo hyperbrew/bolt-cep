@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-import { cep } from "./vite-cep-plugin/index.js";
+import { cep } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
-import { extendscriptConfig } from "./extendscript.config.js";
+import { extendscriptConfig } from "./vite.es.config";
 
 const extensions = [".js", ".ts", ".tsx"];
 
