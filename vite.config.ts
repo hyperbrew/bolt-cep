@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import { cep } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
-import { extendscriptConfig } from "./extendscript.config";
+import { extendscriptConfig } from "./vite.es.config";
 
 const extensions = [".js", ".ts", ".tsx"];
 
