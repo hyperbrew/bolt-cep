@@ -150,6 +150,40 @@ Then your new build will be available under releases (e.g. https://github.com/hy
 
 ---
 
+---
+
+## Copy Assets
+
+If you have assets that you would like copied without being affected by the bundler, you can add the optional `copyAssets:[]` array inside your cep.config.ts to include files or entire folders.
+
+```
+  installModules: ["public", "custom/my.jsx"],
+```
+
+---
+
+## ExtendScript Scope
+
+This biolerplate is flavored for a single JSX object attached to helper object `$` for all your panels to prevent pollution in the global namespace. If you prefer to include your own raw JSX, include it in the Copy Assets object (above), and add the optional scriptPath object to your cep.config.ts file.
+
+```
+  panels: [
+    {
+      name: "main",
+      scriptPath: "custom/index.jsx",
+      [...]
+    },
+    {
+      name: "settings",
+      scriptPath: "custom/settings.jsx",
+      [...]
+    },
+  ],
+  installModules: ["custom"],
+```
+
+---
+
 ## Troubleshooting Modules
 
 Node.js Built-in modules can be imported from the `src/js/lib/node.ts` file.

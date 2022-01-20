@@ -32,7 +32,6 @@ const config: CEP_Config = {
   iconDarkNormalRollOver: "./src/assets/light-icon.png",
   iconNormalRollOver: "./src/assets/dark-icon.png",
   parameters: ["--enable-nodejs", "--mixed-context"],
-  scriptPath: "jsx/index.js",
   width: 500,
   height: 550,
 
@@ -63,5 +62,6 @@ const config: CEP_Config = {
     tsa: "http://timestamp.digicert.com/",
   },
   installModules: [],
+  copyAssets: [],
 };
 export default config;
