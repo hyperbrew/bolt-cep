@@ -4327,7 +4327,7 @@ typedarray@^0.0.6:
 
 "types-for-adobe@https://github.com/bbb999/Types-for-Adobe":
   version "6.0.1"
-  resolved "git+ssh://git@github.com/bbb999/Types-for-Adobe.git#a48dea7401e0243a2c55ab8d302851a6571afc34"
+  resolved "git+https://github.com/bbb999/Types-for-Adobe.git#a48dea7401e0243a2c55ab8d302851a6571afc34"
 
 typescript@^3.2.1:
   version "3.9.10"
@@ -4441,10 +4441,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-vite-cep-plugin@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.1.tgz#8ac278be64e2e5d944b8df8558e570161370229b"
-  integrity sha512-p72AeVLBthySz4VwhUlrzYSU5AK6NrQBjjGI4qIekhec3GKJC4G/qGeXDpuQqwbyRj2Du8hvs2GZBG73MIfGcQ==
+vite-cep-plugin@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.2.tgz#20d6718b9ea88d3fd8060cb4b545b6e093940e41"
+  integrity sha512-UPSx5CVK1WoIkIxxggDCfvjTSiKPtjalOhB6v9k5LH0HpAnD4mrzVpf3RT8choTwVdaY9r5LTLGC9gWrWnIpVw==
   dependencies:
     fs-extra "^10.0.0"
     prettify-xml "^1.2.0"

@@ -57,7 +57,7 @@
     "types-for-adobe": "https://github.com/bbb999/Types-for-Adobe",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",
-    "vite-cep-plugin": "^0.0.1",
+    "vite-cep-plugin": "^0.0.2",
     "vite-plugin-importer": "^0.2.5"
   },
   "main": "index.js",
