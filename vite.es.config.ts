@@ -1,3 +1,4 @@
+import fs from "fs";
 import rollup, { RollupOptions, OutputOptions } from "rollup";
 import { uglify } from "rollup-plugin-uglify";
 import nodeResolve from "@rollup/plugin-node-resolve";
@@ -5,6 +6,7 @@ import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
 import { jsxInclude } from "vite-cep-plugin";
 import { CEP_Config } from "vite-cep-plugin";
+import path from "path/posix";
 
 export const extendscriptConfig = (
   extendscriptEntry: string,
@@ -90,11 +92,24 @@ export const extendscriptConfig = (
     await bundle.close();
   }
 
+  const triggerHMR = () => {
+    // No built-in way to trigger Vite's HMR reload from outside the root folder
+    // Workaround will read and save index.html file for each panel to triggger reload
+    console.log("ExtendScript Change");
+    cepConfig.panels.map((panel) => {
+      const tmpPath = path.join(process.cwd(), "src", "js", panel.mainPath);
+      if (fs.existsSync(tmpPath)) {
+        const txt = fs.readFileSync(tmpPath, { encoding: "utf-8" });
+        fs.writeFileSync(tmpPath, txt, { encoding: "utf-8" });
+      }
+    });
+  };
+
   const watch = async () => {
     const watcher = rollup.watch(config);
-    watcher.on("event", (event) => {});
     watcher.on("event", ({ result }: any) => {
       if (result) {
+        triggerHMR();
         result.close();
       }
     });
