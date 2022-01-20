@@ -4441,9 +4441,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-"vite-cep-plugin@https://github.com/hyperbrew/vite-cep-plugin":
+vite-cep-plugin@^0.0.1:
   version "0.0.1"
-  resolved "https://github.com/hyperbrew/vite-cep-plugin#ff0648c13ae30aa048c0be9ff416e640e6512c10"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.1.tgz#8ac278be64e2e5d944b8df8558e570161370229b"
+  integrity sha512-p72AeVLBthySz4VwhUlrzYSU5AK6NrQBjjGI4qIekhec3GKJC4G/qGeXDpuQqwbyRj2Du8hvs2GZBG73MIfGcQ==
   dependencies:
     fs-extra "^10.0.0"
     prettify-xml "^1.2.0"
