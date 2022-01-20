@@ -157,7 +157,7 @@ Then your new build will be available under releases (e.g. https://github.com/hy
 If you have assets that you would like copied without being affected by the bundler, you can add the optional `copyAssets:[]` array inside your cep.config.ts to include files or entire folders.
 
 ```
-  installModules: ["public", "custom/my.jsx"],
+  copyAssets: ["public", "custom/my.jsx"],
 ```
 
 ---
@@ -179,7 +179,7 @@ This biolerplate is flavored for a single JSX object attached to helper object `
       [...]
     },
   ],
-  installModules: ["custom"],
+  copyAssets: ["custom"],
 ```
 
 ---
