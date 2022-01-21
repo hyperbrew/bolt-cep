@@ -1,74 +1,57 @@
-import { useEffect, useState } from "react";
-import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
-import { os, path } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import React , {useEffect} from "react";
+import ReactDOM from "react-dom";
+import NavBar from "../components/NavBar";
+import {BrowserRouter as Router, Routes, Route, Navigate, Link} from 'react-router-dom';
 
-import logo from "../logo.svg";
+import WmHome from "./pages/Home";
+import WM_Templates from "./pages/Templates"
+import WM_Channels from "./pages/Channels"
 
-import "./main.scss";
 
-const Main = () => {
-  const [count, setCount] = useState(0);
 
-  function jsxTest() {
-    console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
-  }
+// import logo from "../logo.svg";
+// import "./main.scss";
 
-  const nodeTest = () => {
-    alert(
-      `Node.js ${process.version}\nPlatform: ${
-        os.platform
-      }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
-    );
-  };
 
-  useEffect(() => {
-    if (window.cep) {
-      console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
-      evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
-    }
-  }, []);
+const Main: React.FC = () => {
 
-  return (
-    <div className="app">
-      <header className="app-header">
-        <img src={logo} className="app-logo" alt="logo" />
-        <h1>Bolt CEP</h1>
-        <FaBolt />
-        <p>Vite + React + TypeScript + Scss</p>
-        <div className="button-group">
-          <button onClick={() => setCount((count) => count + 1)}>
-            Count is: {count}
-          </button>
-          <button onClick={nodeTest}>
-            <FaNodeJs />
-          </button>
-          <button onClick={jsxTest}>
-            <FaAdobe />
-          </button>
-        </div>
-        <p>
-          Edit <code>app.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <button
-            className="app-link"
-            onClick={() => openLinkInBrowser("https://reactjs.org")}
-          >
-            Learn React
-          </button>
-          {" | "}
-          <button
-            className="app-link"
-            onClick={() =>
-              openLinkInBrowser("https://vitejs.dev/guide/features.html")
-            }
-          >
-            Vite Docs
-          </button>
-        </p>
-      </header>
-    </div>
+
+
+const posix = (str: string) => str.replace(/\\/g, "/");
+const cepBasename = window.cep_node
+  ? `${posix(window.cep_node.global.__dirname)}/`
+  : "/main/";
+
+
+
+  useEffect(()=>{
+
+  
+   
+  }, [])
+
+
+
+
+  return(
+
+
+    <NavBar/>
+    // <Router>
+    
+    
+      
+    // <NavBar/>
+    
+    //   <Routes>
+
+    //     <Route path = {cepBasename} element={<WmHome/>}/>
+    //     <Route path='/' element={<WmHome/>}/>
+    //     <Route path='/templates' element={<WM_Templates/>} />
+    //     <Route path='/channels' element={<WM_Channels/>} />
+    //   </Routes>
+    // </Router>
+
   );
 };
 

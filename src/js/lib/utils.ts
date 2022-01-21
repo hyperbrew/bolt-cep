@@ -32,6 +32,7 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
   });
 };
 
+
 export const evalFile = (file: string) => {
   return evalES(
     `typeof $ !== 'undefined' ?

@@ -6,8 +6,8 @@ const config: CEP_Config = {
   symlink: "local",
   startingDebugPort: 8860,
   version: "1.0.0",
-  id: "com.bolt.cep",
-  displayName: "Bolt CEP",
+  id: "com.bolt.cepWMUP",
+  displayName: "Bolt CEP WMUP",
   extensionManifestVersion: 6.0,
   requiredRuntimeVersion: 9.0,
 
@@ -40,15 +40,7 @@ const config: CEP_Config = {
     {
       mainPath: "./main/index.html",
       name: "main",
-      panelDisplayName: "Bolt CEP",
-      autoVisible: true,
-      width: 600,
-      height: 650,
-    },
-    {
-      mainPath: "./settings/index.html",
-      name: "settings",
-      panelDisplayName: "Bolt CEP - Settings",
+      panelDisplayName: "@ Bolt UPLOADER",
       autoVisible: true,
       width: 700,
       height: 750,
@@ -62,6 +54,6 @@ const config: CEP_Config = {
     password: "mypassword",
     tsa: "http://timestamp.digicert.com/",
   },
-  installModules: [],
+  installModules: ["unzipper", "uuid"], 
 };
 export default config;
