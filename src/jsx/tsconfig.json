@@ -7,5 +7,5 @@
     "types": [],
     "outDir": "../../dist/cep/jsx"
   },
-  "include": ["./**/*"]
+  "include": []
 }

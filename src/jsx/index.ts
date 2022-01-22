@@ -1,5 +1,4 @@
 /// <reference path="../../node_modules/types-for-adobe/shared/global.d.ts" />
-/// <reference path="../../node_modules/types-for-adobe/shared/JavaScript.d.ts" />
 
 // @include './lib/json2.js'
 

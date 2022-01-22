@@ -3633,9 +3633,13 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-"types-for-adobe@https://github.com/bbb999/Types-for-Adobe":
+"types-for-adobe-extras@https://github.com/aenhancers/types-for-adobe-extras":
+  version "0.0.1"
+  resolved "https://github.com/aenhancers/types-for-adobe-extras#972e37ae4918e71f5b9c173367da0a5a4b80460c"
+
+"types-for-adobe@https://github.com/justintaylor-dev/Types-for-Adobe":
   version "6.0.1"
-  resolved "https://github.com/bbb999/Types-for-Adobe#a48dea7401e0243a2c55ab8d302851a6571afc34"
+  resolved "https://github.com/justintaylor-dev/Types-for-Adobe#f94d9b11554a78871c432688463a07237a4f6971"
 
 typescript@^4.4.4:
   version "4.5.5"
