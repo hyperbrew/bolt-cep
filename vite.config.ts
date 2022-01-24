@@ -58,6 +58,7 @@ export default defineConfig({
     rollupOptions: {
       input,
       output: {
+        sourcemap: true,
         manualChunks: {},
         // esModule: false,
         preserveModules: false,

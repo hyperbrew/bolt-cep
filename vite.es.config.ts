@@ -22,6 +22,7 @@ export const extendscriptConfig = (
     output: {
       file: outPath,
       format: "iife",
+      sourcemap: true,
     },
     plugins: [
       uglify({
@@ -81,6 +82,7 @@ export const extendscriptConfig = (
       replace({
         "Object.freeze": "",
         preventAssignment: true,
+        sourceMap: true,
       }),
       jsxInclude(),
     ],

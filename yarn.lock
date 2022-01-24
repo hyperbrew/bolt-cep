@@ -3738,12 +3738,13 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-vite-cep-plugin@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.2.tgz#20d6718b9ea88d3fd8060cb4b545b6e093940e41"
-  integrity sha512-UPSx5CVK1WoIkIxxggDCfvjTSiKPtjalOhB6v9k5LH0HpAnD4mrzVpf3RT8choTwVdaY9r5LTLGC9gWrWnIpVw==
+vite-cep-plugin@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.4.tgz#98b1261691da8d73b08d53fbccc1999d928de794"
+  integrity sha512-17YuFf+N1vC7Br3FUt23/ukdknIFqFpkjBBfCYq5jafglF8ZR8OkBuRolk39O2G5/anRVBN72fPHu3so8u6KSw==
   dependencies:
     fs-extra "^10.0.0"
+    magic-string "^0.25.7"
     prettify-xml "^1.2.0"
 
 vite-plugin-importer@^0.2.5:
