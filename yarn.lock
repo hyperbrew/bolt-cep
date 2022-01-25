@@ -3898,10 +3898,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-vite-cep-plugin@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.4.tgz#98b1261691da8d73b08d53fbccc1999d928de794"
-  integrity sha512-17YuFf+N1vC7Br3FUt23/ukdknIFqFpkjBBfCYq5jafglF8ZR8OkBuRolk39O2G5/anRVBN72fPHu3so8u6KSw==
+vite-cep-plugin@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.0.5.tgz#4fcce0bbcba61aa2a14a13726d4d7fb30c8a50dd"
+  integrity sha512-MjoXtIgPlkC2yLBnZAlRiU0p410izz66vpvTKTm41ywMcnnHrhNK6tzy/cnW5mE//qbFnt0ahXmAI6Hubtvx8A==
   dependencies:
     fs-extra "^10.0.0"
     magic-string "^0.25.7"
