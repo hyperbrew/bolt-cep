@@ -1,3 +1,5 @@
+<img src="src\js\blot-cep-logo.svg" alt="Bolt CEP" width="300">
+
 # Bolt CEP
 
 _A boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass_
