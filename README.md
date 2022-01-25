@@ -2,27 +2,21 @@
 
 # Bolt CEP
 
-_A boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass_
+A lightning-fast boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass
 
-## What?
+## Features
 
-A Modern CEP Boilerplate.
+- Lightning Fast Hot Module Replacement (HMR)
+- Write Modern ES6 in both the JavaScript and ExtendScript layers
+- Type-safe ExtendScript with Types-for-Adobe
+- Easily configure in cep.config.ts
+- Setup for single or multi-panel extensions
+- Comes with multi-host-app configuration
+- Optimized Build Size
+- Easy Publish to ZXP for Distribution
+- GitHub Actions ready-to-go for ZXP Releases
 
-Build your React CEP Panel app with HMR (Hot Module Reloading).
-
-Adjust manifest settings in your cep.config.ts. Running in dev mode will hot-reload upon changes.
-
-Build to create your consolidated production-ready CEP panel.
-
-## Why?
-
-While UXP is going to replace CEP in all Adobe apps at some point, we still need CEP panels in the meantime, also there should be a fair amount of overlap time between them in order for us to switch over.
-
-For now, Vite development is one of the fastest available, and uses Rollup for build time to create super optmized bundle sizes.
-
-## How?
-
-Write in React and TypeScript start building your app like lightning!
+_Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ---
 
@@ -65,8 +59,6 @@ Write in React and TypeScript start building your app like lightning!
 ## Config
 
 Update your CEP build and package settings in `cep.config.ts` safely typed
-
-Add your custom id in `src/js/shared.ts` as your scoped namepsace for ExtendScript
 
 Start building your app in `src/js/main/index.tsx`
 
