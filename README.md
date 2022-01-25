@@ -1,6 +1,6 @@
 # Bolt CEP
 
-_A boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Scss_
+_A boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass_
 
 ## What?
 
