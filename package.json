@@ -51,7 +51,7 @@
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-uglify": "^6.0.4",
     "sass": "^1.43.4",
-    "types-for-adobe": "https://github.com/justintaylor-dev/Types-for-Adobe",
+    "types-for-adobe": "https://github.com/aenhancers/Types-for-Adobe",
     "types-for-adobe-extras": "https://github.com/aenhancers/types-for-adobe-extras",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",

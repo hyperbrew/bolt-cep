@@ -3797,9 +3797,9 @@ typedarray@^0.0.6:
   version "0.0.1"
   resolved "https://github.com/aenhancers/types-for-adobe-extras#995eb337d751f6dc096874c8b267059721c1c69c"
 
-"types-for-adobe@https://github.com/justintaylor-dev/Types-for-Adobe":
+"types-for-adobe@https://github.com/aenhancers/Types-for-Adobe":
   version "6.0.1"
-  resolved "https://github.com/justintaylor-dev/Types-for-Adobe#f94d9b11554a78871c432688463a07237a4f6971"
+  resolved "https://github.com/aenhancers/Types-for-Adobe#052bc32e681ae1c2395b2c0355edac761a996041"
 
 typescript@^4.4.4:
   version "4.4.4"
