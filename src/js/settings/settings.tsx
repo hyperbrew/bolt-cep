@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { FaAdobe, FaBolt, FaSync } from "react-icons/fa";
+import { FaAdobe, FaBolt } from "react-icons/fa";
 import { csi, evalES, evalFile } from "../lib/utils";
 import logo from "../logo.svg";
 import "./settings.scss";
 
 const Settings = () => {
-  function jsxTest() {
+  const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
-  }
+  };
   useEffect(() => {
     if (window.cep) {
       console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);

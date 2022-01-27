@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaBolt, FaNodeJs, FaReact, FaAdobe } from "react-icons/fa";
+import { FaBolt, FaNodeJs, FaAdobe } from "react-icons/fa";
 import { os, path } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
@@ -10,9 +10,9 @@ import "./main.scss";
 const Main = () => {
   const [count, setCount] = useState(0);
 
-  function jsxTest() {
+  const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
-  }
+  };
 
   const nodeTest = () => {
     alert(
