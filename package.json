@@ -55,7 +55,7 @@
     "types-for-adobe-extras": "https://github.com/aenhancers/types-for-adobe-extras",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",
-    "vite-cep-plugin": "^0.0.5",
+    "vite-cep-plugin": "^0.0.6",
     "vite-plugin-importer": "^0.2.5"
   },
   "main": "index.js",
