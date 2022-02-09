@@ -55,8 +55,8 @@ const config: CEP_Config = {
   ],
 
   build: {
-    jsxBin: "replace",
-    sourceMap: false,
+    jsxBin: "copy",
+    sourceMap: true,
   },
   zxp: {
     country: "US",
