@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { FaAdobe, FaBolt } from "react-icons/fa";
 import { csi, evalES, evalFile } from "../lib/utils";
+import { fs } from "../lib/node";
 import logo from "../logo.svg";
 import "./settings.scss";
 
@@ -10,8 +11,14 @@ const Settings = () => {
   };
   useEffect(() => {
     if (window.cep) {
-      console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
-      evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+      const extRoot = csi.getSystemPath("extension");
+      const jsxSrc = `${extRoot}/jsx/index.js`;
+      const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
+      if (fs.existsSync(jsxSrc)) {
+        evalFile(jsxSrc);
+      } else if (fs.existsSync(jsxBinSrc)) {
+        evalFile(jsxBinSrc);
+      }
     }
   }, []);
   return (

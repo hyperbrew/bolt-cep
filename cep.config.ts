@@ -54,12 +54,18 @@ const config: CEP_Config = {
     },
   ],
 
+  build: {
+    jsxBin: "replace",
+    sourceMap: false,
+  },
   zxp: {
     country: "US",
     province: "CA",
     org: "MyCompany",
     password: "mypassword",
     tsa: "http://timestamp.digicert.com/",
+    sourceMap: false,
+    jsxBin: "replace",
   },
   installModules: [],
   copyAssets: [],

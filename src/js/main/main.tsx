@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaBolt, FaNodeJs, FaAdobe } from "react-icons/fa";
-import { os, path } from "../lib/node";
+import { os, path, fs } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
 import logo from "../logo.svg";
@@ -24,8 +24,16 @@ const Main = () => {
 
   useEffect(() => {
     if (window.cep) {
-      console.log(`${csi.getSystemPath("extension")}/jsx/index.js`);
-      evalFile(`${csi.getSystemPath("extension")}/jsx/index.js`).then(() => {});
+      const extRoot = csi.getSystemPath("extension");
+      const jsxSrc = `${extRoot}/jsx/index.js`;
+      const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
+      if (fs.existsSync(jsxSrc)) {
+        console.log(jsxSrc);
+        evalFile(jsxSrc);
+      } else if (fs.existsSync(jsxBinSrc)) {
+        console.log(jsxBinSrc);
+        evalFile(jsxBinSrc);
+      }
     }
   }, []);
 
