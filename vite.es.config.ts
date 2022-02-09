@@ -4,7 +4,7 @@ import { uglify } from "rollup-plugin-uglify";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
-import { jsxInclude } from "vite-cep-plugin";
+import { jsxInclude, jsxBin } from "vite-cep-plugin";
 import { CEP_Config } from "vite-cep-plugin";
 import path from "path/posix";
 
@@ -13,7 +13,8 @@ export const extendscriptConfig = (
   outPath: string,
   cepConfig: CEP_Config,
   extensions: string[],
-  isProduction: boolean
+  isProduction: boolean,
+  isPackage: boolean
 ) => {
   console.log(outPath);
   const config: RollupOptions = {
@@ -22,7 +23,9 @@ export const extendscriptConfig = (
     output: {
       file: outPath,
       format: "iife",
-      sourcemap: true,
+      sourcemap: isPackage
+        ? cepConfig.zxp.sourceMap
+        : cepConfig.build?.sourceMap,
     },
     plugins: [
       uglify({
@@ -82,9 +85,12 @@ export const extendscriptConfig = (
       replace({
         "Object.freeze": "",
         preventAssignment: true,
-        sourceMap: true,
+        sourceMap: isPackage
+          ? cepConfig.zxp.sourceMap
+          : cepConfig.build?.sourceMap,
       }),
       jsxInclude(),
+      jsxBin(isPackage ? cepConfig.zxp.jsxBin : cepConfig.build?.jsxBin),
     ],
   };
 

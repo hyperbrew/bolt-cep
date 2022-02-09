@@ -58,7 +58,9 @@ export default defineConfig({
     rollupOptions: {
       input,
       output: {
-        sourcemap: true,
+        sourcemap: isPackage
+          ? cepConfig.zxp.sourceMap
+          : cepConfig.build?.sourceMap,
         manualChunks: {},
         // esModule: false,
         preserveModules: false,
@@ -77,5 +79,6 @@ extendscriptConfig(
   outPathExtendscript,
   cepConfig,
   extensions,
-  isProduction
+  isProduction,
+  isPackage
 );
