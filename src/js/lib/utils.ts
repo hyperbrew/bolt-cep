@@ -71,3 +71,49 @@ export const vulcanListen = (id: string, callback: Function) => {
     null
   );
 };
+
+export const posix = (str: string) => str.replace(/\\/g, "/");
+
+let rootBound = false;
+
+export const spectrumBindMac = (tag: string) => {
+  const isMac = navigator.appVersion.indexOf("Macintosh") > -1;
+  const matches = navigator.appVersion.match(/Chrome\/([0-9]*)/);
+  if (isMac && matches) {
+    const chromeVersion = parseInt(matches[0].replace("Chrome/", ""));
+    // was fixed in 62, but broken again in 72 ...
+    if (chromeVersion < 162 /* fixedVersion */) {
+      const simulateClick = (e: any) => {
+        // console.log('clicked')
+        const elem = e.target as HTMLElement;
+        const clickableItems = ["BUTTON", "DIV"];
+        if (clickableItems.indexOf(elem.tagName) > -1) {
+          elem.click();
+        } else if (
+          elem.parentElement &&
+          clickableItems.indexOf(elem.parentElement.tagName) > -1
+        ) {
+          elem.parentElement.click();
+        }
+      };
+      if (tag === "root" && rootBound !== true) {
+        rootBound = true;
+        console.log("ROOT BOUND");
+        document
+          .getElementById("root")
+          ?.removeEventListener("click", simulateClick);
+        document
+          .getElementById("root")
+          ?.addEventListener("click", simulateClick);
+      } else if (tag === "dropdown") {
+        console.log("DROPDOWN BOUND");
+        document
+          .getElementsByClassName("spectrum-Dropdown-popover")[0]
+          ?.removeEventListener("click", simulateClick);
+        document
+          .getElementsByClassName("spectrum-Dropdown-popover")[0]
+          ?.addEventListener("click", simulateClick);
+      }
+    }
+  }
+};

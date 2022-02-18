@@ -4019,9 +4019,10 @@ typedarray@^0.0.6:
   version "0.0.1"
   resolved "https://github.com/aenhancers/types-for-adobe-extras#995eb337d751f6dc096874c8b267059721c1c69c"
 
-"types-for-adobe@https://github.com/aenhancers/Types-for-Adobe":
-  version "6.0.1"
-  resolved "https://github.com/aenhancers/Types-for-Adobe#052bc32e681ae1c2395b2c0355edac761a996041"
+types-for-adobe@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.0.tgz#727cfbec4cc067b2a4ba3594fe4ca1b903289dfd"
+  integrity sha512-1QHqplLvmoPj7ZNx01KhwS4WR3590xHu1EDJ49PE4MWHAx7NHM61Hx1R300d832WnWqr9qWpLkKChSqMZ1XdtQ==
 
 typescript@^4.4.4:
   version "4.4.4"
