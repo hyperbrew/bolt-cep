@@ -4015,9 +4015,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-"types-for-adobe-extras@https://github.com/aenhancers/types-for-adobe-extras":
+types-for-adobe-extras@^0.0.1:
   version "0.0.1"
-  resolved "https://github.com/aenhancers/types-for-adobe-extras#995eb337d751f6dc096874c8b267059721c1c69c"
+  resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.1.tgz#c7ee5897f42400aafdeda72f6483e71fef73ddc2"
+  integrity sha512-pozMMjqwUjBDFbD/HXYMm8Zsf5GaCh3No2Ysg8CmtbvBFAZFL51MxcZPwJj8TtjTdxW+snxR+6a93F7t1FUuOg==
 
 types-for-adobe@^7.0.0:
   version "7.0.0"

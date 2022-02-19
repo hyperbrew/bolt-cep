@@ -19,8 +19,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install yarn -g
-      - run: yarn add https://github.com/aenhancers/Types-for-Adobe -D
-      - run: yarn add https://github.com/aenhancers/types-for-adobe-extras -D
       - run: yarn
       - run: yarn build
       - run: yarn zxp

@@ -52,7 +52,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "sass": "^1.43.4",
     "types-for-adobe": "^7.0.0",
-    "types-for-adobe-extras": "https://github.com/aenhancers/types-for-adobe-extras",
+    "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.4.4",
     "vite": "^2.6.4",
     "vite-cep-plugin": "^0.0.7",
