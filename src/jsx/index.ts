@@ -1,14 +1,12 @@
-/// <reference path="../../node_modules/types-for-adobe/shared/global.d.ts" />
-
 // @include './lib/json2.js'
 
 import { ns } from "../shared/shared";
 
-import * as aeft from "./aeft";
-import * as ilst from "./ilst";
-import * as anim from "./anim";
-import * as ppro from "./ppro";
-import * as phxs from "./phxs";
+import * as aeft from "./aeft/aeft";
+import * as ilst from "./ilst/ilst";
+import * as anim from "./anim/anim";
+import * as ppro from "./ppro/ppro";
+import * as phxs from "./phxs/phxs";
 
 let main: any;
 

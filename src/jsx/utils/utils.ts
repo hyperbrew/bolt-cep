@@ -1,6 +1,3 @@
-/// <reference path="../../../node_modules/types-for-adobe/shared/global.d.ts" />
-/// <reference path="../../../node_modules/types-for-adobe/shared/JavaScript.d.ts" />
-
 export const forEach = (
   arr: any[],
   callback: (item: any, i: number) => void

@@ -1,7 +1,3 @@
-/// <reference path="../../../node_modules/types-for-adobe/AfterEffects/18.0/index.d.ts" />
-/// <reference path="../../../node_modules/types-for-adobe/shared/global.d.ts" />
-/// <reference path="../../../node_modules/types-for-adobe/shared/JavaScript.d.ts" />
-
 export const forEachLayer = (
   comp: CompItem,
   callback: (item: Layer, index: number) => void
@@ -35,7 +31,7 @@ export const getProjectDir = () => {
 
 export const getActiveComp = () => {
   if (app.project.activeItem instanceof CompItem === false) {
-    app.activeViewer.setActive();
+    app.activeViewer?.setActive();
   }
   return app.project.activeItem as CompItem;
 };

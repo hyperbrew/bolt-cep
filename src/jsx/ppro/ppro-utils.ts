@@ -1,6 +1,3 @@
-/// <reference path="../../../node_modules/types-for-adobe/Premiere/15.0/index.d.ts" />
-/// <reference path='../../../node_modules/types-for-adobe-extras/Premiere/12.0/qeDom.d.ts' />
-
 export const forEachChild = (
   item: ProjectItem,
   callback: (item: ProjectItem) => void

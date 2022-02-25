@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es3",
+    "noLib": true,
+    "strict": true,
+    "types": [
+      "../global",
+      "../../../node_modules/types-for-adobe/Photoshop/2015.5",
+      "../../../node_modules/types-for-adobe/shared/PlugPlugExternalObject"
+    ]
+  },
+  "include": ["./**/*"]
+}

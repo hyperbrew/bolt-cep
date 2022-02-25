@@ -91,18 +91,18 @@ To add panels, add an item to the panels object in `cep.config.ts`, and duplicat
 
 ExtendScript can be written in ES6 and will be compiled down to a single ES3 file for comaptibility.
 
-JSON 2 is included by default, and any external libraries added with the include directive will be bundled as well:
+JSON 2 is included by default, and any external JS libraries added with the include directive will be bundled as well:
 
 ```
 // @include './lib/library.js'
 ```
 
-App-speicific code is split into modules by the application's BridgeTalk name as seen in the `index.ts`.
+App-speicific code is split into modules for type-safe development by the application's name as seen in the `index.ts`.
 
 ```
-aftereffects >> aeft.ts
-illustrator >> ilst.ts
-animate >> anim.ts
+aftereffects >> aeft/aeft.ts
+illustrator >> ilst/ilst.ts
+animate >> anim/anim.ts
 ```
 
 Write your app-speicifc functions in each of these separate modules, and they will be required per each application.

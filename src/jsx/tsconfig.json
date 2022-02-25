@@ -2,10 +2,12 @@
   "compilerOptions": {
     "target": "es3",
     "noLib": true,
-    "allowJs": true,
-    "checkJs": true,
-    "types": [],
-    "outDir": "../../dist/cep/jsx"
+    "strict": true,
+    "types": [
+      "./global",
+      "../../node_modules/types-for-adobe/shared/global",
+      "../../node_modules/types-for-adobe/shared/PlugPlugExternalObject"
+    ]
   },
-  "include": []
+  "include": ["./**/*"]
 }
