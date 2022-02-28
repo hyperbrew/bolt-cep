@@ -1,5 +1,5 @@
 import fs from "fs";
-import rollup, { RollupOptions, OutputOptions } from "rollup";
+import { rollup, watch, RollupOptions, OutputOptions } from "rollup";
 import { uglify } from "rollup-plugin-uglify";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
@@ -95,7 +95,7 @@ export const extendscriptConfig = (
   };
 
   async function build() {
-    const bundle = await rollup.rollup(config);
+    const bundle = await rollup(config);
     await bundle.write(config.output as OutputOptions);
     await bundle.close();
   }
@@ -113,8 +113,8 @@ export const extendscriptConfig = (
     });
   };
 
-  const watch = async () => {
-    const watcher = rollup.watch(config);
+  const watchRollup = async () => {
+    const watcher = watch(config);
     watcher.on("event", ({ result }: any) => {
       if (result) {
         triggerHMR();
@@ -127,6 +127,6 @@ export const extendscriptConfig = (
   if (isProduction) {
     build();
   } else {
-    watch();
+    watchRollup();
   }
 };

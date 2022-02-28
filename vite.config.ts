@@ -49,6 +49,7 @@ export default defineConfig({
 
   build: {
     // emptyOutDir: true,
+    sourcemap: isPackage ? cepConfig.zxp.sourceMap : cepConfig.build?.sourceMap,
     watch: {
       include: "src/jsx/**",
     },
@@ -58,9 +59,6 @@ export default defineConfig({
     rollupOptions: {
       input,
       output: {
-        sourcemap: isPackage
-          ? cepConfig.zxp.sourceMap
-          : cepConfig.build?.sourceMap,
         manualChunks: {},
         // esModule: false,
         preserveModules: false,
