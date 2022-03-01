@@ -1,6 +1,5 @@
 import fs from "fs";
 import { rollup, watch, RollupOptions, OutputOptions } from "rollup";
-import { uglify } from "rollup-plugin-uglify";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
@@ -28,46 +27,6 @@ export const extendscriptConfig = (
         : cepConfig.build?.sourceMap,
     },
     plugins: [
-      uglify({
-        compress: {
-          passes: 0,
-          dead_code: false,
-          arguments: false,
-          assignments: false,
-          booleans: false,
-          collapse_vars: false,
-          comparisons: false,
-          conditionals: false,
-          directives: false,
-          drop_debugger: false,
-          evaluate: false,
-          functions: false,
-          global_defs: false,
-          hoist_props: false,
-          if_return: false,
-          inline: false,
-          join_vars: false,
-          keep_fargs: false,
-          loops: false,
-          negate_iife: false,
-          objects: false,
-          properties: false,
-          pure_funcs: false,
-          pure_getters: false,
-          reduce_funcs: false,
-          reduce_vars: false,
-          sequences: false,
-          side_effects: false,
-          strings: false,
-          switches: false,
-          top_retain: false,
-          typeofs: false,
-        },
-        output: {
-          comments: false,
-          beautify: true,
-        },
-      }),
       nodeResolve({
         extensions,
       }),
