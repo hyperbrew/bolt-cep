@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaBolt, FaNodeJs, FaAdobe } from "react-icons/fa";
+import { getOutputModules, getRenderSettingsList } from "../lib/cep-utils-aeft";
 import { os, path, fs } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
@@ -53,6 +54,10 @@ const Main = () => {
           </button>
           <button onClick={jsxTest}>
             <FaAdobe />
+          </button>
+          <button onClick={() => console.log(getOutputModules())}>OM</button>
+          <button onClick={() => console.log(getRenderSettingsList())}>
+            Render
           </button>
         </div>
         <p>
