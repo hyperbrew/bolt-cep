@@ -29,8 +29,8 @@ cepConfig.panels.map((panel) => {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    false && react(),
-    true && vue(),
+    react(),
+    vue(),
     cep({
       cepConfig,
       isProduction,

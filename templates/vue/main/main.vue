@@ -23,17 +23,17 @@ const nodeTest = () => {
 <template>
   <div className="app">
     <header className="app-header">
-      <img class="app-logo" alt="Vue logo" src="./vue-logo.png" />
+      <img className="app-logo" alt="Vue logo" src="./vue-logo.png" />
       <h1>Bolt CEP</h1>
-      <img class="icon" src="../bolt.svg" />
+      <img className="icon" src="../assets/bolt.svg" />
       <p>Vite + Vue + TypeScript + Scss</p>
       <div className="button-group">
         <button @click="count++">Count is: {{ count }}</button>
         <button @click="nodeTest">
-          <img class="icon-button" src="../node-js.svg" />
+          <img className="icon-button" src="../assets/node-js.svg" />
         </button>
         <button @click="jsxTest">
-          <img class="icon-button" src="../adobe.svg" />
+          <img className="icon-button" src="../assets/adobe.svg" />
         </button>
       </div>
 

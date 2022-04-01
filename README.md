@@ -1,4 +1,4 @@
-<img src="src\js\blot-cep-logo.svg" alt="Bolt CEP" width="300">
+<img src="./src/js/assets/bolt-cep.svg" alt="Bolt CEP" width="300">
 
 # Bolt CEP
 

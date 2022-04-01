@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { FaBolt, FaNodeJs, FaAdobe } from "react-icons/fa";
 import { os, path, fs } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 
-import logo from "../logo.svg";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "../assets/vite.svg";
+import tsLogo from "../assets/typescript.svg";
+import sassLogo from "../assets/sass.svg";
+
+import nodeJs from "../assets/node-js.svg";
+import adobe from "../assets/adobe.svg";
+import bolt from "../assets/bolt-cep.svg";
 
 import "./main.scss";
 
@@ -40,19 +46,37 @@ const Main = () => {
   return (
     <div className="app">
       <header className="app-header">
-        <img src={logo} className="app-logo" alt="logo" />
-        <h1>Bolt CEP</h1>
-        <FaBolt />
-        <p>Vite + React + TypeScript + Scss</p>
+        <img src={bolt} className="icon" />
+        <div className="stack-icons">
+          <div>
+            <img src={viteLogo} />
+            Vite
+          </div>
+          +
+          <div>
+            <img src={reactLogo} />
+            React
+          </div>
+          +
+          <div>
+            <img src={tsLogo} />
+            TypeScript
+          </div>
+          +
+          <div>
+            <img src={sassLogo} />
+            Sass
+          </div>
+        </div>
         <div className="button-group">
           <button onClick={() => setCount((count) => count + 1)}>
             Count is: {count}
           </button>
           <button onClick={nodeTest}>
-            <FaNodeJs />
+            <img className="icon-button" src={nodeJs} />
           </button>
           <button onClick={jsxTest}>
-            <FaAdobe />
+            <img className="icon-button" src={adobe} />
           </button>
         </div>
         <p>
