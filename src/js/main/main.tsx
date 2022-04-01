@@ -85,9 +85,18 @@ const Main = () => {
         <p>
           <button
             className="app-link"
+            onClick={() =>
+              openLinkInBrowser("https://github.com/hyperbrew/bolt-cep")
+            }
+          >
+            Bolt Docs
+          </button>
+          {" | "}
+          <button
+            className="app-link"
             onClick={() => openLinkInBrowser("https://reactjs.org")}
           >
-            Learn React
+            React Docs
           </button>
           {" | "}
           <button

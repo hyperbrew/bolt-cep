@@ -19,7 +19,7 @@
   "include": ["./src"],
   "exclude": [
     "./src/jsx",
-    "./templates",
+    "./src/js/template-*",
     "node_modules/@types/react/index.d.ts"
   ]
 }

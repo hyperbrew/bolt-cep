@@ -56,6 +56,13 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ---
 
+## How to Use Vue
+
+- Delete the `main` folder
+- Rename the `template-vue` folder to `main`
+- Run yarn build
+- (Optionally you can remove any React dependenices)
+
 ## Config
 
 Update your CEP build and package settings in `cep.config.ts` safely typed
