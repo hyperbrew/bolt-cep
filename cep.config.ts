@@ -37,7 +37,7 @@ const config: CEP_Config = {
 
   panels: [
     {
-      mainPath: "./vue-main/index.html",
+      mainPath: "./main/index.html",
       name: "main",
       panelDisplayName: "Bolt CEP",
       autoVisible: true,
