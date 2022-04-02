@@ -44,22 +44,6 @@ const config: CEP_Config = {
       width: 600,
       height: 650,
     },
-    // {
-    //   mainPath: "./react-main/index.html",
-    //   name: "main",
-    //   panelDisplayName: "Bolt CEP",
-    //   autoVisible: true,
-    //   width: 600,
-    //   height: 650,
-    // },
-    // {
-    //   mainPath: "./react-settings/index.html",
-    //   name: "settings",
-    //   panelDisplayName: "Bolt CEP - Settings",
-    //   autoVisible: true,
-    //   width: 700,
-    //   height: 750,
-    // },
   ],
 
   build: {
