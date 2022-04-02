@@ -1,8 +1,8 @@
-<img src="src\js\blot-cep-logo.svg" alt="Bolt CEP" width="300">
+<img src="./src/js/assets/bolt-cep.svg" alt="Bolt CEP" width="300">
 
 # Bolt CEP
 
-A lightning-fast boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass
+A lightning-fast boilerplate for Adobe CEP Extensions in React or Vue built on Vite + TypeScript + Sass
 
 ## Features
 
@@ -21,6 +21,10 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 ---
 
 ## Quickstart
+
+`yarn create bolt-cep my-app --template (react or vue)`
+
+- Generates a new Bolt CEP Extension based on a fronted framework template (`react` or `vue`)
 
 `yarn`
 

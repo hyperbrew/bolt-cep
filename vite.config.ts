@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import vue from "@vitejs/plugin-vue";
 
 import { cep } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
@@ -29,6 +30,7 @@ cepConfig.panels.map((panel) => {
 export default defineConfig({
   plugins: [
     react(),
+    vue(),
     cep({
       cepConfig,
       isProduction,
