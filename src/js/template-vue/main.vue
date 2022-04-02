@@ -26,7 +26,6 @@ onMounted(() => {
     if (fs.existsSync(jsxSrc)) {
       console.log(jsxSrc);
       evalFile(jsxSrc);
-      alert(jsxSrc);
     } else if (fs.existsSync(jsxBinSrc)) {
       console.log(jsxBinSrc);
       evalFile(jsxBinSrc);
