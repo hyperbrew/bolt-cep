@@ -60,6 +60,11 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ---
 
+<img src="./src/js/assets/bolt-cep-react.png" alt="Bolt CEP" width="300">
+<img src="./src/js/assets/bolt-cep-vue.png" alt="Bolt CEP" width="300">
+
+---
+
 ## Config
 
 Update your CEP build and package settings in `cep.config.ts` safely typed

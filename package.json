@@ -2,7 +2,7 @@
   "name": "bolt-cep",
   "version": "0.0.6",
   "scripts": {
-    "dev": "vite --mode developemnt",
+    "dev": "vite",
     "debug": "cross-env DEBUG_REACT=true vite build --watch true",
     "tools": "react-devtools",
     "watch": "tsc && vite build --watch true",
