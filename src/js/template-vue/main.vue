@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import path from "path";
 import { onMounted, ref } from "vue";
-import { fs, os } from "../lib/node";
+import { fs, os, path } from "../lib/node";
 import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
 import "../index.scss";
 
