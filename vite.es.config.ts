@@ -5,6 +5,7 @@ import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
 import { jsxInclude, jsxBin } from "vite-cep-plugin";
 import { CEP_Config } from "vite-cep-plugin";
+import json from "@rollup/plugin-json";
 import path from "path";
 
 export const extendscriptConfig = (
@@ -27,6 +28,7 @@ export const extendscriptConfig = (
         : cepConfig.build?.sourceMap,
     },
     plugins: [
+      json(),
       nodeResolve({
         extensions,
       }),

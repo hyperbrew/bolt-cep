@@ -1,16 +1,16 @@
 import { CEP_Config } from "vite-cep-plugin";
+import { version } from "./package.json";
 
 const config: CEP_Config = {
-  port: 3000,
-  servePort: 5000,
-  symlink: "local",
-  startingDebugPort: 8860,
-  version: "1.0.0",
+  version,
   id: "com.bolt.cep",
   displayName: "Bolt CEP",
+  symlink: "local",
+  port: 3000,
+  servePort: 5000,
+  startingDebugPort: 8860,
   extensionManifestVersion: 6.0,
   requiredRuntimeVersion: 9.0,
-
   hosts: [
     {
       name: "AEFT",
