@@ -36,7 +36,7 @@ export const extendscriptConfig = (
         extensions,
         exclude: /node_modules/,
         babelrc: false,
-        babelHelpers: "bundled",
+        babelHelpers: "inline",
         presets: ["@babel/preset-env", "@babel/preset-typescript"],
         plugins: [
           "@babel/plugin-syntax-dynamic-import",
