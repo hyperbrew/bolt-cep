@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
+import { defineConfig, preview } from "vite";
 import react from "@vitejs/plugin-react";
 import vue from "@vitejs/plugin-vue";
 
-import { cep } from "vite-cep-plugin";
+import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./vite.es.config";
@@ -20,29 +20,33 @@ const debugReact = process.env.DEBUG_REACT === "true";
 const isProduction = process.env.NODE_ENV === "production";
 const isPackage = process.env.ZXP_PACKAGE === "true";
 const isServe = process.env.SERVE_PANEL === "true";
+const action = process.env.ACTION;
 
 let input = {};
 cepConfig.panels.map((panel) => {
   input[panel.name] = path.resolve(root, panel.mainPath);
 });
 
+const config = {
+  cepConfig,
+  isProduction,
+  isPackage,
+  isServe,
+  debugReact,
+  dir: `${__dirname}/${devDist}`,
+  cepDist: cepDist,
+  zxpDir: `${__dirname}/${devDist}/zxp`,
+  packages: cepConfig.installModules || [],
+};
+
+if (action) {
+  runAction(config, action);
+  process.exit();
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    vue(),
-    cep({
-      cepConfig,
-      isProduction,
-      isPackage,
-      isServe,
-      debugReact,
-      dir: `${__dirname}/${devDist}`,
-      cepDist: cepDist,
-      zxpDir: `${__dirname}/${devDist}/zxp`,
-      packages: cepConfig.installModules || [],
-    }),
-  ],
+  plugins: [react(), vue(), cep(config)],
   root,
   clearScreen: false,
   server: {

@@ -58,6 +58,16 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 - Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
 
+`yarn symlink`
+
+- Create Symlink
+- Happens automatically with `yarn build`
+- (if using `symlink:global` in config, Mac users are required to create symlink with admin privileges (e.g. `sudo yarn symlink`) )
+
+`yarn delsymlink`
+
+- Delete Symlink
+
 ---
 
 <img src="./src/js/assets/bolt-cep-react.png" alt="Bolt CEP" width="300">

@@ -8,7 +8,9 @@
     "watch": "tsc && vite build --watch true",
     "build": "rimraf dist/* && tsc && vite build --watch false",
     "zxp": "tsc && cross-env ZXP_PACKAGE=true vite build --watch false",
-    "serve": "cross-env SERVE_PANEL=true vite preview"
+    "serve": "cross-env SERVE_PANEL=true vite preview",
+    "symlink": "cross-env ACTION=symlink vite",
+    "delsymlink": "cross-env ACTION=delsymlink vite"
   },
   "dependencies": {
     "react": "^17.0.0",
