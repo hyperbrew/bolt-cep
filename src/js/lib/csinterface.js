@@ -1238,3 +1238,27 @@ CSInterface.prototype.getWindowTitle = function () {
 
 // Boilerplate Added Export
 export default CSInterface;
+export {
+  CSXSWindowType,
+  Version,
+  VersionBound,
+  VersionRange,
+  Runtime,
+  Extension,
+  CSEvent,
+  SystemPath,
+  ColorType,
+  RGBColor,
+  Direction,
+  GradientStop,
+  GradientColor,
+  UIColor,
+  AppSkinInfo,
+  HostEnvironment,
+  HostCapabilities,
+  ApiVersion,
+  MenuItemStatus,
+  ContextMenuItemStatus,
+  CSInterface,
+  OnAppThemeColorChanged,
+};
