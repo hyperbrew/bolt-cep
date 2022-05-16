@@ -1260,5 +1260,4 @@ export {
   MenuItemStatus,
   ContextMenuItemStatus,
   CSInterface,
-  OnAppThemeColorChanged,
 };
