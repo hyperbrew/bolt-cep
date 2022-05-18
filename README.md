@@ -1,8 +1,8 @@
-<img src="./src/js/assets/bolt-cep.svg" alt="Bolt CEP" width="300">
+<img src="src\js\blot-cep-logo.svg" alt="Bolt CEP" width="300">
 
 # Bolt CEP
 
-A lightning-fast boilerplate for Adobe CEP Extensions in React or Vue built on Vite + TypeScript + Sass
+A lightning-fast boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass
 
 ## Features
 
@@ -20,11 +20,7 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ---
 
-## Quickstart
-
-`yarn create bolt-cep my-app --template (react or vue)`
-
-- Generates a new Bolt CEP Extension based on a fronted framework template (`react` or `vue`)
+## Quick Start
 
 `yarn`
 
@@ -57,21 +53,6 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 `yarn zxp`
 
 - Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
-
-`yarn symlink`
-
-- Create Symlink
-- Happens automatically with `yarn build`
-- (if using `symlink:global` in config, Mac users are required to create symlink with admin privileges (e.g. `sudo yarn symlink`) )
-
-`yarn delsymlink`
-
-- Delete Symlink
-
----
-
-<img src="./src/js/assets/bolt-cep-react.png" alt="Bolt CEP" width="300">
-<img src="./src/js/assets/bolt-cep-vue.png" alt="Bolt CEP" width="300">
 
 ---
 
@@ -108,7 +89,7 @@ To add panels, add an item to the panels object in `cep.config.ts`, and duplicat
 
 ## ExtendScript
 
-ExtendScript can be written in ES6 and will be compiled down to a single ES3 file for comaptibility.
+ExtendScript can be written in ES6 and will be compiled down to a single ES3 file for compatibility.
 
 JSON 2 is included by default, and any external JS libraries added with the include directive will be bundled as well:
 
@@ -116,7 +97,7 @@ JSON 2 is included by default, and any external JS libraries added with the incl
 // @include './lib/library.js'
 ```
 
-App-speicific code is split into modules for type-safe development by the application's name as seen in the `index.ts`.
+App-specific code is split into modules for type-safe development by the application's name as seen in the `index.ts`.
 
 ```
 aftereffects >> aeft/aeft.ts
@@ -124,7 +105,7 @@ illustrator >> ilst/ilst.ts
 animate >> anim/anim.ts
 ```
 
-Write your app-speicifc functions in each of these separate modules, and they will be required per each application.
+Write your app-specific functions in each of these separate modules, and they will be required per each application.
 
 To add support for additional host apps:
 
@@ -177,7 +158,7 @@ If you have assets that you would like copied without being affected by the bund
 
 ## ExtendScript Scope
 
-This biolerplate is flavored for a single JSX object attached to helper object `$` for all your panels to prevent pollution in the global namespace. If you prefer to include your own raw JSX, include it in the Copy Assets object (above), and add the optional scriptPath object to your cep.config.ts file.
+This boilerplate is flavored for a single JSX object attached to helper object `$` for all your panels to prevent pollution in the global namespace. If you prefer to include your own raw JSX, include it in the Copy Assets object (above), and add the optional scriptPath object to your cep.config.ts file.
 
 ```
   panels: [
@@ -255,6 +236,10 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+
+## Misc Troubleshooting
+
+- If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work open the `vite-cep-plugin/bin` directory and run `chmod 700 ./ZXPSignCmd`.
 
 ## Limitations
 
