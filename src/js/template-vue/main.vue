@@ -68,7 +68,7 @@ onMounted(() => {
         </button>
       </div>
 
-      <p>Edit <code>app.vue</code> and save to test HMR updates.</p>
+      <p>Edit <code>main.vue</code> and save to test HMR updates.</p>
       <p>
         <button
           @click="
