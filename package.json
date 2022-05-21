@@ -13,8 +13,13 @@
     "delsymlink": "cross-env ACTION=delsymlink vite"
   },
   "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.44",
+    "@tsconfig/svelte": "^3.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "svelte": "^3.48.0",
+    "svelte-check": "^2.7.1",
+    "svelte-preprocess": "^4.10.6",
     "vue": "^3.2.31"
   },
   "devDependencies": {

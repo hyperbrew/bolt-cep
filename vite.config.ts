@@ -1,6 +1,9 @@
 import { defineConfig, preview } from "vite";
 import react from "@vitejs/plugin-react";
 import vue from "@vitejs/plugin-vue";
+// https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/config.md
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import sveltePreprocess from "svelte-preprocess";
 
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
@@ -46,7 +49,14 @@ if (action) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), vue(), cep(config)],
+  plugins: [
+    react(),
+    vue(),
+    svelte({
+      preprocess: [sveltePreprocess({ typescript: true })],
+    }),
+    cep(config),
+  ],
   root,
   clearScreen: false,
   server: {
