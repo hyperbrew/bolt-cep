@@ -33,3 +33,14 @@ switch (BridgeTalk.appName) {
 //@ts-ignore
 const host = typeof $ !== "undefined" ? $ : window;
 host[ns] = main;
+
+const mainObj = {
+  aeft,
+  ilst,
+  anim,
+  ppro,
+  phxs,
+};
+type esType = typeof mainObj;
+
+export default esType;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { os, path, fs } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import { csi, evalES, evalFile, evalTS, openLinkInBrowser } from "../lib/utils";
 
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
@@ -18,6 +18,40 @@ const Main = () => {
 
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
+  };
+
+  const jsxStr = () => {
+    evalTS("aeft", "helloStr", ["test"]).then((res) => {
+      console.log(typeof res, res);
+    });
+  };
+  const jsxNum = () => {
+    evalTS("aeft", "helloNum", [1000]).then((res) => {
+      console.log(typeof res, res);
+    });
+  };
+  const jsxArray = () => {
+    evalTS("aeft", "helloArrayStr", [["ddddd", "aaaaaa", "zzzzzzz"]]).then(
+      (res) => {
+        console.log(typeof res, res);
+      }
+    );
+  };
+  const jsxObj = () => {
+    evalTS("aeft", "helloObj", [{ height: 90, width: 100 }]).then((res) => {
+      console.log(typeof res, res);
+      console.log(res.height);
+      console.log(res.width);
+    });
+  };
+  const jsxError = () => {
+    evalTS("aeft", "helloError", ["test"])
+      .then((res) => {
+        console.log("success");
+      })
+      .catch((e) => {
+        console.log("there was an error");
+      });
   };
 
   const nodeTest = () => {
@@ -78,6 +112,14 @@ const Main = () => {
           <button onClick={jsxTest}>
             <img className="icon-button" src={adobe} />
           </button>
+        </div>
+        <hr />
+        <div className="button-group">
+          <button onClick={jsxStr}>string</button>
+          <button onClick={jsxNum}>number</button>
+          <button onClick={jsxArray}>array</button>
+          <button onClick={jsxObj}>object</button>
+          <button onClick={jsxError}>error</button>
         </div>
         <p>
           Edit <code>app.tsx</code> and save to test HMR updates.

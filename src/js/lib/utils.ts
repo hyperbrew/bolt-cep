@@ -1,6 +1,7 @@
 import CSInterface from "../lib/csinterface";
 import Vulcan, { VulcanMessage } from "../lib/vulcan";
 import { ns } from "../../shared/shared";
+import { RawSourceMap, SourceMapConsumer } from "source-map-js";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
@@ -12,6 +13,17 @@ export const openLinkInBrowser = (url: string) => {
     location.href = url;
   }
 };
+
+/**
+ * @function EvalES
+ * Evaluates a string in ExtendScript scoped to the project's namespace
+ * Optionally, pass true to the isGlobal param to avoid scoping
+ *
+ * @param script    The script as a string to be evaluated
+ * @param isGlobal  Optional. Defaults to false,
+ *
+ * @return String Result.
+ */
 
 export const evalES = (script: string, isGlobal = false): Promise<string> => {
   return new Promise(function (resolve, reject) {
@@ -32,6 +44,89 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
   });
 };
 
+import type esType from "../../jsx/index";
+import { fs } from "./node";
+
+type ArgTypes<F extends Function> = F extends (...args: infer A) => any
+  ? A
+  : never;
+type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
+  ? B
+  : never;
+
+/**
+ * @function EvalTS
+ * End-to-end type-safe ExtendScript evaluation with error handling
+ * Call ExtendScript functions from CEP with type-safe parameters and return types.
+ * Any ExtendScript errors are captured and logged to the CEP console for tracing
+ *
+ * @param app The abbreviation of the app ID for type safety.
+ * @param func The name of the function to be evaluated.
+ * @param args the list of arguments taken by the function.
+ *
+ * @example
+ * evalTS("aeft", "helloStr", ["test"]).then((res) => {
+ *    // Do stuff
+ * });
+ *
+ * @return Promise resolving to function native return type.
+ */
+
+export const evalTS = <
+  App extends string & keyof esType,
+  Key extends string & keyof esType[App],
+  Func extends Function & esType[App][Key]
+>(
+  app: App,
+  func: Key,
+  args: ArgTypes<Func>
+): Promise<ReturnType<Func>> => {
+  return new Promise(function (resolve, reject) {
+    const formattedArgs = args.map((arg) => {
+      if (typeof arg === "object") {
+        return JSON.stringify(arg);
+      } else if (typeof arg == "string") {
+        return `"${arg}"`;
+      } else {
+        return arg;
+      }
+    });
+    csi.evalScript(
+      `try{
+          var host = typeof $ !== 'undefined' ? $ : window;
+          var res = host["${ns}"].${func}(${formattedArgs.join(",")});
+          JSON.stringify(res);
+        }catch(e){
+          e.fileName = new File(e.fileName).fsName;
+          JSON.stringify(e);
+        }`,
+      (res: string) => {
+        try {
+          const parsed = JSON.parse(res);
+          if (parsed.name === "ReferenceError") {
+            const src = getSourceLine(
+              `${parsed.fileName}.map`,
+              parsed.line,
+              parsed.number
+            );
+            console.error(
+              `ExtendScript Error: ${src.source.replace(/\.\.\//g, "")} ${
+                src.line
+              }:${src.column}`,
+              parsed
+            );
+            reject(parsed);
+          } else {
+            resolve(parsed);
+          }
+        } catch (error) {
+          reject(res);
+        }
+      }
+    );
+  });
+};
+
 export const evalFile = (file: string) => {
   return evalES(
     `typeof $ !== 'undefined' ?
@@ -39,6 +134,16 @@ export const evalFile = (file: string) => {
     fl.runScript(FLfile.platformPathToURI("${file}"));`,
     true
   );
+};
+
+export const getSourceLine = (file: string, line: number, column: number) => {
+  const src = fs.readFileSync(file, { encoding: "utf-8" });
+  const sourceMap = JSON.parse(src) as RawSourceMap;
+  const smc = new SourceMapConsumer(sourceMap);
+  return smc.originalPositionFor({
+    line,
+    column,
+  });
 };
 
 export const getAppBackgroundColor = () => {
