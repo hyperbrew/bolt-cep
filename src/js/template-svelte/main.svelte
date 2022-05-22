@@ -29,6 +29,8 @@
         console.log(jsxBinSrc);
         evalFile(jsxBinSrc);
       }
+    } else {
+      console.log("not cep");
     }
   });
 </script>

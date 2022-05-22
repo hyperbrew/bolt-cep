@@ -1447,7 +1447,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@sveltejs/vite-plugin-svelte@^1.0.0-next.44":
+"@sveltejs/vite-plugin-svelte@^1.0.0-next.30":
   version "1.0.0-next.44"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-1.0.0-next.44.tgz#619a16a2f352452e4a45ebcef34d54616a31596c"
   integrity sha512-n+sssEWbzykPS447FmnNyU5GxEhrBPDVd0lxNZnxRGz9P6651LjjwAnISKr3CKgT9v8IybP8VD0n2i5XzbqExg==
@@ -2273,7 +2273,7 @@ browserslist@^4.17.5, browserslist@^4.17.6:
 buffer-crc32@^0.2.5, buffer-crc32@~0.2.3:
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
-  integrity sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
+  integrity sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -4562,10 +4562,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-vite-cep-plugin@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.1.9.tgz#1190593bf89d131a8a078b84d70706e6f27eb8fb"
-  integrity sha512-lNNH4sYnPfgFGxz2maw9KIbHyKU3VUfKAmSbeMlvm/+2fGxd/9hi3Hsnx79eYcXwfzWcAJKmFzc5zh4hApEfKw==
+vite-cep-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-0.2.1.tgz#2af5a1a6b37c0a02ea198f9dc1fa8225437212c6"
+  integrity sha512-dZNdGn4NnuQtzcLiVeUCjZgf6+eLwvp5d3igTla4QDl8jCgtNellhqea22ZzYxN4hwy5bmwh1VW/pqnzcVx5fg==
   dependencies:
     fs-extra "^10.0.0"
     jsxbin "^2.2.0"
