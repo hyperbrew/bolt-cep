@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "debug": "cross-env DEBUG_REACT=true vite build --watch true",
@@ -57,7 +57,7 @@
     "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.4.4",
     "vite": "^2.9.1",
-    "vite-cep-plugin": "^0.2.2",
+    "vite-cep-plugin": "^0.2.3",
     "yarn": "^1.22.17"
   },
   "main": "index.js",
