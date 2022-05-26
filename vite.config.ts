@@ -50,7 +50,10 @@ export default defineConfig({
   root,
   clearScreen: false,
   server: {
-    port: isProduction ? cepConfig.servePort : cepConfig.port,
+    port: cepConfig.port,
+  },
+  preview: {
+    port: cepConfig.servePort,
   },
 
   build: {
