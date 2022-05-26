@@ -1,5 +1,6 @@
 import { CEP_Config } from "vite-cep-plugin";
 import { version } from "./package.json";
+import { debugAll } from "./cep.config.debug"; // DEBUG-ONLY
 
 const config: CEP_Config = {
   version,
@@ -44,6 +45,7 @@ const config: CEP_Config = {
       width: 600,
       height: 650,
     },
+    // ...debugAll, // DEBUG-ONLY
   ],
 
   build: {
