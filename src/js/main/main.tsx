@@ -80,7 +80,7 @@ const Main = () => {
           </button>
         </div>
         <p>
-          Edit <code>app.tsx</code> and save to test HMR updates.
+          Edit <code>main.tsx</code> and save to test HMR updates.
         </p>
         <p>
           <button

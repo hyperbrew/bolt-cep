@@ -1,6 +1,8 @@
-import { defineConfig, preview } from "vite";
-import react from "@vitejs/plugin-react";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
+
+import react from "@vitejs/plugin-react"; // BOLT-CEP_REACT-ONLY
+import vue from "@vitejs/plugin-vue"; // BOLT-CEP_VUE-ONLY
+import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT-CEP_SVELTE-ONLY
 
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
@@ -46,7 +48,12 @@ if (action) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), vue(), cep(config)],
+  plugins: [
+    react(), // BOLT-CEP_REACT-ONLY
+    vue(), // BOLT-CEP_VUE-ONLY
+    svelte(), // BOLT-CEP_SVELTE-ONLY
+    cep(config),
+  ],
   root,
   clearScreen: false,
   server: {
@@ -57,7 +64,6 @@ export default defineConfig({
   },
 
   build: {
-    // emptyOutDir: true,
     sourcemap: isPackage ? cepConfig.zxp.sourceMap : cepConfig.build?.sourceMap,
     watch: {
       include: "src/jsx/**",

@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scripts": {
     "dev": "vite",
     "debug": "cross-env DEBUG_REACT=true vite build --watch true",
@@ -33,6 +33,8 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-replace": "^4.0.0",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "@tsconfig/svelte": "^3.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.43",
@@ -53,11 +55,14 @@
     "rollup-plugin-node-copy": "^1.0.4",
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.43.4",
+    "svelte": "^3.44.0",
+    "svelte-check": "^2.7.1",
+    "svelte-preprocess": "^4.10.6",
     "types-for-adobe": "^7.0.0",
     "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.4.4",
     "vite": "^2.9.1",
-    "vite-cep-plugin": "^0.2.3",
+    "vite-cep-plugin": "^0.2.5",
     "yarn": "^1.22.17"
   },
   "main": "index.js",

@@ -16,8 +16,6 @@ code {
   text-align: center;
 }
 
-
-
 .app-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -31,15 +29,6 @@ code {
 
 .app-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 button {
@@ -67,11 +56,11 @@ button:active {
   column-gap: 1rem;
 }
 
-.stack-icons{
+.stack-icons {
   display: flex;
   margin: 2rem 0rem 2rem 0rem;
   font-size: 2.5rem;
-  >div{
+  > div {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -79,18 +68,18 @@ button:active {
     font-size: 1rem;
     margin: 0rem 1rem 0rem 1rem;
   }
-  img{
+  img {
     margin: auto;
     display: block;
     height: 3rem;
     width: 3rem;
   }
 }
-.icon{
+.icon {
   width: 250px;
   height: 250px;
 }
-.icon-button{
+.icon-button {
   width: 20px;
-  height: 20px;;
+  height: 20px;
 }
