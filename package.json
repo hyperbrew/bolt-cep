@@ -15,6 +15,7 @@
   "dependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "vite-cep-plugin": "^0.2.3",
     "vue": "^3.2.31"
   },
   "devDependencies": {
@@ -55,14 +56,13 @@
     "rollup-plugin-node-copy": "^1.0.4",
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.43.4",
-    "svelte": "^3.48.0",
+    "svelte": "^3.44.0",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.6",
     "types-for-adobe": "^7.0.0",
     "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.4.4",
     "vite": "^2.9.1",
-    "vite-cep-plugin": "^0.2.3",
     "yarn": "^1.22.17"
   },
   "main": "index.js",

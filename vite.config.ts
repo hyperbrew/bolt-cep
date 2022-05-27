@@ -53,7 +53,7 @@ export default defineConfig({
     react(),
     vue(),
     svelte({
-      preprocess: [sveltePreprocess({ typescript: true })],
+      // preprocess: [sveltePreprocess({ typescript: true })],
     }),
     cep(config),
   ],

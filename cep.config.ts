@@ -37,15 +37,15 @@ const config: CEP_Config = {
   height: 550,
 
   panels: [
-    {
-      mainPath: "./main/index.html",
-      name: "main",
-      panelDisplayName: "Bolt CEP",
-      autoVisible: true,
-      width: 600,
-      height: 650,
-    },
-    // ...debugAll, // DEBUG-ONLY
+    // {
+    //   mainPath: "./main/index.html",
+    //   name: "main",
+    //   panelDisplayName: "Bolt CEP",
+    //   autoVisible: true,
+    //   width: 600,
+    //   height: 650,
+    // },
+    ...debugAll, // DEBUG-ONLY
   ],
 
   build: {
