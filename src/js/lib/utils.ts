@@ -14,7 +14,6 @@ export const openLinkInBrowser = (url: string) => {
 };
 
 export const evalES = (script: string, isGlobal = false): Promise<string> => {
-  console.log("why am i here");
   return new Promise(function (resolve, reject) {
     const pre = isGlobal
       ? ""
