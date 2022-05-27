@@ -2,7 +2,7 @@
 
 # Bolt CEP
 
-A lightning-fast boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass
+A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or Svelte built on Vite + TypeScript + Sass
 
 ## Features
 
@@ -21,6 +21,22 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 ---
 
 ## Quick Start
+
+`yarn create bolt-cep myApp --template react`
+
+or
+
+`yarn create bolt-cep myApp --template vue`
+
+or
+
+`yarn create bolt-cep myApp --template svelte`
+
+- Create Extension
+
+`cd myApp`
+
+- CD into Directory
 
 `yarn`
 
@@ -60,7 +76,7 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 Update your CEP build and package settings in `cep.config.ts` safely typed
 
-Start building your app in `src/js/main/index.tsx`
+Start building your app in `src/js/main/index(.tsx or .vue or .svelte)`
 
 Write ExtendScript code in `src/jsx/main.ts`
 
@@ -140,7 +156,7 @@ git tag 1.0.0
 git push origin --tags
 ```
 
-Then your new build will be available under releases (e.g. https://github.com/hyperbrew/bolt-cep/releases)
+Then your new build will be available under GitHub Releases.
 
 ---
 
