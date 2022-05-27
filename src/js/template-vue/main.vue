@@ -34,10 +34,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div className="app">
-    <header className="app-header">
-      <img src="../assets/bolt-cep.svg" className="icon" />
-      <div className="stack-icons">
+  <div class="app">
+    <header class="app-header">
+      <img src="../assets/bolt-cep.svg" class="icon" />
+      <div class="stack-icons">
         <div>
           <img src="../assets/vite.svg" />
           Vite
@@ -58,13 +58,13 @@ onMounted(() => {
           Sass
         </div>
       </div>
-      <div className="button-group">
+      <div class="button-group">
         <button @click="count++">Count is: {{ count }}</button>
         <button @click="nodeTest">
-          <img className="icon-button" src="../assets/node-js.svg" />
+          <img class="icon-button" src="../assets/node-js.svg" />
         </button>
         <button @click="jsxTest">
-          <img className="icon-button" src="../assets/adobe.svg" />
+          <img class="icon-button" src="../assets/adobe.svg" />
         </button>
       </div>
 
