@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fs, os, path } from "../lib/node";
-  import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+  import { csi, evalFunction, evalFile, openLinkInBrowser } from "../lib/utils";
 
   import viteLogo from "../assets/vite.svg";
   import svelteLogo from "../assets/svelte.svg";
@@ -18,7 +18,7 @@
   let count = 0;
 
   const jsxTest = () => {
-    console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
+    console.log(evalFunction('helloWorld', csi.getApplicationID()));
   };
 
   const nodeTest = () => {

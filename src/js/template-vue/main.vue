@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { fs, os, path } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import { csi, evalFunction, evalFile, openLinkInBrowser } from "../lib/utils";
 import "../index.scss";
 
 const count = ref(0);
 
 const jsxTest = () => {
-  console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
+  console.log(evalFunction("helloWorld", csi.getApplicationID()));
 };
 
 const nodeTest = () => {

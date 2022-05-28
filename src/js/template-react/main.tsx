@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { os, path, fs } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import { csi, evalFunction, evalFile, openLinkInBrowser } from "../lib/utils";
 
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
@@ -17,7 +17,7 @@ const Main = () => {
   const [count, setCount] = useState(0);
 
   const jsxTest = () => {
-    console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
+    console.log(evalFunction("helloWorld", csi.getApplicationID()));
   };
 
   const nodeTest = () => {
