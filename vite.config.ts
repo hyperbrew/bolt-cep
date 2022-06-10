@@ -4,9 +4,12 @@ import react from "@vitejs/plugin-react"; // BOLT-CEP_REACT-ONLY
 import vue from "@vitejs/plugin-vue"; // BOLT-CEP_VUE-ONLY
 import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT-CEP_SVELTE-ONLY
 
+import type { Plugin } from "rollup"
+
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
+import glob from "glob"
 import { extendscriptConfig } from "./vite.es.config";
 
 const extensions = [".js", ".ts", ".tsx"];
@@ -47,6 +50,17 @@ if (action) {
 }
 
 // https://vitejs.dev/config/
+const watcher = (globs: string[]): Plugin => ({
+  name: 'additional-file-watcher',
+  buildStart() {
+    globs.forEach((globItem) => {
+      glob.sync(path.resolve(globItem)).forEach((filename: string) => {
+        this.addWatchFile(filename)
+      })
+    })
+  },
+})
+
 export default defineConfig({
   plugins: [
     react(), // BOLT-CEP_REACT-ONLY
@@ -79,6 +93,9 @@ export default defineConfig({
         preserveModules: false,
         format: "cjs",
       },
+      plugins: [
+        watcher(["src/jsx/**"]),
+      ],
     },
     target: "chrome74",
     outDir,
