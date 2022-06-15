@@ -11,7 +11,7 @@
  *
  **************************************************************************************************/
 
-/** Vulcan - v11.0.0 */
+/** Vulcan - v11.2.0 */
 
 /**
  * @class Vulcan
@@ -23,11 +23,138 @@
 function Vulcan() {}
 
 /**
+ * Gets all available application SAPCode-Specifiers on the local machine.
+ *
+ * Vulcan Control New 6.x APIs, and Deprecating older Vulcan Control APIs.
+ * Changes : New getTargetSpecifiersEx returns productSAPCodeSpecifiers
+ *
+ * @return The array of all available application SAPCode-Specifiers.
+ */
+Vulcan.prototype.getTargetSpecifiersEx = function () {
+  var params = {};
+  return JSON.parse(
+    window.__adobe_cep__.invokeSync(
+      "vulcanGetTargetSpecifiersEx",
+      JSON.stringify(params)
+    )
+  );
+};
+
+/**
+ * Launches a CC application on the local machine, if it is not already running.
+ *
+ * Vulcan Control New 6.x APIs, and Deprecating older Vulcan Control APIs.
+ * Changes : New launchAppEx uses productSAPCodeSpecifiers
+ *
+ * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
+ * @param focus           True to launch in foreground, or false to launch in the background.
+ * @param cmdLine         Optional, command-line parameters to supply to the launch command.
+ * @return True if the app can be launched, false otherwise.
+ */
+Vulcan.prototype.launchAppEx = function (
+  productSAPCodeSpecifier,
+  focus,
+  cmdLine
+) {
+  if (!requiredParamsValid(productSAPCodeSpecifier)) {
+    return false;
+  }
+
+  var params = {};
+  params.productSAPCodeSpecifier = productSAPCodeSpecifier;
+  params.focus = focus ? "true" : "false";
+  params.cmdLine = requiredParamsValid(cmdLine) ? cmdLine : "";
+
+  return JSON.parse(
+    window.__adobe_cep__.invokeSync("vulcanLaunchAppEx", JSON.stringify(params))
+  ).result;
+};
+
+/**
+ * Checks whether a CC application is running on the local machine.
+ *
+ * Vulcan Control New 6.x APIs, and Deprecating older Vulcan Control APIs.
+ * Changes : New isAppRunningEx uses productSAPCodeSpecifiers
+ *
+ * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
+ * @return True if the app is running, false otherwise.
+ */
+Vulcan.prototype.isAppRunningEx = function (productSAPCodeSpecifier) {
+  if (!requiredParamsValid(productSAPCodeSpecifier)) {
+    return false;
+  }
+
+  var params = {};
+  params.productSAPCodeSpecifier = productSAPCodeSpecifier;
+
+  return JSON.parse(
+    window.__adobe_cep__.invokeSync(
+      "vulcanIsAppRunningEx",
+      JSON.stringify(params)
+    )
+  ).result;
+};
+
+/**
+ * Checks whether a CC application is installed on the local machine.
+ *
+ * Vulcan Control New 6.x APIs, and Deprecating older Vulcan Control APIs.
+ * Changes : New isAppInstalledEx uses productSAPCodeSpecifiers
+ *
+ * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
+ * @return True if the app is installed, false otherwise.
+ */
+Vulcan.prototype.isAppInstalledEx = function (productSAPCodeSpecifier) {
+  if (!requiredParamsValid(productSAPCodeSpecifier)) {
+    return false;
+  }
+
+  var params = {};
+  params.productSAPCodeSpecifier = productSAPCodeSpecifier;
+
+  return JSON.parse(
+    window.__adobe_cep__.invokeSync(
+      "vulcanIsAppInstalledEx",
+      JSON.stringify(params)
+    )
+  ).result;
+};
+
+/**s
+ * Retrieves the local install path of a CC application.
+ *
+ * Vulcan Control New 6.x APIs, and Deprecating older Vulcan Control APIs.
+ * Changes : New getAppPathEx uses productSAPCodeSpecifiers
+ *
+ * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
+ * @return The path string if the application is found, "" otherwise.
+ */
+Vulcan.prototype.getAppPathEx = function (productSAPCodeSpecifier) {
+  if (!requiredParamsValid(productSAPCodeSpecifier)) {
+    return "";
+  }
+
+  var params = {};
+  params.productSAPCodeSpecifier = productSAPCodeSpecifier;
+
+  return JSON.parse(
+    window.__adobe_cep__.invokeSync(
+      "vulcanGetAppPathEx",
+      JSON.stringify(params)
+    )
+  ).result;
+};
+
+/**
+ * DEPRECATED API:: use getTargetSpecifiersEx
  * Gets all available application specifiers on the local machine.
  *
  * @return The array of all available application specifiers.
  */
 Vulcan.prototype.getTargetSpecifiers = function () {
+  console.warn(
+    "WARNING! Function 'getTargetSpecifiers' has been deprecated, please use the new 'getTargetSpecifiersEx' function instead!"
+  );
   var params = {};
   return JSON.parse(
     window.__adobe_cep__.invokeSync(
@@ -38,6 +165,7 @@ Vulcan.prototype.getTargetSpecifiers = function () {
 };
 
 /**
+ * DEPRECATED API:: use launchAppEx
  * Launches a CC application on the local machine, if it is not already running.
  *
  * @param targetSpecifier The application specifier; for example "indesign".
@@ -54,6 +182,9 @@ Vulcan.prototype.getTargetSpecifiers = function () {
  * @return True if the app can be launched, false otherwise.
  */
 Vulcan.prototype.launchApp = function (targetSpecifier, focus, cmdLine) {
+  console.warn(
+    "WARNING! Function 'launchApp' has been deprecated, please use the new 'launchAppEx' function instead!"
+  );
   if (!requiredParamsValid(targetSpecifier)) {
     return false;
   }
@@ -69,6 +200,7 @@ Vulcan.prototype.launchApp = function (targetSpecifier, focus, cmdLine) {
 };
 
 /**
+ * DEPRECATED API:: use isAppRunningEx
  * Checks whether a CC application is running on the local machine.
  *
  * @param targetSpecifier The application specifier; for example "indesign".
@@ -83,6 +215,9 @@ Vulcan.prototype.launchApp = function (targetSpecifier, focus, cmdLine) {
  * @return True if the app is running, false otherwise.
  */
 Vulcan.prototype.isAppRunning = function (targetSpecifier) {
+  console.warn(
+    "WARNING! Function 'isAppRunning' has been deprecated, please use the new 'isAppRunningEx' function instead!"
+  );
   if (!requiredParamsValid(targetSpecifier)) {
     return false;
   }
@@ -99,6 +234,7 @@ Vulcan.prototype.isAppRunning = function (targetSpecifier) {
 };
 
 /**
+ * DEPRECATED API:: use isAppInstalledEx
  * Checks whether a CC application is installed on the local machine.
  *
  * @param targetSpecifier The application specifier; for example "indesign".
@@ -113,6 +249,9 @@ Vulcan.prototype.isAppRunning = function (targetSpecifier) {
  * @return True if the app is installed, false otherwise.
  */
 Vulcan.prototype.isAppInstalled = function (targetSpecifier) {
+  console.warn(
+    "WARNING! Function 'isAppInstalled' has been deprecated, please use the new 'isAppInstalledEx' function instead!"
+  );
   if (!requiredParamsValid(targetSpecifier)) {
     return false;
   }
@@ -129,6 +268,7 @@ Vulcan.prototype.isAppInstalled = function (targetSpecifier) {
 };
 
 /**
+ * DEPRECATED API:: use getAppPathEx
  * Retrieves the local install path of a CC application.
  *
  * @param targetSpecifier The application specifier; for example "indesign".
@@ -143,6 +283,9 @@ Vulcan.prototype.isAppInstalled = function (targetSpecifier) {
  * @return The path string if the application is found, "" otherwise.
  */
 Vulcan.prototype.getAppPath = function (targetSpecifier) {
+  console.warn(
+    "WARNING! Function 'getAppPath' has been deprecated, please use the new 'getAppPathEx' function instead!"
+  );
   if (!requiredParamsValid(targetSpecifier)) {
     return "";
   }
