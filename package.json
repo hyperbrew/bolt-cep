@@ -55,7 +55,7 @@
     "rollup-plugin-node-copy": "^1.0.4",
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.43.4",
-    "svelte": "^3.44.0",
+    "svelte": "^3.49.0",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.6",
     "types-for-adobe": "^7.0.0",
