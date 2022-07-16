@@ -1,6 +1,7 @@
 import CSInterface from "../lib/csinterface";
 import Vulcan, { VulcanMessage } from "../lib/vulcan";
 import { ns } from "../../shared/shared";
+import type { Scripts, ScriptNames } from "../../jsx/types";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
@@ -13,12 +14,29 @@ export const openLinkInBrowser = (url: string) => {
   }
 };
 
-export const evalES = (script: string, isGlobal = false): Promise<string> => {
+export function evalExtendScript(script: string): Promise<string> {
   return new Promise(function (resolve, reject) {
-    const pre = isGlobal
-      ? ""
-      : `var host = typeof $ !== 'undefined' ? $ : window; host["${ns}"].`;
-    const fullString = pre + script;
+    csi.evalScript("try{" + script + "}catch(e){alert(e);}", (res: string) => {
+      resolve(res);
+    });
+  });
+}
+
+function sanitizeExtendScriptArg(arg: any) {
+  return typeof arg === "string" ? `"${arg}"` : arg;
+}
+
+export function evalFunction<ScriptName extends ScriptNames>(
+  functionName: ScriptName,
+  ...args: Parameters<Scripts[ScriptName]>
+): Promise<string> {
+  return new Promise(function (resolve, reject) {
+    const pre = `var host = typeof $ !== 'undefined' ? $ : window; host["${ns}"].`;
+    const functionCall = `${functionName}(${args
+      .map(sanitizeExtendScriptArg)
+      .join(", ")})`;
+    const fullString = pre + functionCall;
+
     csi.evalScript(
       "try{" + fullString + "}catch(e){alert(e);}",
       (res: string) => {
@@ -26,16 +44,15 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
       }
     );
   });
-};
+}
 
 export const evalFile = (file: string) => {
-  return evalES(
+  return evalExtendScript(
     "typeof $ !== 'undefined' ? $.evalFile(\"" +
       file +
       '") : fl.runScript(FLfile.platformPathToURI("' +
       file +
-      '"));',
-    true
+      '"));'
   );
 };
 

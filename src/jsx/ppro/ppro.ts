@@ -8,6 +8,6 @@ export const qeDomFunction = () => {
   }
 };
 
-export const helloWorld = () => {
-  alert("Hello from Premiere Pro.");
+export const helloWorld = (name: string = "user") => {
+  alert(`Hello ${name} from Premiere Pro.`);
 };
