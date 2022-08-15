@@ -15,7 +15,7 @@
   import "../index.scss";
   import "./main.scss";
 
-  let count = 0;
+  let count: number = 0;
 
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));

@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react"; // BOLT-CEP_REACT-ONLY
 import vue from "@vitejs/plugin-vue"; // BOLT-CEP_VUE-ONLY
 import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT-CEP_SVELTE-ONLY
+import sveltePreprocess from "svelte-preprocess"; // BOLT-CEP_SVELTE-ONLY
 
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
@@ -51,7 +52,7 @@ export default defineConfig({
   plugins: [
     react(), // BOLT-CEP_REACT-ONLY
     vue(), // BOLT-CEP_VUE-ONLY
-    svelte(), // BOLT-CEP_SVELTE-ONLY
+    svelte({ preprocess: sveltePreprocess() }), // BOLT-CEP_SVELTE-ONLY
     cep(config),
   ],
   root,
