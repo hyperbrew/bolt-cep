@@ -18,10 +18,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install yarn -g
-      - run: yarn
-      - run: yarn build
-      - run: yarn zxp
+      - run: npm i
+      - run: npm run zxp
 
       - name: GitHub Release
         uses: softprops/action-gh-release@v1
