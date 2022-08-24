@@ -8,6 +8,8 @@ import { CEP_Config } from "vite-cep-plugin";
 import json from "@rollup/plugin-json";
 import path from "path";
 
+const GLOBAL_THIS = "thisObj";
+
 export const extendscriptConfig = (
   extendscriptEntry: string,
   outPath: string,
@@ -50,7 +52,10 @@ export const extendscriptConfig = (
           ? cepConfig.zxp.sourceMap
           : cepConfig.build?.sourceMap,
       }),
-      jsxInclude(),
+      jsxInclude({
+        iife: true,
+        globalThis: GLOBAL_THIS,
+      }),
       jsxBin(isPackage ? cepConfig.zxp.jsxBin : cepConfig.build?.jsxBin),
     ],
   };
