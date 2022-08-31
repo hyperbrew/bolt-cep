@@ -52,7 +52,7 @@ export default defineConfig({
   plugins: [
     react(), // BOLT-CEP_REACT-ONLY
     vue(), // BOLT-CEP_VUE-ONLY
-    svelte({ preprocess: sveltePreprocess() }), // BOLT-CEP_SVELTE-ONLY
+    svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT-CEP_SVELTE-ONLY
     cep(config),
   ],
   root,
