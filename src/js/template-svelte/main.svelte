@@ -1,7 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fs, os, path } from "../lib/node";
-  import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+  import {
+    csi,
+    evalES,
+    evalFile,
+    openLinkInBrowser,
+    subscribeBackgroundColor,
+  } from "../lib/utils";
 
   import viteLogo from "../assets/vite.svg";
   import svelteLogo from "../assets/svelte.svg";
@@ -16,6 +22,7 @@
   import "./main.scss";
 
   let count: number = 0;
+  let backgroundColor: string = "#282c34";
 
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
@@ -31,6 +38,7 @@
 
   onMount(() => {
     if (window.cep) {
+      subscribeBackgroundColor((c: string) => (backgroundColor = c));
       const extRoot = csi.getSystemPath("extension");
       const jsxSrc = `${extRoot}/jsx/index.js`;
       const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
@@ -45,7 +53,7 @@
   });
 </script>
 
-<div class="app">
+<div class="app" style="background-color: {backgroundColor};">
   <header class="app-header">
     <img src={bolt} class="icon" alt="" />
     <div class="stack-icons">

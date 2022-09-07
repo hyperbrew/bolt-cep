@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { fs, os, path } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import {
+  csi,
+  evalES,
+  evalFile,
+  openLinkInBrowser,
+  subscribeBackgroundColor,
+} from "../lib/utils";
 import "../index.scss";
 
 const count = ref(0);
+const backgroundColor = ref("#282c34");
 
 const jsxTest = () => {
   console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
@@ -19,6 +26,7 @@ const nodeTest = () => {
 };
 onMounted(() => {
   if (window.cep) {
+    subscribeBackgroundColor((c: string) => (backgroundColor.value = c));
     const extRoot = csi.getSystemPath("extension");
     const jsxSrc = `${extRoot}/jsx/index.js`;
     const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
@@ -34,7 +42,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app" :style="{ backgroundColor: backgroundColor }">
     <header class="app-header">
       <img src="../assets/bolt-cep.svg" class="icon" />
       <div class="stack-icons">
