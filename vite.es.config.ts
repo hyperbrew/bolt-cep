@@ -2,8 +2,7 @@ import fs from "fs";
 import { rollup, watch, RollupOptions, OutputOptions } from "rollup";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
-import replace from "@rollup/plugin-replace";
-import { jsxInclude, jsxBin } from "vite-cep-plugin";
+import { jsxInclude, jsxBin, jsxPonyfill } from "vite-cep-plugin";
 import { CEP_Config } from "vite-cep-plugin";
 import json from "@rollup/plugin-json";
 import path from "path";
@@ -24,7 +23,6 @@ export const extendscriptConfig = (
     treeshake: false,
     output: {
       file: outPath,
-      format: "iife",
       sourcemap: isPackage
         ? cepConfig.zxp.sourceMap
         : cepConfig.build?.sourceMap,
@@ -45,13 +43,7 @@ export const extendscriptConfig = (
           "@babel/plugin-proposal-class-properties",
         ],
       }),
-      replace({
-        "Object.freeze": "",
-        preventAssignment: true,
-        sourceMap: isPackage
-          ? cepConfig.zxp.sourceMap
-          : cepConfig.build?.sourceMap,
-      }),
+      jsxPonyfill(),
       jsxInclude({
         iife: true,
         globalThis: GLOBAL_THIS,

@@ -45,8 +45,8 @@ const config: CEP_Config = {
       width: 600,
       height: 650,
     },
+    // ...debugAll, // BOLT-CEP-DEBUG-ONLY
   ],
-  // .concat(debugAll), // BOLT-CEP-DEBUG-ONLY
   build: {
     jsxBin: "copy",
     sourceMap: true,
