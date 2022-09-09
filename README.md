@@ -174,6 +174,27 @@ If you have assets that you would like copied without being affected by the bund
 
 ---
 
+## Custom Ponyfills
+
+Unlike Polyfills which modify the global prototype, Ponyfills replace functionality with custom methods. Built-in Ponyfills include:
+
+- Object.freeze()
+- Array.isArray()
+
+You can add your own Ponyfils by passing them into the `jsxPonyfill()` function in  `vite.es.config.ts`:
+
+```
+jsxPonyfill([{
+  find: "Array.isArray",
+  replace: "__isArray",
+  inject: `function __isArray(arr) { try { return arr instanceof Array; } catch (e) { return false; } };`,
+}])
+```
+
+If you have a common Ponyfill you feel should be built-in, create a ticket and we'll look into it.
+
+---
+
 ## ExtendScript Scope
 
 This boilerplate is flavored for a single JSX object attached to helper object `$` for all your panels to prevent pollution in the global namespace. If you prefer to include your own raw JSX, include it in the Copy Assets object (above), and add the optional scriptPath object to your cep.config.ts file.
