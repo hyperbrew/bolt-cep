@@ -20,7 +20,7 @@ export const extendscriptConfig = (
   console.log(outPath);
   const config: RollupOptions = {
     input: extendscriptEntry,
-    treeshake: false,
+    treeshake: true,
     output: {
       file: outPath,
       sourcemap: isPackage
