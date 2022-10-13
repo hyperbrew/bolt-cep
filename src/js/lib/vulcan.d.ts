@@ -40,7 +40,7 @@ export default class Vulcan {
    * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
    * @return True if the app is running, false otherwise.
    */
-  isAppRunningEx(): any;
+  isAppRunningEx(productSAPCodeSpecifier: string): any;
 
   /**
    * Checks whether a CC application is installed on the local machine.
@@ -51,7 +51,7 @@ export default class Vulcan {
    * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
    * @return True if the app is installed, false otherwise.
    */
-  isAppInstalledEx(): any;
+  isAppInstalledEx(productSAPCodeSpecifier: string): any;
 
   /**s
    * Retrieves the local install path of a CC application.

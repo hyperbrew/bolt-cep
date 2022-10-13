@@ -595,7 +595,11 @@ export default class CSInterface {
     Since 4.2.0
      * @returns ApiVersion object.
      */
-  getCurrentApiVersion(): any;
+  getCurrentApiVersion(): {
+    minor: string;
+    micro: string;
+    major: string;
+  };
   /**
      * Set panel flyout menu by an XML.
     

@@ -97,3 +97,13 @@ export const vulcanListen = (id: string, callback: Function) => {
 };
 
 export const posix = (str: string) => str.replace(/\\/g, "/");
+
+export const isAppRunning = (targetSpecifier: string) => {
+  const { major, minor, micro } = csi.getCurrentApiVersion();
+  const version = parseFloat(`${major}.${minor}`);
+  if (version >= 11.2) {
+    return vulcan.isAppRunningEx(targetSpecifier.toUpperCase());
+  } else {
+    return vulcan.isAppRunning(targetSpecifier);
+  }
+};
