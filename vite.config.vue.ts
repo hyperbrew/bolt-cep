@@ -21,7 +21,7 @@ const isPackage = process.env.ZXP_PACKAGE === "true";
 const isServe = process.env.SERVE_PANEL === "true";
 const action = process.env.ACTION;
 
-let input = {};
+let input: Record<string, string> = {};
 cepConfig.panels.map((panel) => {
   input[panel.name] = path.resolve(root, panel.mainPath);
 });
