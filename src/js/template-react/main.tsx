@@ -4,24 +4,27 @@ import {
   csi,
   evalES,
   evalFile,
+  evalFunction,
   openLinkInBrowser,
   subscribeBackgroundColor,
 } from "../lib/utils";
 
-import reactLogo from "../assets/react.svg";
-import viteLogo from "../assets/vite.svg";
-import tsLogo from "../assets/typescript.svg";
-import sassLogo from "../assets/sass.svg";
+// import reactLogo from "../assets/react.svg";
+// import viteLogo from "../assets/vite.svg";
+// import tsLogo from "../assets/typescript.svg";
+// import sassLogo from "../assets/sass.svg";
 
-import nodeJs from "../assets/node-js.svg";
-import adobe from "../assets/adobe.svg";
-import bolt from "../assets/bolt-cep.svg";
+// import nodeJs from "../assets/node-js.svg";
+// import adobe from "../assets/adobe.svg";
+// import bolt from "../assets/bolt-cep.svg";
 
 import "./main.scss";
 
 const Main = () => {
   const [bgColor, setBgColor] = useState("#282c34");
   const [count, setCount] = useState(0);
+
+  evalFunction("showAlert", "title", "message");
 
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));

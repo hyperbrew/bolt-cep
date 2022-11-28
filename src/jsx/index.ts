@@ -8,7 +8,13 @@ import * as anim from "./anim/anim";
 import * as ppro from "./ppro/ppro";
 import * as phxs from "./phxs/phxs";
 
-let main: any;
+export type Scripts = typeof aeft &
+  typeof ilst &
+  typeof anim &
+  typeof ppro &
+  typeof phxs;
+
+let main;
 
 switch (BridgeTalk.appName) {
   case "premierepro":
@@ -31,9 +37,14 @@ switch (BridgeTalk.appName) {
     //@ts-ignore
     if (app.appName === "Adobe Animate") {
       main = anim;
+    } else {
+      throw Error(
+        "Could not find scripts for app name: " + BridgeTalk.appName,
+        "src/jsx/index.ts"
+      );
     }
-    break;
 }
+
 //@ts-ignore
 const host = typeof $ !== "undefined" ? $ : window;
 host[ns] = main;

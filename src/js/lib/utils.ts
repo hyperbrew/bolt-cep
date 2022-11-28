@@ -1,5 +1,6 @@
 import CSInterface from "../lib/csinterface";
 import Vulcan, { VulcanMessage } from "../lib/vulcan";
+import type { Scripts } from "../../jsx/index";
 import { ns } from "../../shared/shared";
 
 export const csi = new CSInterface();
@@ -27,6 +28,39 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
     );
   });
 };
+
+function sanitizeExtendScriptArg(arg: any) {
+  return typeof arg === "string" ? JSON.stringify(arg) : arg;
+}
+
+export function evalFunction<ScriptName extends keyof Scripts>(
+  functionName: ScriptName,
+  ...args: Parameters<Scripts[ScriptName]>
+): Promise<ReturnType<Scripts[ScriptName]>> {
+  return new Promise(function (resolve, reject) {
+    const argsString = args.map(sanitizeExtendScriptArg).join(", ");
+
+    const fullString = `
+var host = typeof $ !== 'undefined' ? $ : window;
+var namespace = host["${ns}"];
+if (namespace) {
+  namespace.${functionName}(${argsString});
+} else {
+  write("Namespace ${ns} not found");
+}
+`.trim();
+    csi.evalScript(
+      `try {
+  ${fullString}
+} catch(e) {
+  alert("Error in function '${functionName}'\\n" + 'Call: ${functionName}(${argsString})');
+}`,
+      (res: any) => {
+        resolve(res);
+      }
+    );
+  });
+}
 
 export const evalFile = (file: string) => {
   return evalES(
