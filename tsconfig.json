@@ -19,7 +19,8 @@
   "include": [
     "./src",
     "./node_modules/types-for-adobe",
-    "./node_modules/types-for-adobe-extras"
+    "./node_modules/types-for-adobe-extras",
+    "./src/jsx/global"
   ],
   "exclude": [
     "./src/jsx",
