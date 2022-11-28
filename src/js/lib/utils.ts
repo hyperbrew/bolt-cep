@@ -53,7 +53,7 @@ if (namespace) {
       `try {
   ${fullString}
 } catch(e) {
-  alert("Error in function '${functionName}'\\n" + 'Call: ${functionName}(${argsString})');
+  alert("Error in function '${functionName}'\\n" + "Error message: " + e.message + "\\n" + 'Call: ${functionName}(${argsString})');
 }`,
       (res: any) => {
         resolve(res);
