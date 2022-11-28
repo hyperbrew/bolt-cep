@@ -9,14 +9,14 @@ import {
   subscribeBackgroundColor,
 } from "../lib/utils";
 
-// import reactLogo from "../assets/react.svg";
-// import viteLogo from "../assets/vite.svg";
-// import tsLogo from "../assets/typescript.svg";
-// import sassLogo from "../assets/sass.svg";
+import reactLogo from "../assets/react.svg";
+import viteLogo from "../assets/vite.svg";
+import tsLogo from "../assets/typescript.svg";
+import sassLogo from "../assets/sass.svg";
 
-// import nodeJs from "../assets/node-js.svg";
-// import adobe from "../assets/adobe.svg";
-// import bolt from "../assets/bolt-cep.svg";
+import nodeJs from "../assets/node-js.svg";
+import adobe from "../assets/adobe.svg";
+import bolt from "../assets/bolt-cep.svg";
 
 import "./main.scss";
 
