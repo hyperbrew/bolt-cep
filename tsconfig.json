@@ -16,7 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src"],
+  "include": [
+    "./src",
+    "./node_modules/types-for-adobe",
+    "./node_modules/types-for-adobe-extras"
+  ],
   "exclude": [
     "./src/jsx",
     "./src/js/template-*",
