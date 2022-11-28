@@ -46,5 +46,5 @@ switch (BridgeTalk.appName) {
 }
 
 //@ts-ignore
-const host = typeof $ !== "undefined" ? $ : window;
+const host: Record<string, any> = typeof $ !== "undefined" ? $ : window;
 host[ns] = main;
