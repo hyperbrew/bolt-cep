@@ -31,7 +31,6 @@
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.7",
     "@types/trusted-types": "^2.0.2",
-    "@vitejs/plugin-vue": "^2.3.0",
     "babel-plugin-transform-scss": "^1.1.0",
     "babel-preset-env": "^1.7.0",
     "core-js": "3",
