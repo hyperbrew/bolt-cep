@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "dev": "vite",
     "debug": "cross-env DEBUG_REACT=true vite build --watch true",
