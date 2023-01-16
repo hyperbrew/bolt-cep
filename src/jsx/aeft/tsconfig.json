@@ -5,8 +5,9 @@
     "strict": true,
     "types": [
       "../global",
-      "../../../node_modules/types-for-adobe/AfterEffects/18.0",
-      "../../../node_modules/types-for-adobe/shared/PlugPlugExternalObject"
+      "../../../node_modules/types-for-adobe/AfterEffects/22.0",
+      "../../../node_modules/types-for-adobe/shared/PlugPlugExternalObject",
+      "../../../node_modules/types-for-adobe/shared/XMPScript"
     ]
   },
   "include": ["./**/*"]

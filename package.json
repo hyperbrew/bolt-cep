@@ -8,6 +8,7 @@
     "watch": "tsc && vite build --watch true",
     "build": "rimraf dist/* && tsc && vite build --watch false",
     "zxp": "rimraf dist/* && tsc && cross-env ZXP_PACKAGE=true vite build --watch false",
+    "zip": "rimraf dist/* && tsc && cross-env ZIP_PACKAGE=true vite build --watch false",
     "serve": "cross-env SERVE_PANEL=true vite preview",
     "symlink": "cross-env ACTION=symlink vite",
     "delsymlink": "cross-env ACTION=delsymlink vite"
@@ -58,7 +59,7 @@
     "svelte": "^3.53.1",
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
-    "types-for-adobe": "^7.0.0",
+    "types-for-adobe": "^7.0.11",
     "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.6.4",
     "vite": "^3.2.3",

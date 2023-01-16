@@ -4691,10 +4691,10 @@ types-for-adobe-extras@^0.0.1:
   resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.1.tgz#c7ee5897f42400aafdeda72f6483e71fef73ddc2"
   integrity sha512-pozMMjqwUjBDFbD/HXYMm8Zsf5GaCh3No2Ysg8CmtbvBFAZFL51MxcZPwJj8TtjTdxW+snxR+6a93F7t1FUuOg==
 
-types-for-adobe@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.0.tgz#727cfbec4cc067b2a4ba3594fe4ca1b903289dfd"
-  integrity sha512-1QHqplLvmoPj7ZNx01KhwS4WR3590xHu1EDJ49PE4MWHAx7NHM61Hx1R300d832WnWqr9qWpLkKChSqMZ1XdtQ==
+types-for-adobe@^7.0.11:
+  version "7.0.11"
+  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.11.tgz#5a4cbae937cc38d50c76380221e26c0b3ead87c9"
+  integrity sha512-hsoPqUvmjYpy2C+wRiJqlfMKhCb/Zoxc1Twb4jrtjjZYH9hQS52cCXSGkrc96NECxaJhtVTh7kYaxPdaEQlO4A==
 
 typescript@*:
   version "4.6.4"
