@@ -78,7 +78,7 @@ or
 
 `yarn zip`
 
-- Bundles your ZXP and any assets specified in config to the `dist/zip` folder
+- Bundles your zxp and specified assets to a zip archive in the `dist/zip` folder
 
 ---
 
@@ -186,7 +186,7 @@ If you have assets that you would like copied without being affected by the bund
 
 ## Copy Zip Assets
 
-If you have assets that you would like copied without being affected by the bundler, you can add the optional `copyZipAssets:[]` array inside your cep.config.ts to include files or entire folders. A folder ending in "/\*" will copy the contents without the folder structure into the zip destination.
+If you have assets that you would like copied with your zxp into a zip archive for delivery, you can add the optional `copyZipAssets:[]` array inside your cep.config.ts to include files or entire folders. A folder ending in "/\*" will copy the contents without the folder structure into the zip destination.
 
 ```
   copyZipAssets: ["instructions/*", "icons"],
