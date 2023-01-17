@@ -48,7 +48,7 @@
     "types-for-adobe-extras": "^0.0.1",
     "typescript": "^4.4.4",
     "vite": "^3.2.3",
-    "vite-cep-plugin": "^0.3.6",
+    "vite-cep-plugin": "^0.3.8",
     "yarn": "^1.22.17"
   },
   "main": "index.js",
