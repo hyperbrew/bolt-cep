@@ -62,5 +62,6 @@ const config: CEP_Config = {
   },
   installModules: [],
   copyAssets: [],
+  copyZipAssets: [],
 };
 export default config;

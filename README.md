@@ -76,6 +76,10 @@ or
 
 - Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
 
+`yarn zip`
+
+- Bundles your ZXP and any assets specified in config to the `dist/zip` folder
+
 ---
 
 ## Config
@@ -178,6 +182,18 @@ If you have assets that you would like copied without being affected by the bund
 
 ---
 
+---
+
+## Copy Zip Assets
+
+If you have assets that you would like copied without being affected by the bundler, you can add the optional `copyZipAssets:[]` array inside your cep.config.ts to include files or entire folders. A folder ending in "/\*" will copy the contents without the folder structure into the zip destination.
+
+```
+  copyZipAssets: ["instructions/*", "icons"],
+```
+
+---
+
 ## Custom Ponyfills
 
 Unlike Polyfills which modify the global prototype, Ponyfills replace functionality with custom methods. Built-in Ponyfills include:
@@ -185,7 +201,7 @@ Unlike Polyfills which modify the global prototype, Ponyfills replace functional
 - Object.freeze()
 - Array.isArray()
 
-You can add your own Ponyfils by passing them into the `jsxPonyfill()` function in  `vite.es.config.ts`:
+You can add your own Ponyfils by passing them into the `jsxPonyfill()` function in `vite.es.config.ts`:
 
 ```
 jsxPonyfill([{

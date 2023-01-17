@@ -35,3 +35,30 @@ export const getActiveComp = () => {
   }
   return app.project.activeItem as CompItem;
 };
+
+// Metadata helpers
+
+export const setAeMetadata = (propName: string, propValue: any) => {
+  if (ExternalObject.AdobeXMPScript === undefined) {
+    ExternalObject.AdobeXMPScript = new ExternalObject("lib:AdobeXMPScript");
+  }
+  if (!app.project || !ExternalObject.AdobeXMPScript || !XMPMeta) return;
+  const prefix = "xmp:";
+  const uri = XMPMeta.getNamespaceURI(prefix);
+  const newPropName = prefix + propName;
+  let metadata = new XMPMeta(app.project.xmpPacket);
+  metadata.setProperty(uri, newPropName, propValue.toString());
+  app.project.xmpPacket = metadata.serialize();
+};
+
+export const getAeMetadata = (propName: string) => {
+  if (ExternalObject.AdobeXMPScript === undefined) {
+    ExternalObject.AdobeXMPScript = new ExternalObject("lib:AdobeXMPScript");
+  }
+  if (!app.project || !ExternalObject.AdobeXMPScript || !XMPMeta) return;
+  const prefix = "xmp:";
+  const uri = XMPMeta.getNamespaceURI(prefix);
+  const newPropName = prefix + propName;
+  const metadata = new XMPMeta(app.project.xmpPacket);
+  return metadata.getProperty(uri, newPropName);
+};
