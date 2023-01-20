@@ -6,7 +6,7 @@ A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or
 
 ![npm](https://img.shields.io/npm/v/bolt-cep)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hyperbrew/bolt-cep/blob/master/LICENSE)
-[![Chat](https://img.shields.io/badge/chat-discord-7289da.svg)](https://discord.gg/N675AFSS)
+[![Chat](https://img.shields.io/badge/chat-discord-7289da.svg)](https://discord.gg/PC3EvvuRbc)
 
 ## Features
 
