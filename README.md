@@ -67,11 +67,6 @@ or
 - Viewable in browser via localhost:5000/panel/
   - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc.)
 
-`yarn debug && yarn tools`
-
-- Adds snippet for debugging with React Dev Tools
-- Launches standalone React Dev Tools
-
 `yarn zxp`
 
 - Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
