@@ -298,10 +298,10 @@ ReactDOM.render(
 - **Build Issues on Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
 
 - **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
-  1. `package.json` - update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
+  1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
   2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
   3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
-  4. `cep.config.ts` - check if any new properties have been added that don't exist in your config.
+  4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
 
 ## Limitations
 
