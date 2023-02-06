@@ -293,7 +293,9 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
-- If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+- **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+
+- **Build Issues on Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
 
 ## Limitations
 
