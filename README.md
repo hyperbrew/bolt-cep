@@ -59,13 +59,13 @@ or
 - Runs in dev mode with HMR Hot-reloading.
 - Both JS and ExtendScript folders re-build on changes
 - Viewable in browser via localhost:3000/panel/
-  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc.)
+  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn serve`
 
 - Serve files after running `yarn build`
 - Viewable in browser via localhost:5000/panel/
-  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc.)
+  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn zxp`
 
@@ -293,7 +293,7 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
-- If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work open the `vite-cep-plugin/bin` directory and run `chmod 700 ./ZXPSignCmd`.
+- If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
 
 ## Limitations
 
