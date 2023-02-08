@@ -6,7 +6,7 @@ import {
   evalFile,
   openLinkInBrowser,
   subscribeBackgroundColor,
-  evalTS
+  evalTS,
 } from "../lib/utils";
 
 import reactLogo from "../assets/react.svg";
@@ -28,10 +28,13 @@ const Main = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
   };
 
-  const jsxStr = () => {
-    evalTS("aeft", "helloStr", ["test"]).then((res) => {
-      console.log(typeof res, res);
-    });
+  const jsxStr = async () => {
+    // evalTS("aeft", "helloStr", ["test"]).then((res) => {
+    //   console.log(typeof res, res);
+    // });
+
+    const res = await evalTS("aeft", "helloStr", ["testing 123"]);
+    console.log(res);
   };
   const jsxNum = () => {
     evalTS("aeft", "helloNum", [1000]).then((res) => {
@@ -48,8 +51,8 @@ const Main = () => {
   const jsxObj = () => {
     evalTS("aeft", "helloObj", [{ height: 90, width: 100 }]).then((res) => {
       console.log(typeof res, res);
-      console.log(res.height);
-      console.log(res.width);
+      // console.log(res.height);
+      // console.log(res.width);
     });
   };
   const jsxError = () => {

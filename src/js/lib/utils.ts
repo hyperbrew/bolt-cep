@@ -1,7 +1,8 @@
 import CSInterface from "../lib/csinterface";
 import Vulcan, { VulcanMessage } from "../lib/vulcan";
 import { ns } from "../../shared/shared";
-import { RawSourceMap, SourceMapConsumer } from "source-map-js";
+// import { RawSourceMap, SourceMapConsumer } from "source-map-js";
+import { fs } from "./node";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
@@ -41,7 +42,14 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
 };
 
 import type esType from "../../jsx/index";
-import { fs } from "./node";
+
+// type esType = {
+//   aeft: any;
+//   ilst: any;
+//   anim: any;
+//   ppro: any;
+//   phxs: any;
+// };
 
 type ArgTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
@@ -100,17 +108,19 @@ export const evalTS = <
         try {
           const parsed = JSON.parse(res);
           if (parsed.name === "ReferenceError") {
-            const src = getSourceLine(
-              `${parsed.fileName}.map`,
-              parsed.line,
-              parsed.number
-            );
-            console.error(
-              `ExtendScript Error: ${src.source.replace(/\.\.\//g, "")} ${
-                src.line
-              }:${src.column}`,
-              parsed
-            );
+            console.error("REFERENCE ERROR");
+            //!TODO Fix Source Map Reader
+            // const src = getSourceLine(
+            //   `${parsed.fileName}.map`,
+            //   parsed.line,
+            //   parsed.number
+            // );
+            // console.error(
+            //   `ExtendScript Error: ${src.source.replace(/\.\.\//g, "")} ${
+            //     src.line
+            //   }:${src.column}`,
+            //   parsed
+            // );
             reject(parsed);
           } else {
             resolve(parsed);
@@ -135,13 +145,14 @@ export const evalFile = (file: string) => {
 };
 
 export const getSourceLine = (file: string, line: number, column: number) => {
-  const src = fs.readFileSync(file, { encoding: "utf-8" });
-  const sourceMap = JSON.parse(src) as RawSourceMap;
-  const smc = new SourceMapConsumer(sourceMap);
-  return smc.originalPositionFor({
-    line,
-    column,
-  });
+  return "empty";
+  // const src = fs.readFileSync(file, { encoding: "utf-8" });
+  // const sourceMap = JSON.parse(src) as RawSourceMap;
+  // const smc = new SourceMapConsumer(sourceMap);
+  // return smc.originalPositionFor({
+  //   line,
+  //   column,
+  // });
 };
 
 export const getAppBackgroundColor = () => {
