@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { fs, os, path } from "../lib/node";
-import { csi, evalES, evalFile, openLinkInBrowser } from "../lib/utils";
+import {
+  csi,
+  evalES,
+  evalFile,
+  openLinkInBrowser,
+  subscribeBackgroundColor,
+} from "../lib/utils";
 import "../index.scss";
 
 const count = ref(0);
+const backgroundColor = ref("#282c34");
 
 const jsxTest = () => {
   console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
@@ -19,6 +26,7 @@ const nodeTest = () => {
 };
 onMounted(() => {
   if (window.cep) {
+    subscribeBackgroundColor((c: string) => (backgroundColor.value = c));
     const extRoot = csi.getSystemPath("extension");
     const jsxSrc = `${extRoot}/jsx/index.js`;
     const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
@@ -34,10 +42,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div className="app">
-    <header className="app-header">
-      <img src="../assets/bolt-cep.svg" className="icon" />
-      <div className="stack-icons">
+  <div class="app" :style="{ backgroundColor: backgroundColor }">
+    <header class="app-header">
+      <img src="../assets/bolt-cep.svg" class="icon" />
+      <div class="stack-icons">
         <div>
           <img src="../assets/vite.svg" />
           Vite
@@ -58,13 +66,13 @@ onMounted(() => {
           Sass
         </div>
       </div>
-      <div className="button-group">
+      <div class="button-group">
         <button @click="count++">Count is: {{ count }}</button>
         <button @click="nodeTest">
-          <img className="icon-button" src="../assets/node-js.svg" />
+          <img class="icon-button" src="../assets/node-js.svg" />
         </button>
         <button @click="jsxTest">
-          <img className="icon-button" src="../assets/adobe.svg" />
+          <img class="icon-button" src="../assets/adobe.svg" />
         </button>
       </div>
 

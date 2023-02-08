@@ -1,16 +1,16 @@
-export const forEach = (
-  arr: any[],
-  callback: (item: any, i: number) => void
+export const forEach = <T>(
+  arr: T[],
+  callback: (item: T, i: number) => void
 ): void => {
   for (let i = 0; i < arr.length; i++) {
     callback(arr[i], i);
   }
 };
 
-export const map = (
-  arr: any[],
-  callback: (item: any, i: number) => any
-): any[] => {
+export const map = <T>(
+  arr: T[],
+  callback: (item: T, i: number) => any
+): T[] => {
   let res = [];
   for (let i = 0; i < arr.length; i++) {
     res.push(callback(arr[i], i));
@@ -18,10 +18,10 @@ export const map = (
   return res;
 };
 
-export const filter = (
-  arr: any[],
-  func: (item: any, i: number) => boolean
-): any[] => {
+export const filter = <T>(
+  arr: T[],
+  func: (item: T, i: number) => boolean
+): T[] => {
   let res = [];
   for (let i = 0; i < arr.length; i++) {
     if (func(arr[i], i)) {
@@ -31,10 +31,7 @@ export const filter = (
   return res;
 };
 
-export const includes = (
-  arr: Array<string | number>,
-  value: string | number
-) => {
+export const includes = <T>(arr: T[], value: string | number) => {
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
     if (element === value) {
@@ -44,10 +41,7 @@ export const includes = (
   return false;
 };
 
-export const indexOf = (
-  arr: Array<string | number>,
-  value: string | number
-) => {
+export const indexOf = <T>(arr: T[], value: string | number) => {
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
     if (element === value) {

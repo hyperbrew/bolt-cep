@@ -12,15 +12,19 @@ let main: any;
 
 switch (BridgeTalk.appName) {
   case "premierepro":
+  case "premiereprobeta":
     main = ppro;
     break;
   case "aftereffects":
+  case "aftereffectsbeta":
     main = aeft;
     break;
   case "illustrator":
+  case "illustratorbeta":
     main = ilst;
     break;
   case "photoshop":
+  case "photoshopbeta":
     main = phxs;
     break;
   default:

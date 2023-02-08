@@ -1,14 +1,11 @@
 import { defineConfig } from "vite";
-
-import react from "@vitejs/plugin-react"; // BOLT-CEP_REACT-ONLY
-import vue from "@vitejs/plugin-vue"; // BOLT-CEP_VUE-ONLY
-import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT-CEP_SVELTE-ONLY
-import sveltePreprocess from "svelte-preprocess"; // BOLT-CEP_SVELTE-ONLY
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./vite.es.config";
+import { sveltePreprocess } from "svelte-preprocess/dist/autoProcess";
 
 const extensions = [".js", ".ts", ".tsx"];
 
@@ -19,7 +16,7 @@ const src = path.resolve(__dirname, "src");
 const root = path.resolve(src, "js");
 const outDir = path.resolve(__dirname, "dist", "cep");
 
-const debugReact = process.env.DEBUG_REACT === "true";
+const debugReact = false;
 const isProduction = process.env.NODE_ENV === "production";
 const isMetaPackage = process.env.ZIP_PACKAGE === "true";
 const isPackage = process.env.ZXP_PACKAGE === "true" || isMetaPackage;
@@ -53,9 +50,7 @@ if (action) {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(), // BOLT-CEP_REACT-ONLY
-    vue(), // BOLT-CEP_VUE-ONLY
-    svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT-CEP_SVELTE-ONLY
+    svelte({ preprocess: sveltePreprocess({ typescript: true }) }),
     cep(config),
   ],
   root,
@@ -72,14 +67,11 @@ export default defineConfig({
     watch: {
       include: "src/jsx/**",
     },
-    // commonjsOptions: {
-    //   transformMixedEsModules: true,
-    // },
+
     rollupOptions: {
       input,
       output: {
         manualChunks: {},
-        // esModule: false,
         preserveModules: false,
         format: "cjs",
       },

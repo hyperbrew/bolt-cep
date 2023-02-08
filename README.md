@@ -1,14 +1,16 @@
-<img src="src\js\blot-cep-logo.svg" alt="Bolt CEP" width="300">
+<img src="src/js/assets/bolt-cep.svg" alt="Bolt CEP" title="Bolt CEP" width="400">
 
-# Bolt CEP
+A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or Svelte built on Vite + TypeScript + Sass
 
-A lightning-fast boilerplate for Adobe CEP Extensions built on Vite + React + TypeScript + Sass
+![npm](https://img.shields.io/npm/v/bolt-cep)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hyperbrew/bolt-cep/blob/master/LICENSE)
+[![Chat](https://img.shields.io/badge/chat-discord-7289da.svg)](https://discord.gg/PC3EvvuRbc)
 
 ## Features
 
 - Lightning Fast Hot Module Replacement (HMR)
 - Write Modern ES6 in both the JavaScript and ExtendScript layers
-- Type-safe ExtendScript with Types-for-Adobe
+- Type-safe ExtendScript with Types-for-Adobe`
 - Easily configure in cep.config.ts
 - Setup for single or multi-panel extensions
 - Comes with multi-host-app configuration
@@ -21,6 +23,24 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 ---
 
 ## Quick Start
+
+<img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
+
+`yarn create bolt-cep myApp --template react`
+
+or
+
+`yarn create bolt-cep myApp --template vue`
+
+or
+
+`yarn create bolt-cep myApp --template svelte`
+
+- Create Extension
+
+`cd myApp`
+
+- CD into Directory
 
 `yarn`
 
@@ -37,22 +57,21 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 - Runs in dev mode with HMR Hot-reloading.
 - Both JS and ExtendScript folders re-build on changes
 - Viewable in browser via localhost:3000/panel/
-  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc.)
+  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn serve`
 
 - Serve files after running `yarn build`
 - Viewable in browser via localhost:5000/panel/
-  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc.)
-
-`yarn debug && yarn tools`
-
-- Adds snippet for debugging with React Dev Tools
-- Launches standalone React Dev Tools
+  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn zxp`
 
 - Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
+
+`yarn zip`
+
+- Bundles your zxp and specified assets to a zip archive in the `dist/zip` folder
 
 ---
 
@@ -60,7 +79,7 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 Update your CEP build and package settings in `cep.config.ts` safely typed
 
-Start building your app in `src/js/main/index.tsx`
+Start building your app in `src/js/main/index(.tsx or .vue or .svelte)`
 
 Write ExtendScript code in `src/jsx/main.ts`
 
@@ -140,7 +159,7 @@ git tag 1.0.0
 git push origin --tags
 ```
 
-Then your new build will be available under releases (e.g. https://github.com/hyperbrew/bolt-cep/releases)
+Then your new build will be available under GitHub Releases.
 
 ---
 
@@ -153,6 +172,39 @@ If you have assets that you would like copied without being affected by the bund
 ```
   copyAssets: ["public", "custom/my.jsx"],
 ```
+
+---
+
+---
+
+## Copy Zip Assets
+
+If you have assets that you would like copied with your zxp into a zip archive for delivery, you can add the optional `copyZipAssets:[]` array inside your cep.config.ts to include files or entire folders. A folder ending in "/\*" will copy the contents without the folder structure into the zip destination.
+
+```
+  copyZipAssets: ["instructions/*", "icons"],
+```
+
+---
+
+## Custom Ponyfills
+
+Unlike Polyfills which modify the global prototype, Ponyfills replace functionality with custom methods. Built-in Ponyfills include:
+
+- Object.freeze()
+- Array.isArray()
+
+You can add your own Ponyfils by passing them into the `jsxPonyfill()` function in `vite.es.config.ts`:
+
+```
+jsxPonyfill([{
+  find: "Array.isArray",
+  replace: "__isArray",
+  inject: `function __isArray(arr) { try { return arr instanceof Array; } catch (e) { return false; } };`,
+}])
+```
+
+If you have a common Ponyfill you feel should be built-in, create a ticket and we'll look into it.
 
 ---
 
@@ -239,7 +291,15 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
-- If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work open the `vite-cep-plugin/bin` directory and run `chmod 700 ./ZXPSignCmd`.
+- **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+
+- **Build Issues on Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
+
+- **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
+  1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
+  2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
+  3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
+  4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
 
 ## Limitations
 

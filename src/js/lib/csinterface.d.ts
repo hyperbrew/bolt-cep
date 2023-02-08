@@ -481,7 +481,7 @@ export default class CSInterface {
      * @param obj - Optional, the object containing the handler method, if any.
             Default is null.
      */
-  addEventListener(type: any, listener: any, obj: any): void;
+  addEventListener(type: any, listener: Function, obj?: any): void;
   /**
      * Removes a registered event listener.
      * @param type - The name of the event type of interest.
@@ -595,7 +595,11 @@ export default class CSInterface {
     Since 4.2.0
      * @returns ApiVersion object.
      */
-  getCurrentApiVersion(): any;
+  getCurrentApiVersion(): {
+    minor: string;
+    micro: string;
+    major: string;
+  };
   /**
      * Set panel flyout menu by an XML.
     

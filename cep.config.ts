@@ -1,5 +1,6 @@
 import { CEP_Config } from "vite-cep-plugin";
 import { version } from "./package.json";
+import { debugAll } from "./cep.config.debug"; // BOLT-CEP-DEBUG-ONLY
 
 const config: CEP_Config = {
   version,
@@ -31,7 +32,7 @@ const config: CEP_Config = {
   iconNormal: "./src/assets/dark-icon.png",
   iconDarkNormalRollOver: "./src/assets/light-icon.png",
   iconNormalRollOver: "./src/assets/dark-icon.png",
-  parameters: ["--enable-nodejs", "--mixed-context"],
+  parameters: ["--v=0", "--enable-nodejs", "--mixed-context"],
   width: 500,
   height: 550,
 
@@ -44,8 +45,8 @@ const config: CEP_Config = {
       width: 600,
       height: 650,
     },
+    ...debugAll, // BOLT-CEP-DEBUG-ONLY
   ],
-
   build: {
     jsxBin: "copy",
     sourceMap: true,
@@ -61,5 +62,6 @@ const config: CEP_Config = {
   },
   installModules: [],
   copyAssets: [],
+  copyZipAssets: [],
 };
 export default config;

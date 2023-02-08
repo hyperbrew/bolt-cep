@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { os, path, fs } from "../lib/node";
-import { csi, evalES, evalFile, evalTS, openLinkInBrowser } from "../lib/utils";
+import {
+  csi,
+  evalES,
+  evalFile,
+  openLinkInBrowser,
+  subscribeBackgroundColor,
+  evalTS
+} from "../lib/utils";
 
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
@@ -14,6 +21,7 @@ import bolt from "../assets/bolt-cep.svg";
 import "./main.scss";
 
 const Main = () => {
+  const [bgColor, setBgColor] = useState("#282c34");
   const [count, setCount] = useState(0);
 
   const jsxTest = () => {
@@ -64,6 +72,7 @@ const Main = () => {
 
   useEffect(() => {
     if (window.cep) {
+      subscribeBackgroundColor(setBgColor);
       const extRoot = csi.getSystemPath("extension");
       const jsxSrc = `${extRoot}/jsx/index.js`;
       const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
@@ -78,7 +87,7 @@ const Main = () => {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundColor: bgColor }}>
       <header className="app-header">
         <img src={bolt} className="icon" />
         <div className="stack-icons">
@@ -122,7 +131,7 @@ const Main = () => {
           <button onClick={jsxError}>error</button>
         </div>
         <p>
-          Edit <code>app.tsx</code> and save to test HMR updates.
+          Edit <code>main.tsx</code> and save to test HMR updates.
         </p>
         <p>
           <button
