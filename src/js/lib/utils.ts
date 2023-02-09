@@ -73,19 +73,16 @@ export const evalTS = <
   ...args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {
   return new Promise(function (resolve, reject) {
-    const formattedArgs = args.map((arg) => {
-      if (typeof arg === "object") {
-        return JSON.stringify(arg);
-      } else if (typeof arg == "string") {
-        return `"${arg}"`;
-      } else {
-        return arg;
-      }
-    });
+    const formattedArgs = args
+      .map((arg) => {
+        console.log(JSON.stringify(arg));
+        return `${JSON.stringify(arg)}`;
+      })
+      .join(",");
     csi.evalScript(
       `try{
           var host = typeof $ !== 'undefined' ? $ : window;
-          var res = host["${ns}"].${functionName}(${formattedArgs.join(",")});
+          var res = host["${ns}"].${functionName}(${formattedArgs});
           JSON.stringify(res);
         }catch(e){
           e.fileName = new File(e.fileName).fsName;
