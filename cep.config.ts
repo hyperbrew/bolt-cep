@@ -22,6 +22,14 @@ const config: CEP_Config = {
       version: "[0.0,99.9]",
     },
     {
+      name: "ILST",
+      version: "[0.0,99.9]",
+    },
+    {
+      name: "PHXS",
+      version: "[0.0,99.9]",
+    },
+    {
       name: "FLPR",
       version: "[0.0,99.9]",
     },

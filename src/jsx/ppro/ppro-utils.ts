@@ -17,3 +17,11 @@ export const deleteItem = (item: ProjectItem) => {
     tmpBin.deleteBin();
   }
 };
+
+export const getSequenceLengthInFrames = (seq: Sequence) => {
+  const settings = seq.getSettings();
+  const end = seq.end;
+  const fps = settings.videoFrameRate.ticks;
+  const frames = parseInt(end) / parseInt(fps);
+  return frames;
+};

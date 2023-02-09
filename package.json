@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "watch": "tsc && vite build --watch true",
-    "build": "rimraf dist/* && tsc && vite build --watch false",
+    "build": "rimraf dist/* && tsc -p \"tsconfig-build.json\" && vite build --watch false",
     "zxp": "rimraf dist/* && tsc && cross-env ZXP_PACKAGE=true vite build --watch false",
     "zip": "rimraf dist/* && tsc && cross-env ZIP_PACKAGE=true vite build --watch false",
     "serve": "cross-env SERVE_PANEL=true vite preview",
@@ -14,6 +14,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "source-map-js": "^1.0.2",
     "vue": "^3.2.45"
   },
   "devDependencies": {

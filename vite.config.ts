@@ -58,6 +58,9 @@ export default defineConfig({
     svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT-CEP_SVELTE-ONLY
     cep(config),
   ],
+  resolve: {
+    alias: [{ find: "@esTypes", replacement: path.resolve(__dirname, "src") }],
+  },
   root,
   clearScreen: false,
   server: {
