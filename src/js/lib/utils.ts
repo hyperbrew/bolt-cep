@@ -41,8 +41,9 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
   });
 };
 
-import type esType from "../../jsx/index";
+import type { Scripts } from "@esTypes/index";
 
+// import type esType from "../../jsx/index";
 // type esType = {
 //   aeft: any;
 //   ilst: any;
@@ -77,11 +78,11 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
  */
 
 export const evalTS = <
-  App extends string & keyof esType,
-  Key extends string & keyof esType[App],
-  Func extends Function & esType[App][Key]
+  // App extends string & keyof esType,
+  Key extends string & keyof Scripts,
+  Func extends Function & Scripts[Key]
 >(
-  app: App,
+  // app: App,
   func: Key,
   args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {

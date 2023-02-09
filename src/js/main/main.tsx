@@ -29,34 +29,28 @@ const Main = () => {
   };
 
   const jsxStr = async () => {
-    // evalTS("aeft", "helloStr", ["test"]).then((res) => {
-    //   console.log(typeof res, res);
-    // });
-
-    const res = await evalTS("aeft", "helloStr", ["testing 123"]);
+    const res = await evalTS("helloStr", ["test"]);
     console.log(res);
   };
   const jsxNum = () => {
-    evalTS("aeft", "helloNum", [1000]).then((res) => {
+    evalTS("helloNum", [1000]).then((res) => {
       console.log(typeof res, res);
     });
   };
   const jsxArray = () => {
-    evalTS("aeft", "helloArrayStr", [["ddddd", "aaaaaa", "zzzzzzz"]]).then(
-      (res) => {
-        console.log(typeof res, res);
-      }
-    );
+    evalTS("helloArrayStr", [["ddddd", "aaaaaa", "zzzzzzz"]]).then((res) => {
+      console.log(typeof res, res);
+    });
   };
   const jsxObj = () => {
-    evalTS("aeft", "helloObj", [{ height: 90, width: 100 }]).then((res) => {
+    evalTS("helloObj", [{ height: 90, width: 100 }]).then((res) => {
       console.log(typeof res, res);
-      // console.log(res.height);
-      // console.log(res.width);
+      console.log(res.height);
+      console.log(res.width);
     });
   };
   const jsxError = () => {
-    evalTS("aeft", "helloError", ["test"])
+    evalTS("helloError", ["test"])
       .then((res) => {
         console.log("success");
       })
