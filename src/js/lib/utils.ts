@@ -41,16 +41,7 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
   });
 };
 
-import type { Scripts } from "@esTypes/index";
-
-// import type esType from "../../jsx/index";
-// type esType = {
-//   aeft: any;
-//   ilst: any;
-//   anim: any;
-//   ppro: any;
-//   phxs: any;
-// };
+import type { Scripts, AppScripts } from "@esTypes/index";
 
 type ArgTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
@@ -60,17 +51,15 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
   : never;
 
 /**
- * @function EvalTS
- * End-to-end type-safe ExtendScript evaluation with error handling
+ * @description End-to-end type-safe ExtendScript evaluation with error handling
  * Call ExtendScript functions from CEP with type-safe parameters and return types.
  * Any ExtendScript errors are captured and logged to the CEP console for tracing
  *
- * @param app The abbreviation of the app ID for type safety.
  * @param func The name of the function to be evaluated.
  * @param args the list of arguments taken by the function.
  *
  * @example
- * evalTS("aeft", "helloStr", ["test"]).then((res) => {
+ * evalTS("helloStr", ["test"]).then((res) => {
  *    // Do stuff
  * });
  *
@@ -78,11 +67,9 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
  */
 
 export const evalTS = <
-  // App extends string & keyof esType,
   Key extends string & keyof Scripts,
   Func extends Function & Scripts[Key]
 >(
-  // app: App,
   func: Key,
   args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {
@@ -145,16 +132,16 @@ export const evalFile = (file: string) => {
   );
 };
 
-export const getSourceLine = (file: string, line: number, column: number) => {
-  return "empty";
-  // const src = fs.readFileSync(file, { encoding: "utf-8" });
-  // const sourceMap = JSON.parse(src) as RawSourceMap;
-  // const smc = new SourceMapConsumer(sourceMap);
-  // return smc.originalPositionFor({
-  //   line,
-  //   column,
-  // });
-};
+// export const getSourceLine = (file: string, line: number, column: number) => {
+//   // return "empty";
+//   const src = fs.readFileSync(file, { encoding: "utf-8" });
+//   const sourceMap = JSON.parse(src) as RawSourceMap;
+//   const smc = new SourceMapConsumer(sourceMap);
+//   return smc.originalPositionFor({
+//     line,
+//     column,
+//   });
+// };
 
 export const getAppBackgroundColor = () => {
   const { green, blue, red } = JSON.parse(

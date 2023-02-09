@@ -45,12 +45,10 @@ const mainObj = {
   ppro,
   phxs,
 };
-type esType = typeof mainObj;
+export type AppScripts = typeof mainObj;
 
 export type Scripts = typeof aeft &
   typeof ilst &
   typeof anim &
   typeof ppro &
   typeof phxs;
-
-export default esType;

@@ -28,35 +28,25 @@ const Main = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
   };
 
-  const jsxStr = async () => {
-    const res = await evalTS("helloStr", ["test"]);
-    console.log(res);
-  };
-  const jsxNum = () => {
+  // Demonstration of End-to-End Type-safe ExtendScript Interactions
+  const jsxTestTS = () => {
+    evalTS("helloStr", ["test"]).then((res) => {
+      console.log(res);
+    });
     evalTS("helloNum", [1000]).then((res) => {
       console.log(typeof res, res);
     });
-  };
-  const jsxArray = () => {
     evalTS("helloArrayStr", [["ddddd", "aaaaaa", "zzzzzzz"]]).then((res) => {
       console.log(typeof res, res);
     });
-  };
-  const jsxObj = () => {
     evalTS("helloObj", [{ height: 90, width: 100 }]).then((res) => {
       console.log(typeof res, res);
       console.log(res.height);
       console.log(res.width);
     });
-  };
-  const jsxError = () => {
-    evalTS("helloError", ["test"])
-      .then((res) => {
-        console.log("success");
-      })
-      .catch((e) => {
-        console.log("there was an error");
-      });
+    evalTS("helloError", ["test"]).catch((e) => {
+      console.log("there was an error", e);
+    });
   };
 
   const nodeTest = () => {
@@ -118,14 +108,7 @@ const Main = () => {
           <button onClick={jsxTest}>
             <img className="icon-button" src={adobe} />
           </button>
-        </div>
-        <hr />
-        <div className="button-group">
-          <button onClick={jsxStr}>string</button>
-          <button onClick={jsxNum}>number</button>
-          <button onClick={jsxArray}>array</button>
-          <button onClick={jsxObj}>object</button>
-          <button onClick={jsxError}>error</button>
+          <button onClick={jsxTestTS}>Ts</button>
         </div>
         <p>
           Edit <code>main.tsx</code> and save to test HMR updates.
