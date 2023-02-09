@@ -54,7 +54,7 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
  * Call ExtendScript functions from CEP with type-safe parameters and return types.
  * Any ExtendScript errors are captured and logged to the CEP console for tracing
  *
- * @param func The name of the function to be evaluated.
+ * @param functionName The name of the function to be evaluated.
  * @param args the list of arguments taken by the function.
  *
  * @example
@@ -69,7 +69,7 @@ export const evalTS = <
   Key extends string & keyof Scripts,
   Func extends Function & Scripts[Key]
 >(
-  func: Key,
+  functionName: Key,
   ...args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {
   return new Promise(function (resolve, reject) {
@@ -85,7 +85,7 @@ export const evalTS = <
     csi.evalScript(
       `try{
           var host = typeof $ !== 'undefined' ? $ : window;
-          var res = host["${ns}"].${func}(${formattedArgs.join(",")});
+          var res = host["${ns}"].${functionName}(${formattedArgs.join(",")});
           JSON.stringify(res);
         }catch(e){
           e.fileName = new File(e.fileName).fsName;

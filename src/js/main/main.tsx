@@ -31,7 +31,6 @@ const Main = () => {
 
   //* Demonstration of End-to-End Type-safe ExtendScript Interaction
   const jsxTestTS = () => {
-    // evalTS("helloWorld");
     evalTS("helloStr", "test").then((res) => {
       console.log(res);
     });
@@ -43,8 +42,8 @@ const Main = () => {
     });
     evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
       console.log(typeof res, res);
-      console.log(res.height);
-      console.log(res.width);
+      console.log(res.x);
+      console.log(res.y);
     });
     evalTS("helloError", "test").catch((e) => {
       console.log("there was an error", e);

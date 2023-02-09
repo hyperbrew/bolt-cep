@@ -5,18 +5,23 @@ export const helloError = (str: string) => {
 };
 
 export const helloStr = (str: string) => {
-  alert(`AE got a string: ${str}`);
+  alert(`ExtendScript received a string: ${str}`);
   return str;
 };
 export const helloNum = (n: number) => {
-  alert(`AE got a number: ${n.toString()}`);
+  alert(`ExtendScript received a number: ${n.toString()}`);
   return n;
 };
 export const helloArrayStr = (arr: string[]) => {
-  alert(`AE got an array of ${arr.length} strings: ${arr.toString()}`);
+  alert(
+    `ExtendScript received an array of ${arr.length} strings: ${arr.toString()}`
+  );
   return arr;
 };
 export const helloObj = (obj: { height: number; width: number }) => {
-  alert(`AE got an object: ${JSON.stringify(obj)}`);
-  return obj;
+  alert(`ExtendScript received an object: ${JSON.stringify(obj)}`);
+  return {
+    y: obj.height,
+    x: obj.width,
+  };
 };

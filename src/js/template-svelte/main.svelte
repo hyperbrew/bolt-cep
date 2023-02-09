@@ -5,6 +5,7 @@
     csi,
     evalES,
     evalFile,
+    evalTS,
     openLinkInBrowser,
     subscribeBackgroundColor,
   } from "../lib/utils";
@@ -24,8 +25,30 @@
   let count: number = 0;
   let backgroundColor: string = "#282c34";
 
+  //* Demonstration of Traditional string eval-based ExtendScript Interaction
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
+  };
+
+  //* Demonstration of End-to-End Type-safe ExtendScript Interaction
+  const jsxTestTS = () => {
+    evalTS("helloStr", "test").then((res) => {
+      console.log(res);
+    });
+    evalTS("helloNum", 1000).then((res) => {
+      console.log(typeof res, res);
+    });
+    evalTS("helloArrayStr", ["ddddd", "aaaaaa", "zzzzzzz"]).then((res) => {
+      console.log(typeof res, res);
+    });
+    evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
+      console.log(typeof res, res);
+      console.log(res.x);
+      console.log(res.y);
+    });
+    evalTS("helloError", "test").catch((e) => {
+      console.log("there was an error", e);
+    });
   };
 
   const nodeTest = () => {
@@ -85,6 +108,7 @@
       <button on:click={jsxTest}>
         <img class="icon-button" src={adobe} alt="" />
       </button>
+      <button on:click={jsxTestTS}>Ts</button>
     </div>
 
     <p>Edit <code>main.svelte</code> and save to test HMR updates.</p>
