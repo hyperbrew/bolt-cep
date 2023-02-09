@@ -14,7 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@esTypes/*": ["./src/jsx"]
+    }
   },
   "include": ["./src"],
   "exclude": ["./src/jsx"]
