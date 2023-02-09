@@ -1,7 +1,6 @@
 import CSInterface from "../lib/csinterface";
 import Vulcan, { VulcanMessage } from "../lib/vulcan";
 import { ns } from "../../shared/shared";
-// import { RawSourceMap, SourceMapConsumer } from "source-map-js";
 import { fs } from "./node";
 
 export const csi = new CSInterface();
@@ -59,7 +58,7 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
  * @param args the list of arguments taken by the function.
  *
  * @example
- * evalTS("helloStr", ["test"]).then((res) => {
+ * evalTS("helloStr", "test").then((res) => {
  *    // Do stuff
  * });
  *
@@ -71,7 +70,7 @@ export const evalTS = <
   Func extends Function & Scripts[Key]
 >(
   func: Key,
-  args: ArgTypes<Func>
+  ...args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {
   return new Promise(function (resolve, reject) {
     const formattedArgs = args.map((arg) => {
@@ -97,18 +96,6 @@ export const evalTS = <
           const parsed = JSON.parse(res);
           if (parsed.name === "ReferenceError") {
             console.error("REFERENCE ERROR");
-            //!TODO Fix Source Map Reader
-            // const src = getSourceLine(
-            //   `${parsed.fileName}.map`,
-            //   parsed.line,
-            //   parsed.number
-            // );
-            // console.error(
-            //   `ExtendScript Error: ${src.source.replace(/\.\.\//g, "")} ${
-            //     src.line
-            //   }:${src.column}`,
-            //   parsed
-            // );
             reject(parsed);
           } else {
             resolve(parsed);
@@ -131,17 +118,6 @@ export const evalFile = (file: string) => {
     true
   );
 };
-
-// export const getSourceLine = (file: string, line: number, column: number) => {
-//   // return "empty";
-//   const src = fs.readFileSync(file, { encoding: "utf-8" });
-//   const sourceMap = JSON.parse(src) as RawSourceMap;
-//   const smc = new SourceMapConsumer(sourceMap);
-//   return smc.originalPositionFor({
-//     line,
-//     column,
-//   });
-// };
 
 export const getAppBackgroundColor = () => {
   const { green, blue, red } = JSON.parse(

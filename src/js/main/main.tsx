@@ -24,27 +24,29 @@ const Main = () => {
   const [bgColor, setBgColor] = useState("#282c34");
   const [count, setCount] = useState(0);
 
+  //* Demonstration of Traditional string eval-based ExtendScript Interaction
   const jsxTest = () => {
     console.log(evalES(`helloWorld("${csi.getApplicationID()}")`));
   };
 
-  // Demonstration of End-to-End Type-safe ExtendScript Interactions
+  //* Demonstration of End-to-End Type-safe ExtendScript Interaction
   const jsxTestTS = () => {
-    evalTS("helloStr", ["test"]).then((res) => {
+    // evalTS("helloWorld");
+    evalTS("helloStr", "test").then((res) => {
       console.log(res);
     });
-    evalTS("helloNum", [1000]).then((res) => {
+    evalTS("helloNum", 1000).then((res) => {
       console.log(typeof res, res);
     });
-    evalTS("helloArrayStr", [["ddddd", "aaaaaa", "zzzzzzz"]]).then((res) => {
+    evalTS("helloArrayStr", ["ddddd", "aaaaaa", "zzzzzzz"]).then((res) => {
       console.log(typeof res, res);
     });
-    evalTS("helloObj", [{ height: 90, width: 100 }]).then((res) => {
+    evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
       console.log(typeof res, res);
       console.log(res.height);
       console.log(res.width);
     });
-    evalTS("helloError", ["test"]).catch((e) => {
+    evalTS("helloError", "test").catch((e) => {
       console.log("there was an error", e);
     });
   };
