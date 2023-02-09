@@ -10,12 +10,14 @@ A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or
 
 - Lightning Fast Hot Module Replacement (HMR)
 - Write Modern ES6 in both the JavaScript and ExtendScript layers
-- Type-safe ExtendScript with Types-for-Adobe`
+- Type-safe ExtendScript with Types-for-Adobe
+- End-to-End Type Safety with evalTS()
 - Easily configure in cep.config.ts
 - Setup for single or multi-panel extensions
 - Comes with multi-host-app configuration
 - Optimized Build Size
 - Easy Publish to ZXP for Distribution
+- Easy Package to ZIP archive with sidecar assets
 - GitHub Actions ready-to-go for ZXP Releases
 
 _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
