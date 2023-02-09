@@ -57,12 +57,19 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
  * @param functionName The name of the function to be evaluated.
  * @param args the list of arguments taken by the function.
  *
+ * @return Promise resolving to function native return type.
+ *
  * @example
- * evalTS("helloStr", "test").then((res) => {
- *    // Do stuff
+ * // CEP
+ * evalTS("myFunc", 60, 'test').then((res) => {
+ *    console.log(res.word);
  * });
  *
- * @return Promise resolving to function native return type.
+ * // ExtendScript
+ * export const myFunc = (num: number, word: string) => {
+ *    return { num, word };
+ * }
+ *
  */
 
 export const evalTS = <

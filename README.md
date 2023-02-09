@@ -114,7 +114,7 @@ ExtendScript can be written in ES6 and will be compiled down to a single ES3 fil
 
 JSON 2 is included by default, and any external JS libraries added with the include directive will be bundled as well:
 
-```
+```js
 // @include './lib/library.js'
 ```
 
@@ -147,12 +147,12 @@ As demonstrated in `main.tsx`, your ExtendScript functions can be called with `e
 
 CEP
 
-```
-evalTS("helloStr", "test").then((res) => {
+```js
+evalTS("myFunc", "test").then((res) => {
   console.log(res);
 });
 
-evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
+evalTS("myFuncObj", { height: 90, width: 100 }).then((res) => {
   console.log(res.x);
   console.log(res.y);
 });
@@ -160,14 +160,12 @@ evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
 
 ExtendScript
 
-```
-export const helloStr = (str: string) => {
-  alert(`ExtendScript received a string: ${str}`);
+```js
+export const myFunc = (str: string) => {
   return str;
 };
 
-export const helloObj = (obj: { height: number; width: number }) => {
-  alert(`ExtendScript received an object: ${JSON.stringify(obj)}`);
+export const myFuncObj = (obj: { height: number, width: number }) => {
   return {
     y: obj.height,
     x: obj.width,
@@ -177,14 +175,17 @@ export const helloObj = (obj: { height: number; width: number }) => {
 
 For any existing Bolt CEP projects, rest assured that the legacy `evalES()` function remains in place as usual as demonstrated in `main.tsx`.
 
-```
+```js
 evalES(`helloWorld("${csi.getApplicationID()}")`);
 ```
 
 You will also want to use this function for calling ExtendScript functions in the global scope directly, by passing `true` to the second parameter:
 
-```
-evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`, true);
+```js
+evalES(
+  `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
+  true
+);
 ```
 
 ---
@@ -208,7 +209,7 @@ Then your new build will be available under GitHub Releases.
 
 If you have assets that you would like copied without being affected by the bundler, you can add the optional `copyAssets:[]` array inside your cep.config.ts to include files or entire folders.
 
-```
+```js
   copyAssets: ["public", "custom/my.jsx"],
 ```
 
@@ -220,7 +221,7 @@ If you have assets that you would like copied without being affected by the bund
 
 If you have assets that you would like copied with your zxp into a zip archive for delivery, you can add the optional `copyZipAssets:[]` array inside your cep.config.ts to include files or entire folders. A folder ending in "/\*" will copy the contents without the folder structure into the zip destination.
 
-```
+```js
   copyZipAssets: ["instructions/*", "icons"],
 ```
 
@@ -235,12 +236,14 @@ Unlike Polyfills which modify the global prototype, Ponyfills replace functional
 
 You can add your own Ponyfils by passing them into the `jsxPonyfill()` function in `vite.es.config.ts`:
 
-```
-jsxPonyfill([{
-  find: "Array.isArray",
-  replace: "__isArray",
-  inject: `function __isArray(arr) { try { return arr instanceof Array; } catch (e) { return false; } };`,
-}])
+```js
+jsxPonyfill([
+  {
+    find: "Array.isArray",
+    replace: "__isArray",
+    inject: `function __isArray(arr) { try { return arr instanceof Array; } catch (e) { return false; } };`,
+  },
+]);
 ```
 
 If you have a common Ponyfill you feel should be built-in, create a ticket and we'll look into it.
@@ -251,7 +254,7 @@ If you have a common Ponyfill you feel should be built-in, create a ticket and w
 
 This boilerplate is flavored for a single JSX object attached to helper object `$` for all your panels to prevent pollution in the global namespace. If you prefer to include your own raw JSX, include it in the Copy Assets object (above), and add the optional scriptPath object to your cep.config.ts file.
 
-```
+```js
   panels: [
     {
       name: "main",
@@ -273,25 +276,25 @@ This boilerplate is flavored for a single JSX object attached to helper object `
 
 Node.js Built-in modules can be imported from the `src/js/lib/node.ts` file.
 
-```
+```js
 import { os, path, fs } from "../lib/node";
 ```
 
 To use 3rd party libraries, first attempt to use with the standard import syntax.
 
-```
+```js
 import { FaBolt } from "react-icons/fa";
 ```
 
 If the import syntax fails (typically with modules that use the Node.js runtime) you can resort to the Node.js `require()` syntax,
 
-```
+```js
 const unzipper = require("unzipper");
 ```
 
 The build system will detect any non-built-in Node.js modules using `require()` and copy them to the output `node_modules` folder, but if a package is missed, you can add it explicitly to the `installModules:[]` array inside your `cep.config.ts` file.
 
-```
+```js
   installModules: ["unzipper"],
 ```
 
@@ -311,7 +314,7 @@ yet in CEP context resolves to the full system path:
 
 To solve this, you'll need to adjust the router basename for each context, here is one way of accomplishing that with the panel named `main`:
 
-```
+```js
 const posix = (str: string) => str.replace(/\\/g, "/");
 
 const cepBasename = window.cep_node
@@ -320,9 +323,7 @@ const cepBasename = window.cep_node
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={cepBasename}>
-    [...]
-    </Router>
+    <Router basename={cepBasename}>[...]</Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
