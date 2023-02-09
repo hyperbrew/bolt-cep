@@ -38,15 +38,6 @@ switch (BridgeTalk.appName) {
 const host = typeof $ !== "undefined" ? $ : window;
 host[ns] = main;
 
-const mainObj = {
-  aeft,
-  ilst,
-  anim,
-  ppro,
-  phxs,
-};
-export type AppScripts = typeof mainObj;
-
 export type Scripts = typeof aeft &
   typeof ilst &
   typeof anim &

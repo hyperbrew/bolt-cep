@@ -40,7 +40,7 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
   });
 };
 
-import type { Scripts, AppScripts } from "@esTypes/index";
+import type { Scripts } from "@esTypes/index";
 
 type ArgTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
