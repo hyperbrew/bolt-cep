@@ -1,4 +1,4 @@
-<img src="src/js/assets/bolt-cep.svg" alt="Bolt CEP" title="Bolt CEP" width="400">
+<img src="src/js/assets/bolt-cep.svg" alt="Bolt CEP" title="Bolt CEP" width="400" />
 
 A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or Svelte built on Vite + TypeScript + Sass
 
@@ -136,13 +136,50 @@ To add support for additional host apps:
 
 ## Calling ExtendScript from JS
 
-As demonstrated in `main.tsx`, ExtendScript functions can be called with the `evalES()` function that will append your panel's namespace in the background to avoid namespace clashes.
+All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
+
+We have now introduced a new and improved end-to-end type-safe way to interact with ExtendScript from CEP using `evalTS()`. This function dynamically infers types from
+ExtendScript functions and handles both stringifying and parsing of the results so your developer interaction can be as simple as possible.
+
+As demonstrated in `main.tsx`, your ExtendScript functions can be called with `evalTS()` by passing the name of the function, followed by the arguments.
+
+CEP
 
 ```
-console.log(await evalES(`helloWorld("${csi.getApplicationID()}")`));
+evalTS("helloStr", "test").then((res) => {
+  console.log(res);
+});
+
+evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
+  console.log(res.x);
+  console.log(res.y);
+});
 ```
 
-If you wish to skip this scoping and call a global function directly, simply pass `true` to the second parameter:
+ExtendScript
+
+```
+export const helloStr = (str: string) => {
+  alert(`ExtendScript received a string: ${str}`);
+  return str;
+};
+
+export const helloObj = (obj: { height: number; width: number }) => {
+  alert(`ExtendScript received an object: ${JSON.stringify(obj)}`);
+  return {
+    y: obj.height,
+    x: obj.width,
+  };
+};
+```
+
+For any existing Bolt CEP projects, rest assured that the legacy `evalES()` function remains in place as usual as demonstrated in `main.tsx`.
+
+```
+evalES(`helloWorld("${csi.getApplicationID()}")`);
+```
+
+You will also want to use this function for calling ExtendScript functions in the global scope directly, by passing `true` to the second parameter:
 
 ```
 evalES(`alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`, true);
@@ -300,6 +337,9 @@ ReactDOM.render(
   2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
   3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
   4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
+  5. `src/js/lib/utils.ts` - Check if any new properties have been added that don't exist in your config.
+  6. `src/js/lib/es-types` - Check if any new properties have been added that don't exist in your config.
+  7. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
 
 ## Limitations
 
