@@ -56,7 +56,7 @@ const config: CEP_Config = {
     ...debugAll, // BOLT-CEP-DEBUG-ONLY
   ],
   build: {
-    jsxBin: "copy",
+    jsxBin: "off",
     sourceMap: true,
   },
   zxp: {
@@ -66,7 +66,7 @@ const config: CEP_Config = {
     password: "mypassword",
     tsa: "http://timestamp.digicert.com/",
     sourceMap: false,
-    jsxBin: "replace",
+    jsxBin: "off",
   },
   installModules: [],
   copyAssets: [],
