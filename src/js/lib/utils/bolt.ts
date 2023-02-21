@@ -1,18 +1,12 @@
-import CSInterface from "../lib/csinterface";
-import Vulcan, { VulcanMessage } from "../lib/vulcan";
-import { ns } from "../../shared/shared";
-import { fs } from "./node";
+import CSInterface from "../cep/csinterface";
+import Vulcan, { VulcanMessage } from "../cep/vulcan";
+import { ns } from "../../../shared/shared";
+import { fs } from "../cep/node";
 
 export const csi = new CSInterface();
 export const vulcan = new Vulcan();
 
-export const openLinkInBrowser = (url: string) => {
-  if (window.cep) {
-    csi.openURLInDefaultBrowser(url);
-  } else {
-    location.href = url;
-  }
-};
+// jsx utils
 
 /**
  * @function EvalES
@@ -123,6 +117,33 @@ export const evalFile = (file: string) => {
   );
 };
 
+// js utils
+
+export const initBolt = (log = true) => {
+  if (window.cep) {
+    const extRoot = csi.getSystemPath("extension");
+    const jsxSrc = `${extRoot}/jsx/index.js`;
+    const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
+    if (fs.existsSync(jsxSrc)) {
+      if (log) console.log(jsxSrc);
+      evalFile(jsxSrc);
+    } else if (fs.existsSync(jsxBinSrc)) {
+      if (log) console.log(jsxBinSrc);
+      evalFile(jsxBinSrc);
+    }
+  }
+};
+
+export const posix = (str: string) => str.replace(/\\/g, "/");
+
+export const openLinkInBrowser = (url: string) => {
+  if (window.cep) {
+    csi.openURLInDefaultBrowser(url);
+  } else {
+    location.href = url;
+  }
+};
+
 export const getAppBackgroundColor = () => {
   const { green, blue, red } = JSON.parse(
     window.__adobe_cep__.getHostEnvironment() as string
@@ -154,6 +175,8 @@ export const subscribeBackgroundColor = (callback: (color: string) => void) => {
   );
 };
 
+// vulcan
+
 declare type IVulcanMessageObject = {
   event: string;
   callbackID?: string;
@@ -179,8 +202,6 @@ export const vulcanListen = (id: string, callback: Function) => {
     null
   );
 };
-
-export const posix = (str: string) => str.replace(/\\/g, "/");
 
 export const isAppRunning = (targetSpecifier: string) => {
   const { major, minor, micro } = csi.getCurrentApiVersion();

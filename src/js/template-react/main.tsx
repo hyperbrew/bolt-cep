@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { os, path, fs } from "../lib/node";
+import { os, path } from "../lib/cep/node";
 import {
   csi,
   evalES,
@@ -7,7 +7,7 @@ import {
   openLinkInBrowser,
   subscribeBackgroundColor,
   evalTS,
-} from "../lib/utils";
+} from "../lib/utils/bolt";
 
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
@@ -61,16 +61,6 @@ const Main = () => {
   useEffect(() => {
     if (window.cep) {
       subscribeBackgroundColor(setBgColor);
-      const extRoot = csi.getSystemPath("extension");
-      const jsxSrc = `${extRoot}/jsx/index.js`;
-      const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
-      if (fs.existsSync(jsxSrc)) {
-        console.log(jsxSrc);
-        evalFile(jsxSrc);
-      } else if (fs.existsSync(jsxBinSrc)) {
-        console.log(jsxBinSrc);
-        evalFile(jsxBinSrc);
-      }
     }
   }, []);
 

@@ -1,5 +1,5 @@
-import { fs, os, path } from "./node";
-import { csi } from "./utils";
+import { fs, os, path } from "../cep/node";
+import { csi } from "./bolt";
 
 const readDirSafe = (dir: string) =>
   fs.existsSync(dir) ? fs.readdirSync(dir) : [];
