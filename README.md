@@ -340,8 +340,7 @@ ReactDOM.render(
   2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
   3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
   4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
-  5. `src/js/lib/utils.ts` - Check if any new properties have been added that don't exist in your config.
-  6. `src/js/lib/es-types` - Check if any new properties have been added that don't exist in your config.
+  5. `src/js/lib` - Update this entire folder.
   7. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
 
 ## Limitations
