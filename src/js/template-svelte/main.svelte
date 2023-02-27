@@ -1,14 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fs, os, path } from "../lib/node";
+  import { os, path } from "../lib/cep/node";
   import {
     csi,
     evalES,
     evalFile,
-    evalTS,
     openLinkInBrowser,
     subscribeBackgroundColor,
-  } from "../lib/utils";
+    evalTS,
+  } from "../lib/utils/bolt";
 
   import viteLogo from "../assets/vite.svg";
   import svelteLogo from "../assets/svelte.svg";
@@ -62,16 +62,6 @@
   onMount(() => {
     if (window.cep) {
       subscribeBackgroundColor((c: string) => (backgroundColor = c));
-      const extRoot = csi.getSystemPath("extension");
-      const jsxSrc = `${extRoot}/jsx/index.js`;
-      const jsxBinSrc = `${extRoot}/jsx/index.jsxbin`;
-      if (fs.existsSync(jsxSrc)) {
-        console.log(jsxSrc);
-        evalFile(jsxSrc);
-      } else if (fs.existsSync(jsxBinSrc)) {
-        console.log(jsxBinSrc);
-        evalFile(jsxBinSrc);
-      }
     }
   });
 </script>
