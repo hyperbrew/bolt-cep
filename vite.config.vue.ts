@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 import { cep, runAction } from "vite-cep-plugin";
+import { fileURLToPath, URL } from "url";
 import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./vite.es.config";
@@ -50,7 +51,14 @@ if (action) {
 export default defineConfig({
   plugins: [vue(), cep(config)],
   resolve: {
-    alias: [{ find: "@esTypes", replacement: path.resolve(__dirname, "src") }],
+    alias: [
+      { find: "@esTypes", replacement: path.resolve(__dirname, "src") },
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+      { find: "~", replacement: fileURLToPath(new URL("./", import.meta.url)) },
+    ],
   },
   root,
   clearScreen: false,
