@@ -28,15 +28,9 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 <img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
 
-`yarn create bolt-cep myApp --template react`
+<img src="create-bolt-cep--demo.gif" alt="Bolt CEP">
 
-or
-
-`yarn create bolt-cep myApp --template vue`
-
-or
-
-`yarn create bolt-cep myApp --template svelte`
+`yarn create bolt-cep`
 
 - Create Extension
 
@@ -341,7 +335,7 @@ ReactDOM.render(
   3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
   4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
   5. `src/js/lib` - Update this entire folder.
-  7. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
+  6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
 
 ## Limitations
 
