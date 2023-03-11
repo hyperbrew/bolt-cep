@@ -29,7 +29,11 @@ export default class Vulcan {
    * @param cmdLine         Optional, command-line parameters to supply to the launch command.
    * @return True if the app can be launched, false otherwise.
    */
-  launchAppEx(): any;
+  launchAppEx(
+    productSAPCodeSpecifier: string,
+    focus: boolean,
+    cmdLine?: string,
+  ): boolean;
 
   /**
    * Checks whether a CC application is running on the local machine.
@@ -40,7 +44,7 @@ export default class Vulcan {
    * @param productSAPCodeSpecifier The application specifier; for example "ILST-25.2.3", "ILST-25", "ILST-25.2.3-en_US" and "ILST. Refer to `Documentation/CEP 11.1 HTML Extension Cookbook.md#applications-integrated-with-cep` for product SAPCode.
    * @return True if the app is running, false otherwise.
    */
-  isAppRunningEx(productSAPCodeSpecifier: string): any;
+  isAppRunningEx(productSAPCodeSpecifier: string): boolean;
 
   /**
    * Checks whether a CC application is installed on the local machine.
