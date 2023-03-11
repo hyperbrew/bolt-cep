@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@esTypes/*": ["./src/js/lib/cep/es-types"]
+      "@esTypes/*": ["./src/js/lib/cep/es-types"],
+      "@@/*": ["./"],
+      "@/*": ["./src"]
     }
   }
 }

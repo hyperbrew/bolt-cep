@@ -16,7 +16,9 @@
     "noEmit": true,
     "jsx": "preserve",
     "paths": {
-      "@esTypes/*": ["./src/jsx"]
+      "@esTypes/*": ["./src/jsx"],
+      "@@/*": ["./"],
+      "@/*": ["./src"]
     }
   },
   "include": ["./src"],

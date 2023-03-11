@@ -10,6 +10,8 @@ import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./vite.es.config";
 
+import { fileURLToPath, URL } from "url";
+
 const extensions = [".js", ".ts", ".tsx"];
 
 const devDist = "dist";
@@ -59,7 +61,20 @@ export default defineConfig({
     cep(config),
   ],
   resolve: {
-    alias: [{ find: "@esTypes", replacement: path.resolve(__dirname, "src") }],
+    alias: [
+      {
+        find: "@esTypes",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+      {
+        find: "@@",
+        replacement: fileURLToPath(new URL("./", import.meta.url)),
+      },
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    ],
   },
   root,
   clearScreen: false,

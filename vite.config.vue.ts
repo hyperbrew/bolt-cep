@@ -52,12 +52,18 @@ export default defineConfig({
   plugins: [vue(), cep(config)],
   resolve: {
     alias: [
-      { find: "@esTypes", replacement: path.resolve(__dirname, "src") },
+      {
+        find: "@esTypes",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+      {
+        find: "@@",
+        replacement: fileURLToPath(new URL("./", import.meta.url)),
+      },
       {
         find: "@",
         replacement: fileURLToPath(new URL("./src", import.meta.url)),
       },
-      { find: "~", replacement: fileURLToPath(new URL("./", import.meta.url)) },
     ],
   },
   root,
