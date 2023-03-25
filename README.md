@@ -22,6 +22,17 @@ A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or
 
 _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
+### Dev Requirements
+
+- [Node.js](https://nodejs.org/en) 16 or later
+- [Yarn](https://yarnpkg.com/getting-started/install) 1.x.x aka classic (ensure by running `yarn set version classic`)
+
+### Compatibility
+
+- [Adobe CC Apps](https://www.adobe.com/creativecloud/desktop-app.html) version 2020 or later
+- Windows & Mac Intel
+- Mac Arm64 (M1 / M2) require special setup ([more details](#misc-troubleshooting))
+
 ---
 
 ## Quick Start
@@ -327,7 +338,7 @@ ReactDOM.render(
 
 - **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
 
-- **Build Issues on Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
+- **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
 
 - **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
   1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
