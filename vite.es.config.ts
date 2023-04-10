@@ -22,6 +22,7 @@ export const extendscriptConfig = (
     input: extendscriptEntry,
     treeshake: true,
     output: {
+      freeze: false, //fix for rollup v.3 and higher
       file: outPath,
       sourcemap: isPackage
         ? cepConfig.zxp.sourceMap

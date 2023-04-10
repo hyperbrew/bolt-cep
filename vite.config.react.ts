@@ -72,6 +72,7 @@ export default defineConfig({
     rollupOptions: {
       input,
       output: {
+        freeze: false, //fix for rollup v.3 and higher
         manualChunks: {},
         // esModule: false,
         preserveModules: false,
