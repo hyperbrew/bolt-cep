@@ -4209,10 +4209,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-vite-cep-plugin@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-1.0.3.tgz#3871c18a9f622fc4d5204c6420a6abb97ab98305"
-  integrity sha512-XasZX34uMiuIyrhnXHCMOkgEjTnbPu1pSeGXPwMbXXFkZDG475yJg08xT0zV9q+pYYoBv+uj+GW95WSmiyitAA==
+vite-cep-plugin@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-1.1.1.tgz#0de3cfc4f5575f491d2d553778f58a0ffc005801"
+  integrity sha512-TfJ0cgxPY7YiRDsK4h3Zi9AmJGnltQQifMs3EgNieWSXCrsy0lBFmgV//Qotv13ZezplJXfpH1BCSteZiLzYMg==
   dependencies:
     "@types/archiver" "^5.3.1"
     archiver "^5.3.1"
