@@ -29,8 +29,6 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
-    "@sveltejs/vite-plugin-svelte": "^2.4.1",
-    "@tsconfig/svelte": "^4.0.1",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.2.5",
     "@types/trusted-types": "^2.0.3",
