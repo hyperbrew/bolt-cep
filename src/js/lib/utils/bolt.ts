@@ -90,7 +90,10 @@ export const evalTS = <
           JSON.stringify(e);
         }`,
       (res: string) => {
+        console.log(typeof res);
         try {
+          //@ts-ignore
+          if (res === "undefined") return resolve();
           const parsed = JSON.parse(res);
           if (parsed.name === "ReferenceError") {
             console.error("REFERENCE ERROR");

@@ -46,6 +46,9 @@
       console.log(res.x);
       console.log(res.y);
     });
+    evalTS("helloVoid").then(() => {
+      console.log("function returning void complete");
+    });
     evalTS("helloError", "test").catch((e) => {
       console.log("there was an error", e);
     });

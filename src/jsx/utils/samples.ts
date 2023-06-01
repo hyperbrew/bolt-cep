@@ -1,3 +1,6 @@
+export const helloVoid = (): void => {
+  alert("test");
+};
 export const helloError = (str: string) => {
   // Intentional Error for Error Handling Demonstration
   //@ts-ignore
