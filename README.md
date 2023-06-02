@@ -56,20 +56,20 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 `yarn build`
 
 - Runs initial build
-- Creates cep folder structure
-- Creates symlink to extensions folder
+- Creates CEP folder structure
+- Creates symlink to the extensions folder
 
 `yarn dev`
 
 - Runs in dev mode with HMR Hot-reloading.
 - Both JS and ExtendScript folders re-build on changes
-- Viewable in browser via localhost:3000/panel/
+- Viewable in a browser via localhost:3000/panel/
   - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn serve`
 
 - Serve files after running `yarn build`
-- Viewable in browser via localhost:5000/panel/
+- Viewable in a browser via localhost:5000/panel/
   - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
 
 `yarn zxp`
@@ -94,9 +94,9 @@ Write ExtendScript code in `src/jsx/main.ts`
 
 ## CEP Panel Structure
 
-Each panel is treated as it's own page, with shared code for efficiency. The Boilerplate currently comes with 2 panels, `main` and `settings`. These are configured in the `cep.config.ts`.
+Each panel is treated as its own page, with shared code for efficiency. The Boilerplate currently comes with 2 panels, `main` and `settings`. These are configured in the `cep.config.ts`.
 
-Each panel can be edited in their respective folders:
+Each panel can be edited in its respective folders:
 
 ```
 src
@@ -109,13 +109,13 @@ src
         └─ index.tsx
 ```
 
-To add panels, add an item to the panels object in `cep.config.ts`, and duplicate the folder structure and adjust as needed.
+To add panels, add an item to the panels object in `cep.config.ts`, duplicate the folder structure and adjust as needed.
 
 ---
 
 ## ExtendScript
 
-ExtendScript can be written in ES6 and will be compiled down to a single ES3 file for compatibility.
+ExtendScript can be written in ES6 and will be compiled into a single ES3 file for compatibility.
 
 JSON 2 is included by default, and any external JS libraries added with the include directive will be bundled as well:
 
@@ -143,7 +143,7 @@ To add support for additional host apps:
 
 ## Calling ExtendScript from JS
 
-All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
+All ExtendScript functions are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
 
 We have now introduced a new and improved end-to-end type-safe way to interact with ExtendScript from CEP using `evalTS()`. This function dynamically infers types from
 ExtendScript functions and handles both stringifying and parsing of the results so your developer interaction can be as simple as possible.
@@ -285,7 +285,7 @@ Node.js Built-in modules can be imported from the `src/js/lib/node.ts` file.
 import { os, path, fs } from "../lib/node";
 ```
 
-To use 3rd party libraries, first attempt to use with the standard import syntax.
+For 3rd party libraries, attempt first to use the standard import syntax.
 
 ```js
 import { FaBolt } from "react-icons/fa";
@@ -336,11 +336,11 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
-- **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+- **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that doesn't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
 
 - **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
 
-- **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
+- **Update a Bolt CEP Project** To update an existing Bolt CEP project to the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
   1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
   2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
   3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
