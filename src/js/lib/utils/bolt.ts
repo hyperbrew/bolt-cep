@@ -90,7 +90,6 @@ export const evalTS = <
           JSON.stringify(e);
         }`,
       (res: string) => {
-        console.log(typeof res);
         try {
           //@ts-ignore
           if (res === "undefined") return resolve();
