@@ -35,6 +35,16 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ---
 
+## Tools Built with Bolt CEP
+
+[Klutz GPT](https://hyperbrew.co/tools/klutz-gpt/) ( by Hyper Brew ) | ChatGPT for After Effects
+
+[Rubberhose 3](https://www.battleaxe.co/rubberhose) ( by Battle Axe ) | The fastest and simplest way to rig and animate characters in After Effects
+
+[Version Raptor](https://hyperbrew.co/tools/version-raptor/) ( by Hyper Brew ) | Next Level Versioning for Premiere Pro and After Effects
+
+---
+
 ## Quick Start
 
 <img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
