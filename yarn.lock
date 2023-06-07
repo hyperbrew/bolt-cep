@@ -4273,10 +4273,10 @@ v8-compile-cache-lib@^3.0.1:
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
 
-vite-cep-plugin@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-1.1.7.tgz#c86f8be0883a03b6c8b2523fa727b368f8ea27d3"
-  integrity sha512-E+y0yptVelqOPxJFQdRAZWtdDjxS30m4ObXs0maCfdFBx1l+UleZIff9w0ypxGV79nXz1MROnsyotKPFF6OXBg==
+vite-cep-plugin@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-1.1.8.tgz#8183ed2e6b7e5ee4e396e3b3092bb4adf32bdd6d"
+  integrity sha512-9VtnTq/2Cu7hSWZ5q+4vIiqq+SwRqJSy58CJsDHPQ4XmBoiTLlu518GlHw3WbNNSt1ELY55OrhdpBZunGc2+5w==
   dependencies:
     "@types/archiver" "^5.3.1"
     archiver "^5.3.1"
