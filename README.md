@@ -43,6 +43,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 [Version Raptor](https://hyperbrew.co/tools/version-raptor/) ( by Hyper Brew ) | Next Level Versioning for Premiere Pro and After Effects
 
+[After Diffusion](https://github.com/Trentonom0r3/After-Diffusion) ( by Trenton ) | Stable Diffusion in After Effects
+
 ---
 
 ## Quick Start
