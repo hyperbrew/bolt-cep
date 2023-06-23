@@ -140,7 +140,7 @@ export const es = new Proxy(
       } else {
         // Return the evalTS function for the given prop name
         // e.g. es.helloObj(...args) -> evalTS("hello", ...args)
-        return (...args: any[]) => evalTS(prop as keyof Scripts, args);
+        return (...args: any[]) => evalTS(prop as keyof Scripts, ...args);
       }
     },
   }
