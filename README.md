@@ -29,7 +29,7 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ### Compatibility
 
-- [Adobe CC Apps](https://www.adobe.com/creativecloud/desktop-app.html) version 2020 or later
+- [Adobe CC Apps](https://www.adobe.com/creativecloud/desktop-app.html) version 2022 or later
 - Windows & Mac Intel
 - Mac Arm64 (M1 / M2) require special setup ([more details](#misc-troubleshooting))
 
