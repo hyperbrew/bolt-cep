@@ -45,6 +45,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 [Note Clips](https://jiggypuff.gumroad.com/l/ClipNotes) ( by Jiggy ) | A Notes App for Premiere Pro and After Effects
 
+[TikTokText](https://aescripts.com/tiktoktext/) ( by Allan Raffel ) | Quick and easy TikTok style text for After Effects
+
 [After Diffusion](https://github.com/Trentonom0r3/After-Diffusion) ( by Trenton ) | Stable Diffusion in After Effects
 
 ---
