@@ -6,11 +6,18 @@ import { csi } from "./bolt";
  */
 
 export const keyRegisterOverride = () => {
+  //@ts-ignore
   const platform = navigator.platform.substring(0, 3);
   let maxKey = 0;
   if (platform === "Mac") maxKey = 126; // Mac Max Key Code
   else if (platform === "Win") maxKey = 222; // HTML Max Key Code
-  let allKeys = [];
+  let allKeys: {
+    keyCode: number;
+    ctrlKey: boolean;
+    altKey: boolean;
+    shiftKey: boolean;
+    metaKey: boolean;
+  }[] = [];
   for (let k = 0; k <= maxKey; k++) {
     for (let j = 0; j <= 15; j++) {
       const guide = (j >>> 0).toString(2).padStart(4, "0");
