@@ -49,6 +49,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 [After Diffusion](https://github.com/Trentonom0r3/After-Diffusion) ( by Trenton ) | Stable Diffusion in After Effects
 
+[Ready Project](https://rgl.gumroad.com/l/ReadyProjectDL) ( by RGL ) | Folder and Export presets for Premiere Pro
+
 ---
 
 ## Quick Start
