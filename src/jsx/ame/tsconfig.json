@@ -3,7 +3,10 @@
     "target": "es3",
     "noLib": true,
     "strict": true,
-    "types": ["../global"]
+    "types": [
+      "../global",
+      "../../../node_modules/types-for-adobe/shared/global"
+    ]
   },
   "include": ["./**/*"]
 }
