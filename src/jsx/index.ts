@@ -12,60 +12,57 @@ import * as kbrg from "./kbrg/kbrg";
 import * as phxs from "./phxs/phxs";
 import * as ppro from "./ppro/ppro";
 
-let main: any;
+//@ts-ignore
+const host = typeof $ !== "undefined" ? $ : window;
 
 switch (BridgeTalk.appName as ApplicationName) {
   case "aftereffects":
   case "aftereffectsbeta":
-    main = aeft;
+    host[ns] = aeft;
     break;
 
   case "ame":
   case "amebeta":
-    main = ame;
+    host[ns] = ame;
     break;
 
   case "audition":
   case "auditionbeta":
-    main = audt;
+    host[ns] = audt;
     break;
 
   case "bridge":
   case "bridgebeta":
-    main = kbrg;
+    host[ns] = kbrg;
     break;
 
   case "illustrator":
   case "illustratorbeta":
-    main = ilst;
+    host[ns] = ilst;
     break;
 
   case "indesign":
   case "indesignbeta":
-    main = idsn;
+    host[ns] = idsn;
     break;
 
   case "photoshop":
   case "photoshopbeta":
-    main = phxs;
+    host[ns] = phxs;
     break;
 
   case "premierepro":
   case "premiereprobeta":
-    main = ppro;
+    host[ns] = ppro;
     break;
 
   default:
     //@ts-ignore
     if (app.appName === "Adobe Animate") {
-      main = anim;
+      host[ns] = anim;
     }
     break;
 }
-
-//@ts-ignore
-const host = typeof $ !== "undefined" ? $ : window;
-host[ns] = main;
 
 export type Scripts = typeof aeft &
   typeof ame &
