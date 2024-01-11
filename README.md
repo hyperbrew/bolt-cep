@@ -358,7 +358,14 @@ ReactDOM.render(
 
 - **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
 
-- **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon ([issue details here](https://github.com/runegan/jsxbin/issues/29)). The solution is to run your terminal / VS Code in Rosetta mode, or disable JSXBIN if it's not needed by setting `jsxBin: "off"` in the build and zxp portions of your `cep.config.ts`.
+- **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2/M3)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon since Adobe has yet to release one ([issue details here](https://github.com/runegan/jsxbin/issues/29)). To solve this issue, you can either:
+
+  - **A: Disable JSXBIN**
+    - In the `cep.config.ts` set `jsxBin: "off"` in the build and zxp portions.
+  - **B: Run in x64 mode**
+    - Ensure a universal binary version of Node.js is installed (available on [nodejs.org](https://nodejs.org/en/download))
+    - Run your terminal in Rosetta mode, or additionally install the Intel build of VS Code.
+    - Delete and re-install your node_modules folder if you've already built it.
 
 - **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
   1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
