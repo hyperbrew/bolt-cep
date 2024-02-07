@@ -152,6 +152,29 @@ export const divideTime = (a: Time, factor: number) => {
   return time;
 };
 
+export const secondsToTime = (seconds: number) => {
+  let time = new Time();
+  time.seconds = seconds;
+  return time;
+};
+
+export const getTimecode = (
+  t: Time,
+  frameRateTime: Time,
+  videoDisplayFormat: number
+) => {
+  const timecode = t.getFormatted(frameRateTime, videoDisplayFormat) as string;
+  return timecode;
+};
+
+export const getTimecodeFromSequence = (t: Time, sequence: Sequence) => {
+  return getTimecode(
+    t,
+    sequence.getSettings().videoFrameRate,
+    sequence.getSettings().videoDisplayFormat
+  );
+};
+
 // QE DOM Methods
 
 export const qeGetClipAt = (track: Track, index: number) => {
