@@ -152,6 +152,12 @@ export const divideTime = (a: Time, factor: number) => {
   return time;
 };
 
+export const ticksToTime = (ticks: string) => {
+  let time = new Time();
+  time.ticks = ticks;
+  return time;
+};
+
 export const secondsToTime = (seconds: number) => {
   let time = new Time();
   time.seconds = seconds;
