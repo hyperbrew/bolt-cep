@@ -4243,15 +4243,15 @@ ts-node@^10.9.1:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-types-for-adobe-extras@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.1.tgz#c7ee5897f42400aafdeda72f6483e71fef73ddc2"
-  integrity sha512-pozMMjqwUjBDFbD/HXYMm8Zsf5GaCh3No2Ysg8CmtbvBFAZFL51MxcZPwJj8TtjTdxW+snxR+6a93F7t1FUuOg==
+types-for-adobe-extras@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.6.tgz#a7fa640c2c868466c32198915dc558c8dd9c573d"
+  integrity sha512-XtEElyMr+hggxogbUlPgb1AAWPZ2yzkuDwtceDXjos4LmyEUExYR3ga4wtS0QmVnEZDSy+Avm9Ki/IkPG/7SEA==
 
-types-for-adobe@^7.0.11:
-  version "7.0.11"
-  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.11.tgz#5a4cbae937cc38d50c76380221e26c0b3ead87c9"
-  integrity sha512-hsoPqUvmjYpy2C+wRiJqlfMKhCb/Zoxc1Twb4jrtjjZYH9hQS52cCXSGkrc96NECxaJhtVTh7kYaxPdaEQlO4A==
+types-for-adobe@^7.0.12:
+  version "7.0.12"
+  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.12.tgz#0de100688267b5801a801db4290e9af4f2a0f22e"
+  integrity sha512-J45QGDJYI0OjxzvxaVmDypOJD4aVSP+ElB2m2HTuVJGkYa+0ED0sNTIfmla/46c6gZBUFcDVO2EvZ3hqT5gcnw==
 
 typescript@*:
   version "4.6.4"
