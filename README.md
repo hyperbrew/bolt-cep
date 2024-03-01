@@ -161,7 +161,7 @@ To add support for additional host apps:
 
 ---
 
-## Calling ExtendScript from JS
+## Calling ExtendScript from CEP JavaScript
 
 All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
 
@@ -215,7 +215,7 @@ evalES(
 
 ---
 
-## Calling JS from ExtendScript
+## Calling CEP JavaScript from ExtendScript
 
 For certain situations such as hooking into event listeners or sending updates during long functions, it makes sense to trigger events from the ExtendScript environment to the JavaScript environment. This can be done with `listenTS()` and `dispatchTS()`.
 
@@ -230,21 +230,21 @@ Using this method accounts for:
 ```js
 export type EventTS = {
   myCustomEvent: {
-    name: string,
-    value: number,
+    oneValue: string,
+    anotherValue: number,
   },
   // [... other events]
 };
 ```
 
-### 2. Listen in CEP
+### 2. Listen in CEP JavaScript
 
 ```js
 import { listenTS } from "../lib/utils/bolt";
 
 listenTS("myCustomEvent", (data) => {
-  console.log("name is", data.name);
-  console.log("value is", data.value);
+  console.log("oneValue is", data.oneValue);
+  console.log("anotherValue is", data.anotherValue);
 });
 ```
 
@@ -253,7 +253,7 @@ listenTS("myCustomEvent", (data) => {
 ```js
 import { dispatchTS } from "../utils/utils";
 
-dispatchTS("myCustomEvent", { name: "name", value: 20 });
+dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
 ```
 
 Alternatively, `dispatchTS()` can also be used in the same way from the CEP side to trigger events within or between CEP panels, just ensure you're importing the dispatchTS() function from the correct file within the `js` folder.
@@ -261,7 +261,7 @@ Alternatively, `dispatchTS()` can also be used in the same way from the CEP side
 ```js
 import { dispatchTS } from "../lib/utils/bolt";
 
-dispatchTS("myCustomEvent", { name: "name", value: 20 });
+dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
 ```
 
 ---
@@ -425,3 +425,4 @@ ReactDOM.render(
   4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
   5. `src/js/lib` - Update this entire folder.
   6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
+  7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.

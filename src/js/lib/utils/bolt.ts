@@ -159,10 +159,15 @@ export const listenTS = <Key extends string & keyof EventTS>(
 ) => {
   const fullEvent = isLocal ? `${ns}.${event}` : event;
   const csi = new CSInterface();
-  console.log(`listening to ${fullEvent}`);
-  csi.addEventListener(`${fullEvent}`, (e: { data: EventTS[Key] }) => {
+  // console.log(`listening to ${fullEvent}`);
+  const thisCallback = (e: { data: EventTS[Key] }) => {
     callback(e.data);
-  });
+  };
+
+  // remove any existing listeners
+  csi.removeEventListener(fullEvent, thisCallback, null);
+  // add the event listener
+  csi.addEventListener(fullEvent, thisCallback);
 };
 
 /**
@@ -184,7 +189,7 @@ export const dispatchTS = <Key extends string & keyof EventTS>(
   isLocal = true
 ) => {
   const fullEvent = isLocal ? `${ns}.${event}` : event;
-  console.log(`dispatching ${fullEvent}`);
+  // console.log(`dispatching ${fullEvent}`);
   const csEvent = new CSEvent(fullEvent, scope, appId, id);
   csEvent.data = data;
   csi.dispatchEvent(csEvent);
@@ -204,15 +209,6 @@ export const initBolt = (log = true) => {
       if (log) console.log(jsxBinSrc);
       evalFile(jsxBinSrc);
     }
-
-    console.log("time to listen");
-
-    listenTS("myCustomEvent", (data) => {
-      console.log("name is", data.oneValue);
-      console.log("value is", data.anotherValue);
-    });
-
-    evalTS("listenForSequenceChanges");
   }
 };
 
