@@ -161,7 +161,7 @@ To add support for additional host apps:
 
 ---
 
-## Calling ExtendScript from JS
+## Calling ExtendScript from CEP JavaScript
 
 All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
 
@@ -211,6 +211,57 @@ evalES(
   `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
   true
 );
+```
+
+---
+
+## Calling CEP JavaScript from ExtendScript
+
+For certain situations such as hooking into event listeners or sending updates during long functions, it makes sense to trigger events from the ExtendScript environment to the JavaScript environment. This can be done with `listenTS()` and `dispatchTS()`.
+
+Using this method accounts for:
+
+- Setting up a scoped listener on the JS side for the CSEvent
+- Setting up PlugPlug CSEvent event on ExtendScript side
+- Ensuring End-to-End Type-Safety for the event
+
+### 1. Declare the Event Type in EventTS in shared/universals.ts
+
+```js
+export type EventTS = {
+  myCustomEvent: {
+    oneValue: string,
+    anotherValue: number,
+  },
+  // [... other events]
+};
+```
+
+### 2. Listen in CEP JavaScript
+
+```js
+import { listenTS } from "../lib/utils/bolt";
+
+listenTS("myCustomEvent", (data) => {
+  console.log("oneValue is", data.oneValue);
+  console.log("anotherValue is", data.anotherValue);
+});
+```
+
+### 3. Dispatch in ExtendScript
+
+```js
+import { dispatchTS } from "../utils/utils";
+
+dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
+```
+
+Alternatively, `dispatchTS()` can also be used in the same way from the CEP side to trigger events within or between CEP panels, just ensure you're importing the dispatchTS() function from the correct file within the `js` folder.
+
+```js
+import { dispatchTS } from "../lib/utils/bolt";
+
+dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
 ```
 
 ---
@@ -374,3 +425,4 @@ ReactDOM.render(
   4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
   5. `src/js/lib` - Update this entire folder.
   6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
+  7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.

@@ -1,4 +1,4 @@
-import CSInterface from "../cep/csinterface";
+import CSInterface, { CSEvent } from "../cep/csinterface";
 import Vulcan, { VulcanMessage } from "../cep/vulcan";
 import { ns } from "../../../shared/shared";
 import { fs } from "../cep/node";
@@ -35,6 +35,7 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
 };
 
 import type { Scripts } from "@esTypes/index";
+import type { EventTS } from "../../../shared/universals";
 
 type ArgTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
@@ -117,6 +118,81 @@ export const evalFile = (file: string) => {
       '"));',
     true
   );
+};
+
+/**
+ * @function listenTS End-to-end Type-Safe ExtendScript to JavaScript Events
+ * Uses the PlugPlug ExternalObject to trigger events in CEP panels
+ * Function comes scoped to the panel's namespace to avoid conflicts
+ * Simply declare your event name and value in the shared/universals.ts file
+ * Listen for events with listenTS() in your CEP panel
+ * Trigger those events with dispatchTS() ExtendScript
+ * @param event The event name to listen for (defined in EventTS in shared/universals.ts)
+ * @param callback The callback function to be executed when the event is triggered
+ * @param isLocal Whether to scope the event to the panel's namespace. Defaults to true
+ *
+ * @example
+ *
+ * // 1. Declare Type in EventTS in shared/universals.ts
+ * export type EventTS = {
+ *  'myCustomEvent': {
+ *   name: string;
+ *   value: number;
+ * }
+ *  // [... other events]
+ * };
+ *
+ * // 2. Listen in CEP
+ * listenTS("myCustomEvent", (data) => {
+ *   console.log("name is", data.name);
+ *   console.log("value is", data.value);
+ * });
+ *
+ * // 3. Dispatch in ExtendScript
+ * dispatchTS("myCustomEvent", { name: "name", value: 20 });
+ *
+ */
+export const listenTS = <Key extends string & keyof EventTS>(
+  event: Key,
+  callback: (data: EventTS[Key]) => void,
+  isLocal = true
+) => {
+  const fullEvent = isLocal ? `${ns}.${event}` : event;
+  const csi = new CSInterface();
+  // console.log(`listening to ${fullEvent}`);
+  const thisCallback = (e: { data: EventTS[Key] }) => {
+    callback(e.data);
+  };
+
+  // remove any existing listeners
+  csi.removeEventListener(fullEvent, thisCallback, null);
+  // add the event listener
+  csi.addEventListener(fullEvent, thisCallback);
+};
+
+/**
+ * @function dispatchTS Displatches an event within or between CEP panels with Type-Safety
+ * See listenTS() in the CEP panel for more info
+ * @param event The event name to listen for (defined in EventTS in shared/universals.ts)
+ * @param callback The callback function to be executed when the event is triggered
+ * @param scope The scope of the event. Defaults to "APPLICATION"
+ * @param appId The application ID. Defaults to the current application
+ * @param id The extension ID. Defaults to the current extension
+ * @param isLocal Whether to scope the event to the panel's namespace. Defaults to true
+ */
+export const dispatchTS = <Key extends string & keyof EventTS>(
+  event: Key,
+  data: EventTS[Key],
+  scope = "APPLICATION",
+  appId = csi.getApplicationID() as string,
+  id = csi.getExtensionID() as string,
+  isLocal = true
+) => {
+  const fullEvent = isLocal ? `${ns}.${event}` : event;
+  // console.log(`dispatching ${fullEvent}`);
+  const csEvent = new CSEvent(fullEvent, scope, appId, id);
+  csEvent.data = data;
+  csi.dispatchEvent(csEvent);
 };
 
 // js utils

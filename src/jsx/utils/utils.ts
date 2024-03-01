@@ -1,3 +1,24 @@
+import type { EventTS } from "../../shared/universals";
+import { ns } from "../../shared/shared";
+
+/**
+ * @function dispatchTS Displatches an event to the CEP panel with Type-Safety
+ * See listenTS() in the CEP panel for more info
+ * @param event The event name to listen for (defined in EventTS in shared/universals.ts)
+ * @param callback The callback function to be executed when the event is triggered
+ */
+export const dispatchTS = <Key extends string & keyof EventTS>(
+  event: Key,
+  data: EventTS[Key]
+) => {
+  if (new ExternalObject("lib:PlugPlugExternalObject")) {
+    var eventObj = new CSXSEvent();
+    eventObj.type = `${ns}.${event}`;
+    eventObj.data = JSON.stringify(data);
+    eventObj.dispatch();
+  }
+};
+
 export const forEach = <T>(
   arr: T[],
   callback: (item: T, i: number) => void
