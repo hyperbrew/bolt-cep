@@ -215,6 +215,57 @@ evalES(
 
 ---
 
+## Calling JS from ExtendScript
+
+For certain situations such as hooking into event listeners or sending updates during long functions, it makes sense to trigger events from the ExtendScript environment to the JavaScript environment. This can be done with `listenTS()` and `dispatchTS()`.
+
+Using this method accounts for:
+
+- Setting up a scoped listener on the JS side for the CSEvent
+- Setting up PlugPlug CSEvent event on ExtendScript side
+- Ensuring End-to-End Type-Safety for the event
+
+### 1. Declare the Event Type in EventTS in shared/universals.ts
+
+```js
+export type EventTS = {
+  myCustomEvent: {
+    name: string,
+    value: number,
+  },
+  // [... other events]
+};
+```
+
+### 2. Listen in CEP
+
+```js
+import { listenTS } from "../lib/utils/bolt";
+
+listenTS("myCustomEvent", (data) => {
+  console.log("name is", data.name);
+  console.log("value is", data.value);
+});
+```
+
+### 3. Dispatch in ExtendScript
+
+```js
+import { dispatchTS } from "../utils/utils";
+
+dispatchTS("myCustomEvent", { name: "name", value: 20 });
+```
+
+Alternatively, `dispatchTS()` can also be used in the same way from the CEP side to trigger events within or between CEP panels, just ensure you're importing the dispatchTS() function from the correct file within the `js` folder.
+
+```js
+import { dispatchTS } from "../lib/utils/bolt";
+
+dispatchTS("myCustomEvent", { name: "name", value: 20 });
+```
+
+---
+
 ## GitHub Actions ZXP Releases
 
 This repo comes with a configured GitHub Action workflow to build a ZXP and add to the releases each time a git tag is added.
