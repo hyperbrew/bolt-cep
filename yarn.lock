@@ -4248,10 +4248,10 @@ types-for-adobe-extras@^0.0.6:
   resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.6.tgz#a7fa640c2c868466c32198915dc558c8dd9c573d"
   integrity sha512-XtEElyMr+hggxogbUlPgb1AAWPZ2yzkuDwtceDXjos4LmyEUExYR3ga4wtS0QmVnEZDSy+Avm9Ki/IkPG/7SEA==
 
-types-for-adobe@^7.0.12:
-  version "7.0.12"
-  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.0.12.tgz#0de100688267b5801a801db4290e9af4f2a0f22e"
-  integrity sha512-J45QGDJYI0OjxzvxaVmDypOJD4aVSP+ElB2m2HTuVJGkYa+0ED0sNTIfmla/46c6gZBUFcDVO2EvZ3hqT5gcnw==
+types-for-adobe@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/types-for-adobe/-/types-for-adobe-7.2.0.tgz#b18dfced104ffbdd5789bfd3355a87db5e809302"
+  integrity sha512-dUkunVBLzO5zeghr3HMA+ueNez5TK/FBD0rgePIDGGIqLLkCeCCdSrrET1VKnq/ObEPBjkMLRNC21+yCCEpewg==
 
 typescript@*:
   version "4.6.4"
