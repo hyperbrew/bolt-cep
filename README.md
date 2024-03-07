@@ -43,6 +43,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 [Version Raptor](https://hyperbrew.co/tools/version-raptor/) ( by Hyper Brew ) | Next Level Versioning for Premiere Pro and After Effects
 
+[Spotlight FX](https://spotlightfx.com/) ( by Tom Balev ) | A Powerful Customizable Preset Library for After Effects
+
 [Note Clips](https://jiggypuff.gumroad.com/l/ClipNotes) ( by Jiggy ) | A Notes App for Premiere Pro and After Effects
 
 [TikTokText](https://aescripts.com/tiktoktext/) ( by Allan Raffel ) | Quick and easy TikTok style text for After Effects
@@ -52,6 +54,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 [Color Fuse AI](https://colorfuseai.com/) ( by Nemerem ) | AI-Chat powered color palettes
 
 [Ready Project](https://rgl.gumroad.com/l/ReadyProjectDL) ( by RGL ) | Folder and Export presets for Premiere Pro
+
+[C-Roll App](https://vogel.gumroad.com/l/croll) ( by Vogel Edits ) | AI-Powered Idea Generator for Premiere Pro
 
 ---
 
