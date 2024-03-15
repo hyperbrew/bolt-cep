@@ -41,6 +41,8 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 [Rubberhose 3](https://www.battleaxe.co/rubberhose) ( by Battle Axe ) | The fastest and simplest way to rig and animate characters in After Effects
 
+[Brevidy](https://www.brevidy.pro/) ( by Plugin Play ) | AI-Enchanced Edits lightning fast in Premiere Pro
+
 [Version Raptor](https://hyperbrew.co/tools/version-raptor/) ( by Hyper Brew ) | Next Level Versioning for Premiere Pro and After Effects
 
 [Spotlight FX](https://spotlightfx.com/) ( by Tom Balev ) | A Powerful Customizable Preset Library for After Effects
