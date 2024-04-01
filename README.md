@@ -44,29 +44,27 @@ Huge thanks to our backers who have made this project possible!
 
 If you're interested in supporting this open-source project, please [contact the Hyper Brew team](https://hyperbrew.co/contact/).
 
+---
+
 ## Tools Built with Bolt CEP
 
-[Klutz GPT](https://hyperbrew.co/tools/klutz-gpt/) ( by Hyper Brew ) | ChatGPT for After Effects
+Tools like Rubberhose 3, Klutz GPT, Brevity, and more are powered by Bolt CEP! Check out the full library of tools built with Bolt CEP:
 
-[Rubberhose 3](https://www.battleaxe.co/rubberhose) ( by Battle Axe ) | The fastest and simplest way to rig and animate characters in After Effects
+[Built with Bolt CEP](https://hyperbrew.co/resources/bolt-cep/)
 
-[Brevidy](https://www.brevidy.pro/) ( by Plugin Play ) | AI-Enchanced Edits lightning fast in Premiere Pro
+<img src="./built-with-bolt-cep.png" alt="Battle Axe" title="Battle Axe" style="border-radius:5px" width="900" />
 
-[Version Raptor](https://hyperbrew.co/tools/version-raptor/) ( by Hyper Brew ) | Next Level Versioning for Premiere Pro and After Effects
+---
 
-[Spotlight FX](https://spotlightfx.com/) ( by Tom Balev ) | A Powerful Customizable Preset Library for After Effects
+## Support
 
-[Note Clips](https://jiggypuff.gumroad.com/l/ClipNotes) ( by Jiggy ) | A Notes App for Premiere Pro and After Effects
+### Free Support
 
-[TikTokText](https://aescripts.com/tiktoktext/) ( by Allan Raffel ) | Quick and easy TikTok style text for After Effects
+If you have questions with getting started using Bolt CEP, feel free to ask and discuss in our free Discord community [Discord Community](https://discord.gg/PC3EvvuRbc).
 
-[After Diffusion](https://github.com/Trentonom0r3/After-Diffusion) ( by Trenton ) | Stable Diffusion in After Effects
+### Paid Support
 
-[Color Fuse AI](https://colorfuseai.com/) ( by Nemerem ) | AI-Chat powered color palettes
-
-[Ready Project](https://rgl.gumroad.com/l/ReadyProjectDL) ( by RGL ) | Folder and Export presets for Premiere Pro
-
-[C-Roll App](https://vogel.gumroad.com/l/croll) ( by Vogel Edits ) | AI-Powered Idea Generator for Premiere Pro
+If your team is interested in paid consulting or development with Bolt CEP, please [contact the Hyper Brew team](https://hyperbrew.co/contact/). More info on our [Adobe Plugin Development & Consulting Services](https://hyperbrew.co/landings/boost-development)
 
 ---
 
@@ -426,22 +424,31 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
-- **ZXPSignCmd Permissions issues on Mac**: If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+**ZXPSignCmd Permissions issues on Mac**:
 
-- **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2/M3)** If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon since Adobe has yet to release one ([issue details here](https://github.com/runegan/jsxbin/issues/29)). To solve this issue, you can either:
+If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
 
-  - **A: Disable JSXBIN**
-    - In the `cep.config.ts` set `jsxBin: "off"` in the build and zxp portions.
-  - **B: Run in x64 mode**
-    - Ensure a universal binary version of Node.js is installed (available on [nodejs.org](https://nodejs.org/en/download))
-    - Run your terminal in Rosetta mode, or additionally install the Intel build of VS Code.
-    - Delete and re-install your node_modules folder if you've already built it.
+**Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2/M3)**
 
-- **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
-  1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
-  2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
-  3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
-  4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
-  5. `src/js/lib` - Update this entire folder.
-  6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
-  7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.
+Full blog post on [Setup ExtendScript Dev for Apple Silicon Macs](https://hyperbrew.co/blog/setup-extendscript-dev-for-apple-silicon/)
+
+Short summary:
+
+If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon since Adobe has yet to release one ([issue details here](https://github.com/runegan/jsxbin/issues/29)). To solve this issue, you can either:
+
+- **A: Disable JSXBIN**
+  - In the `cep.config.ts` set `jsxBin: "off"` in the build and zxp portions.
+- **B: Run in x64 mode**
+  - Ensure a universal binary version of Node.js is installed (available on [nodejs.org](https://nodejs.org/en/download))
+  - Run your terminal in Rosetta mode, or additionally install the Intel build of VS Code.
+  - Delete and re-install your node_modules folder if you've already built it.
+
+**Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
+
+1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
+2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
+3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
+4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
+5. `src/js/lib` - Update this entire folder.
+6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
+7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.
