@@ -304,6 +304,10 @@ If you have assets that you would like copied without being affected by the bund
   copyAssets: ["public", "custom/my.jsx"],
 ```
 
+**Example:**
+
+Files placed in `src/public` will be copied to `dist/public` with config set to `copyAssets: ["public"]`.
+
 ---
 
 ---
