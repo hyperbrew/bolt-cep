@@ -58,11 +58,11 @@ Tools like Rubberhose 3, Klutz GPT, Brevity, and more are powered by Bolt CEP! C
 
 ## Support
 
-### Free Support
+### Free Support 🙌
 
 If you have questions with getting started using Bolt CEP, feel free to ask and discuss in our free Discord community [Discord Community](https://discord.gg/PC3EvvuRbc).
 
-### Paid Priority Support
+### Paid Priority Support 🥇
 
 If your team is interested in paid consulting or development with Bolt CEP, please [contact the Hyper Brew team](https://hyperbrew.co/contact/). More info on our [Adobe Plugin Development & Consulting Services](https://hyperbrew.co/landings/boost-development)
 
