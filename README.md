@@ -68,6 +68,37 @@ If your team is interested in paid consulting or development with Bolt CEP, plea
 
 ---
 
+## Can I use Bolt CEP in my free or commercial project?
+
+Yes! Bolt CEP is **100% free and open source**, being released under the MIT license with no attribution required. This means you are free to use it in your free or commercial projects.
+
+We would greatly appreciate it if you could provide a link back to this tool's info page in your product's site or about page:
+
+Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
+
+**Built with Bolt CEP** button graphics:
+
+**PNG Files**
+
+<div style="display:flex;gap:1rem;">
+<a href="./src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_White_V01.png" target="_blank">
+<img src="./src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_White_V01.png" width="200" /></a>
+
+<a href="./src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_Black_V01.png" target="_blank">
+<img src="./src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_Black_V01.png" width="200" /></a>
+
+</div>
+
+**SVG Files**
+
+<div style="display:flex;gap:1rem;">
+<a href="src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_White_V01.svg" target="_blank">
+<img src="src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_White_V01.svg" width="200" /></a>
+
+<a href="src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_Black_V01.svg" target="_blank">
+<img src="src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_Black_V01.svg" width="200" /></a>
+</div>
+
 ## Quick Start
 
 <img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
