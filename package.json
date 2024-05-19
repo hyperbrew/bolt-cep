@@ -66,5 +66,9 @@
     "yarn": "^1.22.17"
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "resolutions": {
+    "typescript": "4.6.4",
+    "vite": "4.5.2"
+  }
 }
