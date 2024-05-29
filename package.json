@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "scripts": {
     "dev": "vite",
     "watch": "tsc && vite build --watch true",
@@ -61,9 +61,13 @@
     "types-for-adobe": "^7.2.0",
     "types-for-adobe-extras": "^0.0.6",
     "typescript": "^4.6.4",
-    "vite": "^4.5.2",
-    "vite-cep-plugin": "^1.1.8",
+    "vite": "5.2.11",
+    "vite-cep-plugin": "^1.1.12",
     "yarn": "^1.22.17"
+  },
+  "resolutions": {
+    "typescript": "4.6.4",
+    "vite": "4.5.2"
   },
   "main": "index.js",
   "license": "MIT"
