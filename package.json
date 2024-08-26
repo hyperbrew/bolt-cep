@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "scripts": {
     "dev": "vite",
     "watch": "tsc && vite build --watch true",

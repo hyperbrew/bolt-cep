@@ -455,6 +455,19 @@ ReactDOM.render(
 
 ## Misc Troubleshooting
 
+**React Spectrum won't allow certain UI items to be clicked on MacOS**:
+
+There is an ongoing bug with React Spectrum and other UI libraries on MacOS with clicking elements. To resolve this issue, run the helper function `enableSpectrum()` to resolve this issue on Mac.
+
+`main.ts`
+
+```js
+import { initBolt, enableSpectrum } from "../lib/utils/bolt";
+
+enableSpectrum();
+initBolt();
+```
+
 **ZXPSignCmd Permissions issues on Mac**:
 
 If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.

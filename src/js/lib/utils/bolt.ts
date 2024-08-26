@@ -321,3 +321,15 @@ export const selectFile = (
     callback(folder);
   }
 };
+
+/**
+ * @function enableSpectrum fixes an issue with React Spectrum and PointerEvents on MacOS
+ * Run once at the start of your app to fix this issue
+ */
+
+export const enableSpectrum = () => {
+  if (window.PointerEvent) {
+    //@ts-ignore
+    delete window.PointerEvent;
+  }
+};
