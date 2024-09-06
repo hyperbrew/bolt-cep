@@ -11,5 +11,4 @@ import { dispatchTS } from "../utils/utils";
 
 export const helloWorld = () => {
   alert("Hello from Illustrator");
-  app.activeDocument.path;
 };
