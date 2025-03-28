@@ -1,3 +1,4 @@
+import { os } from "../cep/node";
 import { csi } from "./bolt";
 
 /**
@@ -32,4 +33,36 @@ export const keyRegisterOverride = () => {
   }
   const keyRes = csi.registerKeyEventsInterest(JSON.stringify(allKeys));
   console.log("Key Events Registered Completed: " + keyRes);
+};
+
+export const textCepPatch = (e: KeyboardEvent) => {
+  const isMac = os.platform() === "darwin";
+  if (!isMac) return; // Only needed on MacOS, Windows handles this natively
+
+  // console.log("keyup", e);
+
+  const isShiftKey = e.shiftKey;
+  const input = e.target as HTMLTextAreaElement | HTMLInputElement;
+  const start = input.selectionStart;
+  let end = input.selectionEnd;
+
+  const selectionExists = start !== null && end !== null && start !== end;
+
+  if (start === null || end === null) return;
+
+  if (e.key === "ArrowLeft") {
+    if (start === 0) return; // Prevents going to -1
+    if (isShiftKey) {
+      input.setSelectionRange(start - 1, end);
+    } else {
+      input.setSelectionRange(start - 1, start - 1);
+    }
+  } else if (e.key === "ArrowRight") {
+    if (end === input.value.length) return; // Prevents going to start
+    if (isShiftKey) {
+      input.setSelectionRange(start, end + 1);
+    } else {
+      input.setSelectionRange(end + 1, end + 1);
+    }
+  }
 };
