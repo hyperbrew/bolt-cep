@@ -29,6 +29,17 @@ export const getChildByName = (item: ProjectItem, name: string) => {
   }
 };
 
+export const getChildFromTreePath = (project: Project, treePath: string) => {
+  const elements = treePath.split("\\"); // first item is blank, second is root
+  let projectItem: ProjectItem | undefined = project.rootItem;
+  for (let i = 2; i < elements.length; i++) {
+    const item = elements[i];
+    projectItem = getChildByName(projectItem, item);
+    if (!projectItem) return null;
+  }
+  return projectItem;
+};
+
 export const getParentItem = (item: ProjectItem) => {
   const dir = item.treePath.split("\\");
   if (dir.length < 2) {
