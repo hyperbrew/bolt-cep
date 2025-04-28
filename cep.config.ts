@@ -54,9 +54,8 @@ const config: CEP_Config = {
     org: "MyCompany",
     password: "mypassword",
     tsa: [
-      "http://timestamp.digicert.com/", // MacOS Only
-      "http://timestamp.apple.com/ts01", // Windows Only
-      // "http://tss.accv.es:8318/tsa", // MacOS Only (extra)
+      "http://timestamp.digicert.com/", // Windows Only
+      "http://timestamp.apple.com/ts01", // MacOS Only
     ],
     allowSkipTSA: false,
     sourceMap: false,
