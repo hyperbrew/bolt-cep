@@ -468,9 +468,13 @@ enableSpectrum();
 initBolt();
 ```
 
-**ZXPSignCmd Permissions issues on Mac**:
+**ZXPSignCmd Fails on Mac or Windows**:
 
-If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
+4/18/2025 ZXPSignCmd broke on Windows across the board and on MacOS for most TSA services. ( [more info](https://community.adobe.com/t5/premiere-pro-bugs/zxpsigncmd-sign-process-is-broken-segmentation-fault/idc-p/15276912#M49107) )
+
+4/28/2025 Adobe fixed the issue, and we included the updated ZXPSignCmd in the latest release of `vite-cep-plugin@1.2.8`.
+
+To use the latest in your existing Bolt CEP project, run `yarn add vite-cep-plugin`, and make sure your `zxp.tsa` settings in `cep.config.ts` match the [latest format](./cep.config.ts).
 
 **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2/M3)**
 
@@ -496,3 +500,9 @@ If you're experiencing issues building on your Apple Silicon Machine regarding t
 5. `src/js/lib` - Update this entire folder.
 6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
 7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.
+
+**ZXPSignCmd Permissions issues on Mac**:
+
+Previously, you would need to fix the permissions of ZXPSignCmd by running the following command in the terminal, however this is now automated since `vite-cep-plugin@1.1.15`. If you still experience problems other reasons you can manually fix the executable as follows:
+
+If you're getting permissions errors running ZXPSignCmd on the latest Mac releases, try a fresh clone. If that does't work, reset permissions for ZXPSignCmd by opening the directory `node_modules/vite-cep-plugin/lib/bin` and running `chmod 700 ./ZXPSignCmd`.
