@@ -40,6 +40,21 @@ export const getChildFromTreePath = (project: Project, treePath: string) => {
   return projectItem;
 };
 
+export const getDescendantByNodeId = (
+  item: ProjectItem,
+  nodeId: string
+): ProjectItem | undefined => {
+  for (let i = 0; i < item.children.numItems; i++) {
+    const child = item.children[i];
+    if (child.nodeId === nodeId) {
+      return child;
+    } else if (child.type === 2 /* BIN */) {
+      const found = getDescendantByNodeId(child, nodeId);
+      if (found) return found;
+    }
+  }
+};
+
 export const getParentItem = (item: ProjectItem) => {
   const dir = item.treePath.split("\\");
   if (dir.length < 2) {
@@ -207,6 +222,17 @@ export const qeGetClipAt = (track: Track, index: number) => {
       }
     }
   }
+};
+
+// QE DOM doesn't understand some format, so this function so we convert to compatible ones
+export const qeSafeTimeDisplayFormat = (timeDisplayFormat: number) => {
+  const conversionTable: {
+    [key: number]: number;
+  } = {
+    998: 110, // 23.89 > 23.976
+  };
+  const match = conversionTable[timeDisplayFormat];
+  return match ? match : timeDisplayFormat;
 };
 
 // Metadata Helpers
