@@ -472,7 +472,7 @@ initBolt();
 
 4/18/2025 ZXPSignCmd broke on Windows across the board and on MacOS for most TSA services. ( [more info](https://community.adobe.com/t5/premiere-pro-bugs/zxpsigncmd-sign-process-is-broken-segmentation-fault/idc-p/15276912#M49107) )
 
-4/28/2025 Adobe fixed the issue, and we included the updated ZXPSignCmd in the latest release of `vite-cep-plugin@1.2.8`.
+4/30/2025 Adobe fixed the issues for Windows and MacOS, and we have included the updated ZXPSignCmd for both OS's in the latest release of `vite-cep-plugin@1.2.9`.
 
 To use the latest in your existing Bolt CEP project, run `yarn add vite-cep-plugin`, and make sure your `zxp.tsa` settings in `cep.config.ts` match the [latest format](./cep.config.ts).
 
