@@ -47,7 +47,7 @@
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
     "types-for-adobe": "^7.2.3",
-    "types-for-adobe-extras": "^0.0.6",
+    "types-for-adobe-extras": "^0.0.9",
     "typescript": "^4.6.4",
     "vite": "^4.5.2",
     "vite-cep-plugin": "^1.2.9",

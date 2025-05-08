@@ -45,7 +45,7 @@
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.43.4",
     "types-for-adobe": "^7.2.3",
-    "types-for-adobe-extras": "^0.0.6",
+    "types-for-adobe-extras": "^0.0.9",
     "typescript": "^4.6.4",
     "vite": "^4.5.2",
     "vite-cep-plugin": "^1.2.9",
