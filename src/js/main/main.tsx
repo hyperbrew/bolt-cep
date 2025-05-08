@@ -5,7 +5,7 @@ import {
   evalES,
   openLinkInBrowser,
   subscribeBackgroundColor,
-  evalTS,
+  es,
 } from "../lib/utils/bolt";
 
 import reactLogo from "../assets/react.svg";
@@ -30,24 +30,24 @@ const Main = () => {
 
   //* Demonstration of End-to-End Type-safe ExtendScript Interaction
   const jsxTestTS = () => {
-    evalTS("helloStr", "test").then((res) => {
+    es.helloStr("test").then((res) => {
       console.log(res);
     });
-    evalTS("helloNum", 1000).then((res) => {
+    es.helloNum(1000).then((res) => {
       console.log(typeof res, res);
     });
-    evalTS("helloArrayStr", ["ddddd", "aaaaaa", "zzzzzzz"]).then((res) => {
+    es.helloArrayStr(["ddddd", "aaaaaa", "zzzzzzz"]).then((res) => {
       console.log(typeof res, res);
     });
-    evalTS("helloObj", { height: 90, width: 100 }).then((res) => {
+    es.helloObj({ height: 90, width: 100 }).then((res) => {
       console.log(typeof res, res);
       console.log(res.x);
       console.log(res.y);
     });
-    evalTS("helloVoid").then(() => {
+    es.helloVoid().then(() => {
       console.log("function returning void complete");
     });
-    evalTS("helloError", "test").catch((e) => {
+    es.helloError("test").catch((e) => {
       console.log("there was an error", e);
     });
   };
