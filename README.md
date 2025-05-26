@@ -117,6 +117,12 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
 
 - Installs all dependencies
 
+**⚠️ Enable PlayerDebugMode**
+
+- Adobe CEP's PlayerDebugMode must be enabled on your machine to test `yarn build` or `yarn dev` builds. Only an installed ZXP with `yarn zxp` will work without PlayerDebugMode enabled.
+  - Enable this easily with the [aescripts ZXP Installer](https://aescripts.com/learn/zxp-installer/) > Settings > Debug > Enable Debugging
+  - Or enable manually per OS by following the CEP Cookbook Instructions: [Adobe CEP 12 Cookbook](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_12.x/Documentation/CEP%2012%20HTML%20Extension%20Cookbook.md#debugging-unsigned-extensions)
+
 `yarn build`
 
 - Runs initial build
