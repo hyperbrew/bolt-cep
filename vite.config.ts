@@ -24,7 +24,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const isMetaPackage = process.env.ZIP_PACKAGE === "true";
 const isPackage = process.env.ZXP_PACKAGE === "true" || isMetaPackage;
 const isServe = process.env.SERVE_PANEL === "true";
-const action = process.env.ACTION;
+const action = process.env.BOLT_ACTION;
 
 let input = {};
 cepConfig.panels.map((panel) => {
