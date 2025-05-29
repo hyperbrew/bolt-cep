@@ -489,7 +489,7 @@ export default class CSInterface {
      * @param obj - Optional, the object containing the handler method, if any.
              Default is null.
      */
-  removeEventListener(type: any, listener: any, obj: any): void;
+  removeEventListener(type: any, listener: any, obj?: any): void;
   /**
      * Loads and launches another extension, or activates the extension if it is already loaded.
      * @example
