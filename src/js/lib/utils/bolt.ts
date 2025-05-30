@@ -36,6 +36,7 @@ export const evalES = (script: string, isGlobal = false): Promise<string> => {
 
 import type { Scripts } from "@esTypes/index";
 import type { EventTS } from "../../../shared/universals";
+import { initializeCEP } from "./init-cep";
 
 type ArgTypes<F extends Function> = F extends (...args: infer A) => any
   ? A
@@ -95,7 +96,10 @@ export const evalTS = <
           //@ts-ignore
           if (res === "undefined") return resolve();
           const parsed = JSON.parse(res);
-          if ((typeof parsed.name === "string") && (<string>parsed.name).toLowerCase().includes("error")) {
+          if (
+            typeof parsed.name === "string" &&
+            (<string>parsed.name).toLowerCase().includes("error")
+          ) {
             console.error(parsed.message);
             reject(parsed);
           } else {
@@ -209,6 +213,7 @@ export const initBolt = (log = true) => {
       if (log) console.log(jsxBinSrc);
       evalFile(jsxBinSrc);
     }
+    initializeCEP();
   }
 };
 

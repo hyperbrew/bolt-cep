@@ -66,3 +66,12 @@ export const textCepPatch = (e: KeyboardEvent) => {
     }
   }
 };
+
+/**
+ * Prevents the user from dropping files or URLs onto the panel and navigating away
+ */
+
+export const dropDisable = () => {
+  window.addEventListener("dragover", (e) => e.preventDefault(), false);
+  window.addEventListener("drop", (e) => e.preventDefault(), false);
+};
