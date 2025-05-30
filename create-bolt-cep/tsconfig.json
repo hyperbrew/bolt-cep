@@ -9,6 +9,6 @@
     "newLine": "lf",
     "outDir": "dist"
   },
-  "files": ["src/index.ts", "src/lib/resolve-dir.d.ts", "src/lib/options.ts"],
+  "files": ["src/index.ts"],
   "exclude": ["node_modules"]
 }
