@@ -17,7 +17,7 @@ const cepDist = "cep";
 
 const src = path.resolve(__dirname, "src");
 const root = path.resolve(src, "js");
-const outDir = path.resolve(__dirname, "dist", "cep");
+const outDir = path.resolve(__dirname, "dist", cepDist);
 
 const debugReact = process.env.DEBUG_REACT === "true";
 const isProduction = process.env.NODE_ENV === "production";
@@ -93,7 +93,7 @@ export default defineConfig({
 });
 
 // rollup es3 build
-const outPathExtendscript = path.join("dist", "cep", "jsx", "index.js");
+const outPathExtendscript = path.join("dist", cepDist, "jsx", "index.js");
 extendscriptConfig(
   `src/jsx/index.ts`,
   outPathExtendscript,
