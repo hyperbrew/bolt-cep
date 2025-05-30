@@ -474,6 +474,19 @@ enableSpectrum();
 initBolt();
 ```
 
+Additionally, some users have reported that adding the following CEF Flag will resolve the issue as well:
+
+`cep.config.ts`
+
+```js
+...
+parameters: [
+  ...
+  '--disable-site-isolation-trials'
+  ],
+...
+```
+
 **ZXPSignCmd Fails on Mac or Windows**:
 
 4/18/2025 ZXPSignCmd broke on Windows across the board and on MacOS for most TSA services. ( [more info](https://community.adobe.com/t5/premiere-pro-bugs/zxpsigncmd-sign-process-is-broken-segmentation-fault/idc-p/15276912#M49107) )
