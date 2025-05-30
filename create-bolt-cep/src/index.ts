@@ -11,6 +11,7 @@ export const frameworkOptions: ArgOpt[] = [
       "src/main/index-svelte.ts",
       "src/main/main.svelte",
       "package.svelte.jsonc",
+      "tsconfig.svelte.json",
     ],
   },
   {
@@ -20,41 +21,44 @@ export const frameworkOptions: ArgOpt[] = [
       "src/main/index-react.tsx",
       "src/main/main.tsx",
       "package.react.jsonc",
+      "tsconfig.react.json",
     ],
   },
   {
     value: "vue",
     label: "Vue",
-    files: ["src/main/index-vue.ts", "src/main/main.vue", "package.vue.jsonc"],
+    files: [
+      "src/main/index-vue.ts",
+      "src/main/main.vue",
+      "package.vue.jsonc",
+      "tsconfig.vue.json",
+    ],
   },
 ];
 
 export const appOptions: ArgOpt[] = [
-  {
-    value: "figma",
-    label: "Figma ( Design Mode )",
-    files: ["src/api/figma.ts"],
-  },
-  {
-    value: "figmadev",
-    label: "Figma ( Dev Mode )",
-    files: ["src/api/figjam.ts"],
-  },
-  { value: "figjam", label: "Figjam", files: ["src/api/figjam.ts"] },
+  { value: "aeft", label: "After Effects", files: ["src/jsx/aeft"] },
+  { value: "ppro", label: "Premiere Pro", files: ["src/jsx/ppro"] },
+  { value: "phxs", label: "Photoshop", files: ["src/jsx/phxs"] },
+  { value: "ilst", label: "Illustrator", files: ["src/jsx/ilst"] },
+  { value: "idsn", label: "InDesign", files: ["src/jsx/idsn"] },
+  { value: "anim", label: "Animate", files: ["src/jsx/anim"] },
+  { value: "ame", label: "Media Encoder", files: ["src/jsx/ame"] },
+  { value: "kbrg", label: "Bridge", files: ["src/jsx/kbrg"] },
+  { value: "audt", label: "Audition", files: ["src/jsx/audt"] },
 ];
 
 const initData: BoltInitData = {
   intro: {
-    name: "create-bolt-figma",
-    prettyName: "Bolt Figma",
+    name: "create-bolt-cep",
+    prettyName: "Bolt CEP",
   },
   base: {
-    module: "bolt-figma",
+    module: "bolt-cep",
     createDirName: __dirname,
     globalIncludes: [
       "*",
       "src/**/*",
-      "src-code/**/*",
       "shared/**/*",
       "public/**/*",
       "public-zip/**/*",
@@ -64,11 +68,16 @@ const initData: BoltInitData = {
       ".prettierrc",
       ".env.example",
     ],
-    globalExcludes: [".env", "yarn-error.log", "package.json"],
+    globalExcludes: [".env", "yarn-error.log", "package.json", "tsconfig.json"],
     fileRenames: [
       ["package.svelte.jsonc", "package.json"],
       ["package.react.jsonc", "package.json"],
       ["package.vue.jsonc", "package.json"],
+
+      ["tsconfig.svelte.json", "tsconfig.json"],
+      ["tsconfig.react.json", "tsconfig.json"],
+      ["tsconfig.vue.json", "tsconfig.json"],
+
       [".npmignore", ".gitignore"],
     ],
   },
@@ -88,7 +97,7 @@ const initData: BoltInitData = {
       name: "displayName",
       type: "string",
       message: "Choose a unique Display Name for your plugin:",
-      initialValue: "Bolt Figma",
+      initialValue: "Bolt CEP",
       required: true,
       validator: (input: string) => {
         if (input.length < 1) return `Value is required!`;
@@ -100,12 +109,12 @@ const initData: BoltInitData = {
       name: "id",
       type: "string",
       message: "Choose a unique ID for your plugin:",
-      initialValue: "bolt.figma.plugin",
+      initialValue: "com.bolt.cep",
       required: true,
       validator: (input: string) => {
         if (input.length < 1) return `Value is required!`;
       },
-      describe: "Unique ID for Figma Plugin (e.g. bolt.figma.plugin)",
+      describe: "Unique ID for Figma Plugin (e.g. com.bolt.cep)",
       alias: "i",
     },
     {
@@ -126,12 +135,6 @@ const initData: BoltInitData = {
       options: appOptions,
       validator: (input: string[]) => {
         if (input.length < 1) return `At Least One value Required!`;
-        if (
-          input.length === 2 &&
-          input.includes("figjam") &&
-          input.includes("figmadev")
-        )
-          return `You cannot select only "Figma (Dev Mode)" & "FigJam".\nIf you want to include both, you must also include "Figma (Design Mode)"`;
       },
       required: true,
     },

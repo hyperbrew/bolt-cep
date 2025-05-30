@@ -3,3 +3,4 @@ dist
 test*
 .DS_Store
 yarn-error.log
+.test*

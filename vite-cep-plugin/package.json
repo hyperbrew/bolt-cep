@@ -6,9 +6,9 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hyperbrew/vite-cep-plugin.git"
+    "url": "https://github.com/hyperbrew/bolt-cep.git"
   },
-  "homepage": "https://github.com/hyperbrew/vite-cep-plugin",
+  "homepage": "https://github.com/hyperbrew/bolt-cep",
   "license": "MIT",
   "scripts": {
     "build": "tsc && node scripts/copy-files.js",

@@ -52,7 +52,7 @@ Tools like Rubberhose 3, Klutz GPT, Brevity, and more are powered by Bolt CEP! C
 
 [Built with Bolt CEP](https://hyperbrew.co/resources/bolt-cep/)
 
-<img src="./built-with-bolt-cep.png" alt="Battle Axe" title="Battle Axe" style="border-radius:5px" width="900" />
+<img src="src/js/assets/built-with-bolt-cep.png" alt="Battle Axe" title="Battle Axe" style="border-radius:5px" width="900" />
 
 ---
 
@@ -103,7 +103,7 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
 
 <img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
 
-<img src="create-bolt-cep--demo.gif" alt="Bolt CEP">
+<img src="src/js/assets/create-bolt-cep--demo.gif" alt="Bolt CEP">
 
 `yarn create bolt-cep`
 
