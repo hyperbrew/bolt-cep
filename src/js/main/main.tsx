@@ -3,6 +3,7 @@ import { os, path } from "../lib/cep/node";
 import {
   csi,
   evalES,
+  evalFile,
   openLinkInBrowser,
   subscribeBackgroundColor,
   evalTS,

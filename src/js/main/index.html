@@ -3,10 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bolt CEP React</title>
+    <title>Bolt CEP</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    <!-- BOLT__ONLY | Uncomment to debug the desired template -->
+
+    <!-- BOLT_SVELTE_START -->
+    <script type="module" src="./index-svelte.ts"></script>
+    <!-- BOLT_SVELTE_END -->
+    <!-- BOLT_REACT_START -->
+    <!-- <script type="module" src="./index-react.tsx"></script> -->
+    <!-- BOLT_REACT_END -->
+    <!-- BOLT_VUE_START -->
+    <!-- <script type="module" src="./index-vue.ts"></script> -->
+    <!-- BOLT_VUE_END -->
   </body>
 </html>

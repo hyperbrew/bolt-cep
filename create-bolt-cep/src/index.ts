@@ -1,90 +1,161 @@
 #!/usr/bin/env node
 
-import * as color from "picocolors";
-import { intro, note, outro, spinner } from "@clack/prompts";
-import { prompts } from "./lib/prompts";
-import { installBolt } from "./lib/bolt";
-import { getApp, getFramework, getTemplate, isString } from "./lib/options";
-import { parseArgs, throwError } from "./lib/parse-args";
-import { installDeps, initGit, buildBolt } from "./lib/utils";
+import { main } from "meta-bolt";
+import type { BoltInitData, ArgOpt } from "meta-bolt";
 
-main();
+export const frameworkOptions: ArgOpt[] = [
+  {
+    value: "svelte",
+    label: "Svelte",
+    files: [
+      "src/main/index-svelte.ts",
+      "src/main/main.svelte",
+      "package.svelte.jsonc",
+    ],
+  },
+  {
+    value: "react",
+    label: "React",
+    files: [
+      "src/main/index-react.tsx",
+      "src/main/main.tsx",
+      "package.react.jsonc",
+    ],
+  },
+  {
+    value: "vue",
+    label: "Vue",
+    files: ["src/main/index-vue.ts", "src/main/main.vue", "package.vue.jsonc"],
+  },
+];
 
-async function main() {
-  console.clear();
-  boltIntro();
+export const appOptions: ArgOpt[] = [
+  {
+    value: "figma",
+    label: "Figma ( Design Mode )",
+    files: ["src/api/figma.ts"],
+  },
+  {
+    value: "figmadev",
+    label: "Figma ( Dev Mode )",
+    files: ["src/api/figjam.ts"],
+  },
+  { value: "figjam", label: "Figjam", files: ["src/api/figjam.ts"] },
+];
 
-  let options = await parseArgs();
-  let source: "cli" | "prompts" = "cli";
-  if (isString(options)) {
-    options = await prompts({ dir: options });
-    source = "prompts";
-  }
+const initData: BoltInitData = {
+  intro: {
+    name: "create-bolt-figma",
+    prettyName: "Bolt Figma",
+  },
+  base: {
+    module: "bolt-figma",
+    createDirName: __dirname,
+    globalIncludes: [
+      "*",
+      "src/**/*",
+      "src-code/**/*",
+      "shared/**/*",
+      "public/**/*",
+      "public-zip/**/*",
+      ".github/**/*",
+      ".gitignore",
+      ".npmrc",
+      ".prettierrc",
+      ".env.example",
+    ],
+    globalExcludes: [".env", "yarn-error.log", "package.json"],
+    fileRenames: [
+      ["package.svelte.jsonc", "package.json"],
+      ["package.react.jsonc", "package.json"],
+      ["package.vue.jsonc", "package.json"],
+      [".npmignore", ".gitignore"],
+    ],
+  },
+  argsTemplate: [
+    {
+      name: "folder",
+      type: "folder",
+      message: "Where do you want to create your project?",
+      initialValue: "./",
+      required: true,
+      validator: (input: string) => {
+        if (input.length < 3) return `Value is required!`;
+      },
+      describe: "Name of the folder for the new Figma plugin",
+    },
+    {
+      name: "displayName",
+      type: "string",
+      message: "Choose a unique Display Name for your plugin:",
+      initialValue: "Bolt Figma",
+      required: true,
+      validator: (input: string) => {
+        if (input.length < 1) return `Value is required!`;
+      },
+      describe: "Panel's display name",
+      alias: "n",
+    },
+    {
+      name: "id",
+      type: "string",
+      message: "Choose a unique ID for your plugin:",
+      initialValue: "bolt.figma.plugin",
+      required: true,
+      validator: (input: string) => {
+        if (input.length < 1) return `Value is required!`;
+      },
+      describe: "Unique ID for Figma Plugin (e.g. bolt.figma.plugin)",
+      alias: "i",
+    },
+    {
+      name: "framework",
+      type: "select",
+      message: "Select framework:",
+      alias: "f",
+      describe: "Select a Framework for your plugin:",
+      options: frameworkOptions,
+      required: true,
+    },
+    {
+      name: "apps",
+      type: "multiselect",
+      message: "Select app:",
+      alias: "a",
+      describe: "Select app(s) for your plugin:",
+      options: appOptions,
+      validator: (input: string[]) => {
+        if (input.length < 1) return `At Least One value Required!`;
+        if (
+          input.length === 2 &&
+          input.includes("figjam") &&
+          input.includes("figmadev")
+        )
+          return `You cannot select only "Figma (Dev Mode)" & "FigJam".\nIf you want to include both, you must also include "Figma (Design Mode)"`;
+      },
+      required: true,
+    },
+    {
+      name: "installDeps",
+      type: "boolean",
+      message: "Install dependencies?",
+      initialValue: true,
+      required: true,
+      alias: "d",
+      describe: "Install dependencies (default: false)",
+    },
+    {
+      name: "sampleCode",
+      type: "boolean",
+      message: "Keep Sample Code Snippets?",
+      initialValue: true,
+      required: true,
+      alias: "s",
+      describe: "Keep Sample Code (default: true)",
+    },
+  ],
+};
 
-  // prettier-ignore
-  const pretty = {
-    framework: getFramework(options.framework)?.label,
-    template: getTemplate(options.template)?.label,
-    apps: options.apps.map((x) => getApp(x)?.label).join(", ")
-  }
-
-  if (source === "cli") {
-    if (options.dir.exists && !options.dir.isEmpty)
-      throwError("<appname>", `path is not empty.`, options.dir.path);
-
-    note(
-      [
-        `panel      ${options.dir.name} (${options.displayName})`,
-        `id         ${options.id}`,
-        `framework  ${pretty.framework}`,
-        `template   ${pretty.template}`,
-        `apps       ${pretty.apps}`,
-      ].join("\n"),
-      "Inputs"
-    );
-  }
-
-  const s = spinner();
-  s.start("Installing bolt-cep");
-  await installBolt(options);
-  s.stop(`Installed ${color.bgGreen(` bolt-cep `)}.`);
-
-  if (options.installDeps) {
-    s.start("Installing dependencies via yarn");
-    await installDeps(options);
-    s.stop("Installed dependencies via yarn.");
-
-    s.start("Running initial build");
-    await buildBolt(options);
-    s.stop("Built!");
-  }
-
-  // if (options.git) {
-  //   s.start("Initializing git repo");
-  //   await initGit(options);
-  //   s.stop("Initialized git repo.");
-  // }
-
-  note(
-    [
-      `${pretty?.template} Bolt CEP generated with ${pretty?.framework}` +
-        `: ${color.green(color.bold(options.dir.name))}`,
-      options.dir.path,
-    ].join("\n"),
-    "Summary"
-  );
-
-  outro(
-    `Problems? ${color.cyan(
-      color.underline(`https://github.com/hyperbrew/bolt-cep`)
-    )}`
-  );
-}
-
-function boltIntro() {
-  console.log();
-  const cbc = color.bgGreen(` create-bolt-cep `);
-  const url = color.underline("https://hyperbrew.co");
-  const bru = color.gray("│   ") + color.cyan(`by Hyper Brew | ${url}`);
-  intro(`${cbc} \n${bru}`);
-}
+//* if not using as a module, run immediately
+console.log("BOLT_MODULEONLY", process.env.BOLT_MODULEONLY);
+if (!process.env.BOLT_MODULEONLY) main(initData);
