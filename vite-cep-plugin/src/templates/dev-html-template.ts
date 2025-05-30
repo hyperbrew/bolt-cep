@@ -18,7 +18,7 @@ export const devHtmlTemplate = ({
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="app"></div>
     <script>
       window.location.href = '${url}';
     </script>

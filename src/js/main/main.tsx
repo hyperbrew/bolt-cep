@@ -20,7 +20,7 @@ import bolt from "../assets/bolt-cep.svg";
 
 import "./main.scss";
 
-const Main = () => {
+export const App = () => {
   const [bgColor, setBgColor] = useState("#282c34");
   const [count, setCount] = useState(0);
 
@@ -137,5 +137,3 @@ const Main = () => {
     </div>
   );
 };
-
-export default Main;

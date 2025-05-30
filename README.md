@@ -455,7 +455,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router basename={cepBasename}>[...]</Router>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("app")
 );
 ```
 

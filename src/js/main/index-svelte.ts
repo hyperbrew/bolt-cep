@@ -4,7 +4,7 @@ import { initBolt } from "../lib/utils/bolt";
 initBolt();
 
 const app = new App({
-  target: document.getElementById("root") as Element,
+  target: document.getElementById("app") as Element,
 });
 
 export default app;

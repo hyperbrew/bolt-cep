@@ -4,4 +4,4 @@ import { initBolt } from "../lib/utils/bolt";
 
 initBolt();
 
-createApp(App).mount("#root");
+createApp(App).mount("#app");
