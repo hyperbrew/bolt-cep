@@ -95,8 +95,8 @@ export const evalTS = <
           //@ts-ignore
           if (res === "undefined") return resolve();
           const parsed = JSON.parse(res);
-          if (parsed.name === "ReferenceError") {
-            console.error("REFERENCE ERROR");
+          if ((typeof parsed.name === "string") && (<string>parsed.name).toLowerCase().includes("error")) {
+            console.error(parsed.message);
             reject(parsed);
           } else {
             resolve(parsed);
