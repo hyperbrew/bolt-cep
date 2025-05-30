@@ -10,6 +10,7 @@ export const frameworkOptions: ArgOpt[] = [
     files: [
       "src/js/main/index-svelte.ts",
       "src/js/main/main.svelte",
+      "src/js/main/vite-env.d.ts",
       "package.svelte.jsonc",
       "tsconfig.svelte.json",
     ],
@@ -30,6 +31,7 @@ export const frameworkOptions: ArgOpt[] = [
     files: [
       "src/js/main/index-vue.ts",
       "src/js/main/main.vue",
+      "src/js/main/env.d.ts",
       "package.vue.jsonc",
       "tsconfig.vue.json",
     ],
