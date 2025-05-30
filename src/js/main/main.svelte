@@ -1,29 +1,27 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fs, os, path } from "../lib/cep/node";
+  import { os, path } from "../lib/cep/node";
   import {
     csi,
     evalES,
-    evalFile,
     openLinkInBrowser,
     subscribeBackgroundColor,
     evalTS,
   } from "../lib/utils/bolt";
+  import "../index.scss";
+  import "./main.scss";
+  let backgroundColor: string = "#282c34";
 
+  // BOLT_SAMPLECODE_START
   import viteLogo from "../assets/vite.svg";
   import svelteLogo from "../assets/svelte.svg";
   import tsLogo from "../assets/typescript.svg";
   import sassLogo from "../assets/sass.svg";
-
   import nodeJs from "../assets/node-js.svg";
   import adobe from "../assets/adobe.svg";
   import bolt from "../assets/bolt-cep.svg";
 
-  import "../index.scss";
-  import "./main.scss";
-
   let count: number = 0;
-  let backgroundColor: string = "#282c34";
 
   //* Demonstration of Traditional string eval-based ExtendScript Interaction
   const jsxTest = () => {
@@ -61,6 +59,7 @@
       }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
     );
   };
+  // BOLT_SAMPLECODE_END
 
   onMount(() => {
     if (window.cep) {
@@ -71,6 +70,7 @@
 
 <div class="app" style="background-color: {backgroundColor};">
   <header class="app-header">
+    <!-- BOLT_SAMPLECODE_START -->
     <img src={bolt} class="icon" alt="" />
     <div class="stack-icons">
       <div>
@@ -124,8 +124,10 @@
         Vite Docs
       </button>
     </p>
+    <!-- BOLT_SAMPLECODE_END -->
   </header>
 </div>
 
-<style>
+<style lang="scss">
+  @use "../variables.scss" as *;
 </style>

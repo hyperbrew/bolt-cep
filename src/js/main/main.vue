@@ -4,15 +4,16 @@ import { os, path } from "../lib/cep/node";
 import {
   csi,
   evalES,
-  evalFile,
   openLinkInBrowser,
   subscribeBackgroundColor,
   evalTS,
 } from "../lib/utils/bolt";
 import "../index.scss";
 
-const count = ref(0);
 const backgroundColor = ref("#282c34");
+
+// BOLT_SAMPLECODE_START
+const count = ref(0);
 
 //* Demonstration of Traditional string eval-based ExtendScript Interaction
 const jsxTest = () => {
@@ -50,6 +51,8 @@ const nodeTest = () => {
     }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
   );
 };
+// BOLT_SAMPLECODE_END
+
 onMounted(() => {
   if (window.cep) {
     subscribeBackgroundColor((c: string) => (backgroundColor.value = c));
@@ -60,6 +63,7 @@ onMounted(() => {
 <template>
   <div class="app" :style="{ backgroundColor: backgroundColor }">
     <header class="app-header">
+      <!-- BOLT_SAMPLECODE_START -->
       <img src="../assets/bolt-cep.svg" class="icon" />
       <div class="stack-icons">
         <div>
@@ -115,6 +119,11 @@ onMounted(() => {
           Vite Docs
         </button>
       </p>
+      <!-- BOLT_SAMPLECODE_END -->
     </header>
   </div>
 </template>
+
+<style lang="scss">
+@use "../variables.scss" as *;
+</style>

@@ -8,8 +8,8 @@ export const frameworkOptions: ArgOpt[] = [
     value: "svelte",
     label: "Svelte",
     files: [
-      "src/main/index-svelte.ts",
-      "src/main/main.svelte",
+      "src/js/main/index-svelte.ts",
+      "src/js/main/main.svelte",
       "package.svelte.jsonc",
       "tsconfig.svelte.json",
     ],
@@ -18,8 +18,8 @@ export const frameworkOptions: ArgOpt[] = [
     value: "react",
     label: "React",
     files: [
-      "src/main/index-react.tsx",
-      "src/main/main.tsx",
+      "src/js/main/index-react.tsx",
+      "src/js/main/main.tsx",
       "package.react.jsonc",
       "tsconfig.react.json",
     ],
@@ -28,8 +28,8 @@ export const frameworkOptions: ArgOpt[] = [
     value: "vue",
     label: "Vue",
     files: [
-      "src/main/index-vue.ts",
-      "src/main/main.vue",
+      "src/js/main/index-vue.ts",
+      "src/js/main/main.vue",
       "package.vue.jsonc",
       "tsconfig.vue.json",
     ],
@@ -59,9 +59,6 @@ const initData: BoltInitData = {
     globalIncludes: [
       "*",
       "src/**/*",
-      "shared/**/*",
-      "public/**/*",
-      "public-zip/**/*",
       ".github/**/*",
       ".gitignore",
       ".npmrc",

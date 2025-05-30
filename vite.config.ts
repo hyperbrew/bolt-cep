@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
 
-import react from "@vitejs/plugin-react"; // BOLT-CEP_REACT-ONLY
-import vue from "@vitejs/plugin-vue"; // BOLT-CEP_VUE-ONLY
-import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT-CEP_SVELTE-ONLY
-import sveltePreprocess from "svelte-preprocess"; // BOLT-CEP_SVELTE-ONLY
+import react from "@vitejs/plugin-react"; // BOLT_REACT_ONLY
+import vue from "@vitejs/plugin-vue"; // BOLT_VUE_ONLY
+import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT_SVELTE_ONLY
+import sveltePreprocess from "svelte-preprocess"; // BOLT_SVELTE_ONLY
 
 import { cep, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
@@ -53,9 +53,9 @@ if (action) {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(), // BOLT-CEP_REACT-ONLY
-    vue(), // BOLT-CEP_VUE-ONLY
-    svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT-CEP_SVELTE-ONLY
+    react(), // BOLT_REACT_ONLY
+    vue(), // BOLT_VUE_ONLY
+    svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT_SVELTE_ONLY
     cep(config),
   ],
   resolve: {
