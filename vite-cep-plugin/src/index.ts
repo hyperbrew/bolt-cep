@@ -9,10 +9,6 @@ import * as fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
 import {
-  log,
-  conColors,
-  posix,
-  resetLog,
   fixAssetPathCSS,
   fixAssetPathJS,
   fixAssetPathHTML,
@@ -23,19 +19,17 @@ import { manifestTemplate } from "./templates/manifest-template";
 import { debugTemplate } from "./templates/debug-template";
 import { devHtmlTemplate } from "./templates/dev-html-template";
 import type { HtmlTagDescriptor, ResolvedConfig } from "vite";
-import { menuHtmlTemplate } from "./templates/menu-html-template";
 import { CEP_Config, CEP_Config_Extended, JSXBIN_MODE } from "./cep-config";
-// export { CEP_Config } from "./cep-config";
 export type { CEP_Config };
 import { nodeBuiltIns } from "./lib/node-built-ins";
 import MagicString from "magic-string";
-import { metaPackage } from "./lib/zip";
 import {
   packageSync,
   emptyFolder,
   copyFilesRecursively,
   zipPackage,
 } from "meta-bolt/dist/plugin-utils";
+import { conColors, log, posix, resetLog } from "meta-bolt/dist/lib";
 
 const homedir = os.homedir();
 const tmpDir = path.join(__dirname, ".tmp");
@@ -108,12 +102,6 @@ const removeSymlink = (dist: string, dest: string) => {
 
 const symlinkExists = (dir: string) => {
   let exists, readlink, lstat;
-  // try {
-  //   exists = fs.existsSync(dir);
-  // } catch (e) {}
-  // try {
-  //   readlink = fs.readlinkSync(dir);
-  // } catch (e) {}
   try {
     lstat = fs.lstatSync(dir);
     exists = true;
@@ -413,24 +401,6 @@ export const cep = (opts: CepOptions) => {
       //@ts-ignore
       this.emitFile(manifestFile);
       log("manifest created", true);
-
-      // const menuFile = {
-      //   type: "asset",
-      //   source: menuHtmlTemplate({
-      //     displayName: cepConfig.displayName,
-      //     menu: cepConfig.panels.map((panel) => {
-      //       return {
-      //         name: panel.name,
-      //         url: panel.mainPath,
-      //       };
-      //     }),
-      //   }),
-      //   name: "Menu File",
-      //   fileName: path.join("index.html"),
-      // };
-      //@ts-ignore
-      // this.emitFile(menuFile);
-      // log("menu created", true);
 
       const debugFile = {
         type: "asset",

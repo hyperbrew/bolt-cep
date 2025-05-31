@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as child_process from "child_process";
 const { execSync } = child_process;
 
-import { removeIfExists, safeCreate, log, pause } from "./lib";
+import { log, pause, removeIfExists, safeCreate } from "meta-bolt/dist/lib";
 import { CEP_Config } from "../cep-config";
 import { existsSync, readdirSync } from "fs";
 
@@ -12,7 +12,7 @@ export const signZXP = async (
   config: CEP_Config,
   input: string,
   zxpDir: string,
-  tmpDir: string
+  tmpDir: string,
 ) => {
   const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : `./ZXPSignCmd`;
 
@@ -75,7 +75,7 @@ export const signZXP = async (
       console.warn(
         `⚠️ - Error signing with TSA ${currentTSA}.`,
         //@ts-ignore
-        error?.message
+        error?.message,
       );
       failures++;
     }
@@ -85,12 +85,12 @@ export const signZXP = async (
     let reason = failures > 0 ? "TSA Signing Failed" : "No TSA URL provided";
     if (config.zxp.allowSkipTSA) {
       console.warn(
-        `⚠️ - ${reason}. The ZXP will be built without a TSA meaning it will expire.`
+        `⚠️ - ${reason}. The ZXP will be built without a TSA meaning it will expire.`,
       );
       execSync(signStr, { cwd: cwdDir, encoding: "utf-8" });
     } else {
       throw new Error(
-        `⚠️ - ${reason}. Job aborted. To complete without a TSA, set allowSkipTSA to true in the config.`
+        `⚠️ - ${reason}. Job aborted. To complete without a TSA, set allowSkipTSA to true in the config.`,
       );
     }
   }
