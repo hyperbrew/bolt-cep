@@ -213,21 +213,22 @@ To add support for additional host apps:
 
 ## Calling ExtendScript from CEP JavaScript
 
-All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `evalTS()` and `evalES()`.
+All ExtendScript function are appended to your panel's namespace in the background to avoid namespace clashes when using `es` and `evalES()`.
 
-We have now introduced a new and improved end-to-end type-safe way to interact with ExtendScript from CEP using `evalTS()`. This function dynamically infers types from
-ExtendScript functions and handles both stringifying and parsing of the results so your developer interaction can be as simple as possible.
+`bolt-cep` maintains an end-to-end type-safe way to interact with ExtendScript from CEP via the `es` object. This dynamically infers types from ExtendScript functions and handles both stringifying and parsing of the results, so your developer interaction can be as simple as possible.
 
-As demonstrated in `main.tsx`, your ExtendScript functions can be called with `evalTS()` by passing the name of the function, followed by the arguments.
+As demonstrated in `main.tsx`, your ExtendScript functions can be called as methods on the `es` object. Note their returns values are wrapped in a promise.
+
+Using "Go to Definition" on the `es` method calls in your CEP code will bring you to their ExtendScript implementations.
 
 CEP
 
 ```js
-evalTS("myFunc", "test").then((res) => {
+es.myFunc("test").then((res) => {
   console.log(res);
 });
 
-evalTS("myFuncObj", { height: 90, width: 100 }).then((res) => {
+es.myFuncObj({ height: 90, width: 100 }).then((res) => {
   console.log(res.x);
   console.log(res.y);
 });

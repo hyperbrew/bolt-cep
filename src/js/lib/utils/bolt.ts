@@ -45,6 +45,15 @@ type ReturnType<F extends Function> = F extends (...args: infer A) => infer B
   ? B
   : never;
 
+function getFormattedArgs(args: any[]) {
+  return args
+    .map((arg) => {
+      console.log(JSON.stringify(arg));
+      return `${JSON.stringify(arg)}`;
+    })
+    .join(",");
+}
+
 /**
  * @description End-to-end type-safe ExtendScript evaluation with error handling
  * Call ExtendScript functions from CEP with type-safe parameters and return types.
@@ -75,22 +84,17 @@ export const evalTS = <
   functionName: Key,
   ...args: ArgTypes<Func>
 ): Promise<ReturnType<Func>> => {
-  return new Promise(function (resolve, reject) {
-    const formattedArgs = args
-      .map((arg) => {
-        console.log(JSON.stringify(arg));
-        return `${JSON.stringify(arg)}`;
-      })
-      .join(",");
+  const formattedArgs = getFormattedArgs(args);
+  return new Promise((resolve, reject) =>
     csi.evalScript(
       `try{
-          var host = typeof $ !== 'undefined' ? $ : window;
-          var res = host["${ns}"].${functionName}(${formattedArgs});
-          JSON.stringify(res);
-        }catch(e){
-          e.fileName = new File(e.fileName).fsName;
-          JSON.stringify(e);
-        }`,
+        var host = typeof $ !== 'undefined' ? $ : window;
+        var res = host["${ns}"].${functionName}(${formattedArgs});
+        JSON.stringify(res);
+      }catch(e){
+        e.fileName = new File(e.fileName).fsName;
+        JSON.stringify(e);
+      }`,
       (res: string) => {
         try {
           //@ts-ignore
@@ -109,8 +113,48 @@ export const evalTS = <
           reject(res);
         }
       }
-    );
-  });
+    )
+  );
+};
+
+/**
+ * @description End-to-end type-safe ExtendScript evaluation with error handling.
+ * Call ExtendScript functions from CEP with type-safe parameters and return types.
+ * Any ExtendScript errors are captured and logged to the CEP console for tracing
+ *
+ * `es` is an object with all of your exported ExtendScript functions as properties.
+ *
+ * @example
+ * // CEP
+ * const res = await es.myFunc(60, 'test');
+ * console.log(res.word);
+ *
+ * // ExtendScript
+ * export const myFunc = (num: number, word: string) => {
+ *    return { num, word };
+ * }
+ *
+ */
+export const es = new Proxy(
+  {},
+  {
+    get(_, prop) {
+      // Protect against calling with symbols
+      if (typeof prop !== "string") {
+        throw TypeError("ExtendScript function name must be a string.");
+      } else {
+        // Return the evalTS function for the given prop name
+        // e.g. es.helloObj(...args) -> evalTS("hello", ...args)
+        return (...args: any[]) => evalTS(prop as keyof Scripts, ...args);
+      }
+    },
+  }
+) as {
+  // Cast to an object with keys of the exported script names
+  [K in keyof Scripts]: (
+    // Each script is a function that accepts the corresponding args
+    ...args: ArgTypes<Scripts[K]>
+  ) => Promise<ReturnType<Scripts[K]>>;
 };
 
 export const evalFile = (file: string) => {
