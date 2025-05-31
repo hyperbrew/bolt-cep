@@ -8,8 +8,6 @@ import { copyFiles, copyModules, unique } from "./copy-node";
 import * as fs from "fs-extra";
 const prettifyXml = require("prettify-xml");
 
-// import { requirejs } from "./lib/require-js";
-
 import {
   log,
   conColors,
@@ -32,7 +30,12 @@ export type { CEP_Config };
 import { nodeBuiltIns } from "./lib/node-built-ins";
 import MagicString from "magic-string";
 import { metaPackage } from "./lib/zip";
-import { packageSync } from "./lib/package-sync";
+import {
+  packageSync,
+  emptyFolder,
+  copyFilesRecursively,
+  zipPackage,
+} from "meta-bolt/dist/plugin-utils";
 
 const homedir = os.homedir();
 const tmpDir = path.join(__dirname, ".tmp");
@@ -97,7 +100,7 @@ const removeSymlink = (dist: string, dest: string) => {
   } catch (e) {
     log(
       "symlink removal failed. Try removing with 'sudo yarn delsymlink'",
-      false
+      false,
     );
     return "error";
   }
@@ -124,7 +127,7 @@ const injectRequire = fs.readFileSync(
   path.join(__dirname, "./lib/require-js.js"),
   {
     encoding: "utf-8",
-  }
+  },
 );
 
 let foundPackages: string[] = [];
@@ -165,7 +168,7 @@ export const cep = (opts: CepOptions) => {
       const relativePath = panel.mainPath;
       const name = panel.name;
       console.log(
-        `${conColors.white}   > ${name}: ${conColors.cyan}http://localhost:${cepConfig.servePort}/${name}/`
+        `${conColors.white}   > ${name}: ${conColors.cyan}http://localhost:${cepConfig.servePort}/${name}/`,
       );
     });
     resetLog();
@@ -203,7 +206,7 @@ export const cep = (opts: CepOptions) => {
       const cssFileNames =
         cssFileNameMatches &&
         Array.from(cssFileNameMatches).map((file) =>
-          file.replace('href="', "").replace('"', "")
+          file.replace('href="', "").replace('"', ""),
         );
       const jsFileNameMatch = code.match(/(src=\".*.js\")/);
       const jsFileName =
@@ -218,22 +221,22 @@ export const cep = (opts: CepOptions) => {
       let newCode = opts.bundle[jsName].code;
 
       const allRequires = newCode.match(
-        /(require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,))/g
+        /(require\(\"([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,))/g,
       );
       if (allRequires) {
         const requireNames = allRequires.map((req: string) =>
           //@ts-ignore
-          req.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0].replace(/\"/g, "")
+          req.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0].replace(/\"/g, ""),
         );
         const copyModules = requireNames.filter(
           (name: string) =>
-            !nodeBuiltIns.includes(name) && ![".", "/", "\\"].includes(name[0])
+            !nodeBuiltIns.includes(name) && ![".", "/", "\\"].includes(name[0]),
         );
         foundPackages = foundPackages.concat(copyModules);
       }
 
       const matches = newCode.match(
-        /(require\(\"\.([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,|\)))/g
+        /(require\(\"\.([A-z]|[0-9]|\.|\/|\-)*\"\)(\;|\,|\)))/g,
       );
       // console.log(`REQUIRE USED ${matches?.length} times!`);
       matches?.map((match: string) => {
@@ -243,13 +246,13 @@ export const cep = (opts: CepOptions) => {
         if (jsPath) {
           newCode = newCode.replace(
             match.substring(0, match.length - 1),
-            `typeof cep_node !== 'undefined'?cep_node.require(cep_node.global["__dir"+"name"] + "/assets/${jsBasename}):require("../assets/${jsBasename})`
+            `typeof cep_node !== 'undefined'?cep_node.require(cep_node.global["__dir"+"name"] + "/assets/${jsBasename}):require("../assets/${jsBasename})`,
           );
         }
       });
       newCode = newCode.replace(
         `"use strict"`,
-        `"use strict";var exports = typeof exports === "undefined" ? {} : exports;`
+        `"use strict";var exports = typeof exports === "undefined" ? {} : exports;`,
       );
       opts.bundle[jsName].code = newCode;
 
@@ -318,8 +321,8 @@ export const cep = (opts: CepOptions) => {
             `${conColors.white}   > ${path.dirname(relativePath)}: ${
               conColors.cyan
             }http://localhost:${cepConfig.port}/${posix(
-              path.dirname(relativePath)
-            )}/`
+              path.dirname(relativePath),
+            )}/`,
           );
         });
       }
@@ -345,12 +348,13 @@ export const cep = (opts: CepOptions) => {
       if (isPackage) {
         const zxpPath = await signZXP(cepConfig, input, zxpDir, tmpDir);
         if (isMetaPackage) {
-          await metaPackage(
-            cepConfig,
+          const name = `${cepConfig.displayName}_${cepConfig.version}`;
+          await zipPackage(
+            name,
             zipDir,
-            zxpPath,
-            src,
-            cepConfig.copyZipAssets
+            zxpDir,
+            cepConfig.copyZipAssets,
+            false,
           );
         }
       }
@@ -359,7 +363,7 @@ export const cep = (opts: CepOptions) => {
       console.log(
         `${conColors.green}cep process: ${
           (isPackage && "zxp package") || (isProduction && "build") || "dev"
-        }`
+        }`,
       );
 
       // Fill any empty panel fields with extension's defaults
@@ -446,7 +450,7 @@ export const cep = (opts: CepOptions) => {
             : ccLocalExtensionFolder;
         const res = makeSymlink(
           path.join(dir, cepDist),
-          path.join(symlinkPath, cepConfig.id)
+          path.join(symlinkPath, cepConfig.id),
         );
       } catch (e) {
         console.warn(e);
@@ -469,7 +473,7 @@ export const jsxInclude = ({
     name: "extendscript-include-resolver",
     generateBundle: (
       output: any,
-      bundle: { [key: string]: { code: string } }
+      bundle: { [key: string]: { code: string } },
     ) => {
       const esFile = Object.keys(bundle).pop() as keyof object;
       const core = [
@@ -504,7 +508,7 @@ export const jsxInclude = ({
               foundIncludes.push(text);
             } else {
               console.warn(
-                `WARNING: File cannot be found for include ${match}`
+                `WARNING: File cannot be found for include ${match}`,
               );
             }
             // console.log("INDEX :: ", code.indexOf(match));
@@ -512,7 +516,7 @@ export const jsxInclude = ({
             s.overwrite(
               code.indexOf(match),
               code.indexOf(match) + match.length,
-              ""
+              "",
             );
           }
         });
@@ -564,7 +568,7 @@ export const jsxPonyfill = (extraPonyfills?: PonyFillItem[]): Plugin | any => {
     name: "extendscript-ponyfill-resolver",
     generateBundle: (
       output: any,
-      bundle: { [key: string]: { code: string } }
+      bundle: { [key: string]: { code: string } },
     ) => {
       const esFile = Object.keys(bundle).pop() as keyof object;
 
@@ -600,7 +604,7 @@ export const jsxPonyfill = (extraPonyfills?: PonyFillItem[]): Plugin | any => {
               s.overwrite(
                 index,
                 index + length,
-                pony.replace
+                pony.replace,
                 // text
               );
             }
@@ -651,6 +655,7 @@ export const runAction = (opts: CepOptions, action: string) => {
     console.warn(`Unknown Action: ${action}`);
   }
   resetLog();
+  process.exit();
 };
 
 export const jsxBin = (jsxBinMode?: JSXBIN_MODE) => {

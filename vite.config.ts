@@ -45,10 +45,7 @@ const config = {
   packages: cepConfig.installModules || [],
 };
 
-if (action) {
-  runAction(config, action);
-  process.exit();
-}
+if (action) runAction(config, action);
 
 // https://vitejs.dev/config/
 export default defineConfig({
