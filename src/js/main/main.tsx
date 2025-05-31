@@ -7,20 +7,21 @@ import {
   subscribeBackgroundColor,
   evalTS,
 } from "../lib/utils/bolt";
+import "./main.scss";
 
+// BOLT_SAMPLECODE_START
 import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
 import tsLogo from "../assets/typescript.svg";
 import sassLogo from "../assets/sass.svg";
-
 import nodeJs from "../assets/node-js.svg";
 import adobe from "../assets/adobe.svg";
 import bolt from "../assets/bolt-cep.svg";
+// BOLT_SAMPLECODE_END
 
-import "./main.scss";
-
-const Main = () => {
+export const App = () => {
   const [bgColor, setBgColor] = useState("#282c34");
+  // BOLT_SAMPLECODE_START
   const [count, setCount] = useState(0);
 
   //* Demonstration of Traditional string eval-based ExtendScript Interaction
@@ -59,6 +60,7 @@ const Main = () => {
       }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
     );
   };
+  // BOLT_SAMPLECODE_END
 
   useEffect(() => {
     if (window.cep) {
@@ -69,6 +71,7 @@ const Main = () => {
   return (
     <div className="app" style={{ backgroundColor: bgColor }}>
       <header className="app-header">
+        {/* BOLT_SAMPLECODE_START */}
         <img src={bolt} className="icon" />
         <div className="stack-icons">
           <div>
@@ -132,9 +135,8 @@ const Main = () => {
             Vite Docs
           </button>
         </p>
+        {/* BOLT_SAMPLECODE_END */}
       </header>
     </div>
   );
 };
-
-export default Main;

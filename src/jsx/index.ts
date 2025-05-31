@@ -2,15 +2,15 @@
 
 import { ns } from "../shared/shared";
 
-import * as aeft from "./aeft/aeft";
-import * as ame from "./ame/ame";
-import * as anim from "./anim/anim";
-import * as audt from "./audt/audt";
-import * as idsn from "./idsn/idsn";
-import * as ilst from "./ilst/ilst";
-import * as kbrg from "./kbrg/kbrg";
-import * as phxs from "./phxs/phxs";
-import * as ppro from "./ppro/ppro";
+import * as aeft from "./aeft/aeft"; // BOLT_AEFT_ONLY
+import * as ame from "./ame/ame"; // BOLT_AME_ONLY
+import * as anim from "./anim/anim"; // BOLT_ANIM_ONLY
+import * as audt from "./audt/audt"; // BOLT_AUDT_ONLY
+import * as idsn from "./idsn/idsn"; // BOLT_IDSN_ONLY
+import * as ilst from "./ilst/ilst"; // BOLT_ILST_ONLY
+import * as kbrg from "./kbrg/kbrg"; // BOLT_KBRG_ONLY
+import * as phxs from "./phxs/phxs"; // BOLT_PHXS_ONLY
+import * as ppro from "./ppro/ppro"; // BOLT_PPRO_ONLY
 
 //@ts-ignore
 const host = typeof $ !== "undefined" ? $ : window;
@@ -62,61 +62,83 @@ const getAppNameSafely = (): ApplicationName | "unknown" => {
 };
 
 switch (getAppNameSafely()) {
+  // BOLT_AEFT_START
   case "aftereffects":
   case "aftereffectsbeta":
     host[ns] = aeft;
     break;
+  // BOLT_AEFT_END
 
+  // BOLT_AME_START
   case "ame":
   case "amebeta":
     host[ns] = ame;
     break;
+  // BOLT_AME_END
 
-  case "audition":
-  case "auditionbeta":
-    host[ns] = audt;
-    break;
-
-  case "bridge":
-  case "bridgebeta":
-    host[ns] = kbrg;
-    break;
-
-  case "illustrator":
-  case "illustratorbeta":
-    host[ns] = ilst;
-    break;
-
-  case "indesign":
-  case "indesignbeta":
-    host[ns] = idsn;
-    break;
-
-  case "photoshop":
-  case "photoshopbeta":
-    host[ns] = phxs;
-    break;
-
-  case "premierepro":
-  case "premiereprobeta":
-    host[ns] = ppro;
-    break;
-
+  // BOLT_ANIM_START
   case "animate":
   case "animatebeta":
     host[ns] = anim;
     break;
+  // BOLT_ANIM_END
+
+  // BOLT_AUDT_START
+  case "audition":
+  case "auditionbeta":
+    host[ns] = audt;
+    break;
+  // BOLT_AUDT_END
+
+  // BOLT_IDSN_START
+  case "indesign":
+  case "indesignbeta":
+    host[ns] = idsn;
+    break;
+  // BOLT_IDSN_END
+
+  // BOLT_ILST_START
+  case "illustrator":
+  case "illustratorbeta":
+    host[ns] = ilst;
+    break;
+  // BOLT_ILST_END
+
+  // BOLT_KBRG_START
+  case "bridge":
+  case "bridgebeta":
+    host[ns] = kbrg;
+    break;
+  // BOLT_KBRG_END
+
+  // BOLT_PHXS_START
+  case "photoshop":
+  case "photoshopbeta":
+    host[ns] = phxs;
+    break;
+  // BOLT_PHXS_END
+
+  // BOLT_PPRO_START
+  case "premierepro":
+  case "premiereprobeta":
+    host[ns] = ppro;
+    break;
+  // BOLT_PPRO_END
 }
 
-export type Scripts = typeof aeft &
-  typeof ame &
-  typeof anim &
-  typeof audt &
-  typeof idsn &
-  typeof ilst &
-  typeof kbrg &
-  typeof phxs &
-  typeof ppro;
+const empty = {};
+// prettier-ignore
+export type Scripts = typeof empty
+  & typeof aeft // BOLT_AEFT_ONLY
+  & typeof ame // BOLT_AME_ONLY
+  & typeof anim // BOLT_ANIM_ONLY
+  & typeof audt // BOLT_AUDT_ONLY
+  & typeof idsn // BOLT_IDSN_ONLY
+  & typeof ilst // BOLT_ILST_ONLY
+  & typeof kbrg // BOLT_KBRG_ONLY
+  & typeof phxs // BOLT_PHXS_ONLY
+  & typeof ppro // BOLT_PPRO_ONLY
+  ;
 
 // https://extendscript.docsforadobe.dev/interapplication-communication/bridgetalk-class.html?highlight=bridgetalk#appname
 type ApplicationName =
