@@ -1,6 +1,6 @@
 {
   "name": "create-bolt-cep",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "bin": {
     "create-bolt-cep": "dist/index.js"
@@ -29,7 +29,7 @@
     "url": "https://github.com/hyper-brew/bolt-cep/issues"
   },
   "dependencies": {
-    "bolt-cep": "^1.3.2",
+    "bolt-cep": "^2.0.0",
     "meta-bolt": "^0.0.14"
   },
   "devDependencies": {}

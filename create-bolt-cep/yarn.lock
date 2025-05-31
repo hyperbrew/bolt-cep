@@ -326,10 +326,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-bolt-cep@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/bolt-cep/-/bolt-cep-1.3.2.tgz#a9b94b4287b6665c6989968f4c35b85528321fcc"
-  integrity sha512-y2K2pAbGKF5JUsCN4FnHaK1v08LcJSwIm3g1trn9IPlgzXVZUNJ6qi8BM576GRa/4MAtvVCvHtKRLisCyZjzVw==
+bolt-cep@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/bolt-cep/-/bolt-cep-2.0.0.tgz#68cdaeb95a3be6d8b8e2478763c920f5dcb707c4"
+  integrity sha512-8psgrF1F403ijHiwKWk1h2nSO7RzpQ8vgiyVOAn/4D/S9KF0A8wlR/Esut1zVOCmI9dtpS73SrCT5fZ1z3Gvvg==
   dependencies:
     react "^18.2.0"
     react-dom "^18.2.0"

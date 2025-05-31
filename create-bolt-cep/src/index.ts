@@ -90,12 +90,12 @@ const initData: BoltInitData = {
       validator: (input: string) => {
         if (input.length < 3) return `Value is required!`;
       },
-      describe: "Name of the folder for the new Figma plugin",
+      describe: "Name of the folder for the new Adobe extension ",
     },
     {
       name: "displayName",
       type: "string",
-      message: "Choose a unique Display Name for your plugin:",
+      message: "Choose a unique Display Name for your extension:",
       initialValue: "Bolt CEP",
       required: true,
       validator: (input: string) => {
@@ -107,13 +107,13 @@ const initData: BoltInitData = {
     {
       name: "id",
       type: "string",
-      message: "Choose a unique ID for your plugin:",
+      message: "Choose a unique ID for your extension:",
       initialValue: "com.bolt.cep",
       required: true,
       validator: (input: string) => {
         if (input.length < 1) return `Value is required!`;
       },
-      describe: "Unique ID for Figma Plugin (e.g. com.bolt.cep)",
+      describe: "Unique ID for your extension (e.g. com.bolt.cep)",
       alias: "i",
     },
     {
@@ -121,7 +121,7 @@ const initData: BoltInitData = {
       type: "select",
       message: "Select framework:",
       alias: "f",
-      describe: "Select a Framework for your plugin:",
+      describe: "Select a Framework for your extension:",
       options: frameworkOptions,
       required: true,
     },
@@ -130,7 +130,7 @@ const initData: BoltInitData = {
       type: "multiselect",
       message: "Select app:",
       alias: "a",
-      describe: "Select app(s) for your plugin:",
+      describe: "Select app(s) for your extension:",
       options: appOptions,
       validator: (input: string[]) => {
         if (input.length < 1) return `At Least One value Required!`;
