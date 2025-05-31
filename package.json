@@ -15,10 +15,11 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "^3.2.45",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
+    "source-map": "^0.7.4",
     "@babel/core": "^7.19.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
