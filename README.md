@@ -22,16 +22,11 @@ A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or
 
 _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
-### Dev Requirements
-
-- [Node.js](https://nodejs.org/en) 16 or later
-- [Yarn](https://yarnpkg.com/getting-started/install) 1.x.x aka classic (ensure by running `yarn set version classic`)
-
 ### Compatibility
 
 - [Adobe CC Apps](https://www.adobe.com/creativecloud/desktop-app.html) version 2022 or later
 - Windows & Mac Intel
-- Mac Arm64 (M1 / M2) require special setup ([more details](#misc-troubleshooting))
+- Mac Arm64 (M1-M4) require special setup ([more details](#misc-troubleshooting))
 
 ---
 
@@ -99,23 +94,33 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
 <img src="src/js/assets/built-with-bolt-cep/Built_With_BOLT_CEP_Logo_Black_V01.svg" width="200" /></a>
 </div>
 
-## Quick Start
+## Prerequisites
 
-<img src="src/js/assets/create-bolt-cep.jpg" alt="Bolt CEP">
+- [Node.js 18](https://nodejs.org/en/) or later
+- Package manager either
+  - NPM (comes with Node.js)
+  - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) ( ensure by running `yarn set version classic` )
+  - [PNPM](https://pnpm.io/installation) ( ensure by running `pnpm --version` )
+
+## Quick Start
 
 <img src="src/js/assets/create-bolt-cep--demo.gif" alt="Bolt CEP">
 
-`yarn create bolt-cep`
+Create your new Bolt CEP project (follow CLI prompts)
 
-- Create Extension
+- yarn - `yarn create bolt-cep`
+- npm - `npx create-bolt-cep`
+- pnpm - `pnpm create-bolt-cep`
 
-`cd myApp`
+Change directory to the new project
 
-- CD into Directory
+- `cd project`
 
-`yarn`
+Install Dependencies (if not already done by create command)
 
-- Installs all dependencies
+- yarn - `yarn`
+- npm - `npm i`
+- pnpm - `pnpm i`
 
 **⚠️ Enable PlayerDebugMode**
 
@@ -123,32 +128,30 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
   - Enable this easily with the [aescripts ZXP Installer](https://aescripts.com/learn/zxp-installer/) > Settings > Debug > Enable Debugging
   - Or enable manually per OS by following the CEP Cookbook Instructions: [Adobe CEP 12 Cookbook](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_12.x/Documentation/CEP%2012%20HTML%20Extension%20Cookbook.md#debugging-unsigned-extensions)
 
-`yarn build`
+Build the extension (must run before `dev`, can also run after for panel to work statically without the process) Symlink is created to extensions folder.
 
-- Runs initial build
-- Creates cep folder structure
-- Creates symlink to extensions folder
+- yarn `yarn build`
+- npm `npm run build`
+- pnpm `pnpm build`
 
-`yarn dev`
+Run the extension in HMR Hot-reload mode for rapid development. Both JS and ExtendScript folders re-build on changes.
+Viewable in browser via localhost:3000/panel/ (see [Panel Structure](#cep-panel-structure) to set up multiple panels)
 
-- Runs in dev mode with HMR Hot-reloading.
-- Both JS and ExtendScript folders re-build on changes
-- Viewable in browser via localhost:3000/panel/
-  - (e.g. http://localhost:3000/main/, http://localhost:3000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
+- yarn `yarn dev`
+- npm `npm run dev`
+- pnpm `pnpm dev`
 
-`yarn serve`
+Build & Package the extension as a ZXP for delivery to the `dist/zxp` folder (install with [aescripts ZXP Installer](https://aescripts.com/learn/zxp-installer/) or another ZXP installer)
 
-- Serve files after running `yarn build`
-- Viewable in browser via localhost:5000/panel/
-  - (e.g. http://localhost:5000/main/, http://localhost:5000/settings/, etc. (see [Panel Structure](#cep-panel-structure) to set up multiple panels)))
+- yarn `yarn zxp`
+- npm `npm run zxp`
+- pnpm `pnpm zxp`
 
-`yarn zxp`
+Bundles your packaged zxp file and specified assets from `copyZipAssets` to a zip archive in the `./zip` folder
 
-- Builds and bundles your project into a zxp for publishing in the `dist/zxp` folder
-
-`yarn zip`
-
-- Bundles your zxp and specified assets to a zip archive in the `dist/zip` folder
+- yarn `yarn zip`
+- npm `npm run zip`
+- pnpm `pnpm zip`
 
 ---
 
@@ -156,7 +159,11 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
 
 Update your CEP build and package settings in `cep.config.ts` safely typed
 
-Start building your app in `src/js/main/index(.tsx or .vue or .svelte)`
+Start building your app per framework in:
+
+- `src/js/main/main.tsx`
+- `src/js/main/main.vue`
+- `src/js/main/main.svelte`
 
 Write ExtendScript code in `src/jsx/main.ts`
 
@@ -259,7 +266,7 @@ You will also want to use this function for calling ExtendScript functions in th
 ```js
 evalES(
   `alert("Hello from ExtendScript :: " + app.appName + " " + app.version)`,
-  true
+  true,
 );
 ```
 
@@ -497,18 +504,7 @@ To use the latest in your existing Bolt CEP project, run `yarn add vite-cep-plug
 
 **Build Issues on Mac Arm64 Apple Silicon Machines (M1/M2/M3)**
 
-Full blog post on [Setup ExtendScript Dev for Apple Silicon Macs](https://hyperbrew.co/blog/setup-extendscript-dev-for-apple-silicon/)
-
-Short summary:
-
-If you're experiencing issues building on your Apple Silicon Machine regarding the jsxbin package, it is a known issue since the jsxbin package does not currently contain a binary for Apple Silicon since Adobe has yet to release one ([issue details here](https://github.com/runegan/jsxbin/issues/29)). To solve this issue, you can either:
-
-- **A: Disable JSXBIN**
-  - In the `cep.config.ts` set `jsxBin: "off"` in the build and zxp portions.
-- **B: Run in x64 mode**
-  - Ensure a universal binary version of Node.js is installed (available on [nodejs.org](https://nodejs.org/en/download))
-  - Run your terminal in Rosetta mode, or additionally install the Intel build of VS Code.
-  - Delete and re-install your node_modules folder if you've already built it.
+5/13/2025 - jsxbin is now natively supported on Apple Silicon machines. More info here: [Setup ExtendScript Dev for Apple Silicon Macs](https://hyperbrew.co/blog/adobe-extendscript-support-for-apple-silicon/)
 
 **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
 
