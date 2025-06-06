@@ -53,6 +53,6 @@
     "types-for-adobe-extras": "^0.0.9",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vite-cep-plugin": "^2.0.0"
+    "vite-cep-plugin": "^2.1.0"
   }
 }

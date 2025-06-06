@@ -4197,10 +4197,10 @@ merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-meta-bolt@^0.0.14:
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.14.tgz#8188124b358412fb35b06b3bb22560c553a641ef"
-  integrity sha512-E/9lrxwKpRRx9VHNXVOFVvqzE46ImscQy5Z6iIljrE1yCj09RzB/7H1fZCbONMGSHF1I/XKfwi2sIQibaGBRtg==
+meta-bolt@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.16.tgz#6142b33c0d1e31cca87c4de475d6709d4f4bd3d8"
+  integrity sha512-6E5xiqxY1fd2GtvP8qNfhA8FHhP8BsbEVTu6LJfSHBxspvHokTlQNEfbKkO4YCeeO0TkuSQH6kX/J52HGHHqQg==
   dependencies:
     "@clack/prompts" "^0.7.0"
     "@types/prettier" "^3.0.0"
@@ -5138,25 +5138,6 @@ ts-node@^10.7.0:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-ts-node@^10.9.1:
-  version "10.9.1"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
-  integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
-  dependencies:
-    "@cspotcode/source-map-support" "^0.8.0"
-    "@tsconfig/node10" "^1.0.7"
-    "@tsconfig/node12" "^1.0.7"
-    "@tsconfig/node14" "^1.0.0"
-    "@tsconfig/node16" "^1.0.2"
-    acorn "^8.4.1"
-    acorn-walk "^8.1.1"
-    arg "^4.1.0"
-    create-require "^1.1.0"
-    diff "^4.0.1"
-    make-error "^1.1.1"
-    v8-compile-cache-lib "^3.0.1"
-    yn "3.1.1"
-
 types-for-adobe-extras@^0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/types-for-adobe-extras/-/types-for-adobe-extras-0.0.9.tgz#666ed5b66a8335cc192dd9675c7af56ea870b16f"
@@ -5248,17 +5229,17 @@ v8-compile-cache-lib@^3.0.1:
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
 
-vite-cep-plugin@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-2.0.0.tgz#f870e08a67d024e26558a5582157a88eca3fa0cd"
-  integrity sha512-0Ws3hja1MlvRSRH0fc5KfmohdYSja6JajzvWxG09ab27Js1k4Fr3MFlSGlFE2Tect4Cq731z0rJppVgQ0Ff29w==
+vite-cep-plugin@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-2.1.0.tgz#07355b7cd4be500fe083b5f4e51a51019fc23301"
+  integrity sha512-dN5uAhLGOgdiw0AWXz10Wo4Hwddn0l/Qf7qKRe755vmT+MG51SBYexte+pwVHATlXLMYu2+pTLYb6gIJrmRzlw==
   dependencies:
     "@types/archiver" "^5.3.1"
     archiver "^5.3.1"
     fs-extra "^10.0.0"
     jszip "^3.10.1"
     magic-string "^0.25.7"
-    meta-bolt "^0.0.14"
+    meta-bolt "^0.0.16"
     prettify-xml "^1.2.0"
   optionalDependencies:
     jsxbin "^2.3.0"
