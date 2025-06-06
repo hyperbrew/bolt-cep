@@ -10,7 +10,7 @@
   } from "../lib/utils/bolt";
   import "../index.scss";
   import "./main.scss";
-  let backgroundColor: string = "#282c34";
+  let backgroundColor: string = $state("#282c34");
 
   // BOLT_SAMPLECODE_START
   import viteLogo from "../assets/vite.svg";
@@ -21,7 +21,8 @@
   import adobe from "../assets/adobe.svg";
   import bolt from "../assets/bolt-cep.svg";
 
-  let count: number = 0;
+  let count: number = $state(0);
+  let double: number = $derived(count * 2);
 
   //* Demonstration of Traditional string eval-based ExtendScript Interaction
   const jsxTest = () => {
@@ -94,31 +95,31 @@
       </div>
     </div>
     <div class="button-group">
-      <button on:click={() => (count += 1)}>Count is: {count}</button>
-      <button on:click={nodeTest}>
+      <button onclick={() => (count += 1)}>Count is: {count}</button>
+      <button onclick={nodeTest}>
         <img class="icon-button" src={nodeJs} alt="" />
       </button>
-      <button on:click={jsxTest}>
+      <button onclick={jsxTest}>
         <img class="icon-button" src={adobe} alt="" />
       </button>
-      <button on:click={jsxTestTS}>Ts</button>
+      <button onclick={jsxTestTS}>Ts</button>
     </div>
 
     <p>Edit <code>main.svelte</code> and save to test HMR updates.</p>
     <p>
       <button
-        on:click={() =>
+        onclick={() =>
           openLinkInBrowser("https://github.com/hyperbrew/bolt-cep")}
       >
         Bolt Docs
       </button>
       |
-      <button on:click={() => openLinkInBrowser("https://svelte.dev/docs")}>
+      <button onclick={() => openLinkInBrowser("https://svelte.dev/docs")}>
         Svelte Docs
       </button>
       |
       <button
-        on:click={() =>
+        onclick={() =>
           openLinkInBrowser("https://vitejs.dev/guide/features.html")}
       >
         Vite Docs

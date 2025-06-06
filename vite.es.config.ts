@@ -15,7 +15,7 @@ export const extendscriptConfig = (
   cepConfig: CEP_Config,
   extensions: string[],
   isProduction: boolean,
-  isPackage: boolean
+  isPackage: boolean,
 ) => {
   console.log(outPath);
   const config: RollupOptions = {

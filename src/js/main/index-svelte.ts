@@ -1,10 +1,9 @@
 import App from "./main.svelte";
 import { initBolt } from "../lib/utils/bolt";
+import { mount } from "svelte";
 
 initBolt();
 
-const app = new App({
-  target: document.getElementById("app") as Element,
+mount(App, {
+  target: document.getElementById("app")!,
 });
-
-export default app;

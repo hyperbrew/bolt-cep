@@ -445,7 +445,14 @@ export const jsxInclude = ({
       output: any,
       bundle: { [key: string]: { code: string } },
     ) => {
-      const esFile = Object.keys(bundle).pop() as keyof object;
+      const esFile = Object.keys(bundle).find(
+        (item) => item === "index.js",
+      ) as keyof object;
+      // console.log({
+      //   esFile,
+      //   bundle,
+      // });
+      // console.log({ foundIncludes });
       const core = [
         "// ----- EXTENDSCRIPT INCLUDES ------ //",
         ...foundIncludes,
@@ -459,13 +466,16 @@ export const jsxInclude = ({
       } else {
         bundle[esFile].code = core.join("\r");
       }
+      // console.log("FINALL");
+      // console.log(bundle[esFile].code);
+      return bundle;
     },
     transform: (code: string, id: string) => {
       const s = new MagicString(code);
-      // console.log("looking for JSXINCLUDE");
+      // console.log("looking for JSXINCLUDE in", id);
       const includeMatches = code.match(/^\/\/(\s|)\@include(.*)/gm);
       if (includeMatches) {
-        // console.log("FOUND!", matches);
+        // console.log("FOUND!", includeMatches);
         includeMatches.map((match: string) => {
           const innerMatches = match.match(/(?:'|").*(?:'|")/);
           const firstMatch = innerMatches?.pop();
@@ -540,7 +550,9 @@ export const jsxPonyfill = (extraPonyfills?: PonyFillItem[]): Plugin | any => {
       output: any,
       bundle: { [key: string]: { code: string } },
     ) => {
-      const esFile = Object.keys(bundle).pop() as keyof object;
+      const esFile = Object.keys(bundle).find(
+        (item) => item === "index.js",
+      ) as keyof object;
 
       let ponyfillStr = [
         `// ----- EXTENDSCRIPT PONYFILLS -----`,
@@ -633,7 +645,7 @@ export const jsxBin = (jsxBinMode?: JSXBIN_MODE) => {
     name: "extendscript-jsxbin",
     generateBundle: async function (output: any, bundle: any) {
       if (jsxBinMode === "copy" || jsxBinMode === "replace") {
-        const esFile = Object.keys(bundle).pop();
+        const esFile = Object.keys(bundle).find((item) => item === "index.js");
         if (esFile) {
           // console.log("GENERATE JSXBIN");
           const srcFilePathTmp = path.join(tmpDir, esFile);
