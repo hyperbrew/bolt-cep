@@ -508,13 +508,15 @@ To use the latest in your existing Bolt CEP project, run `yarn add vite-cep-plug
 
 **Update a Bolt CEP Project** To update an existing Bolt CEP project to the the latest version, create a new Bolt CEP project with the same framework (React, Vue, Svelte), then compare and update the following files:
 
-1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates )
+1. `package.json` - Update all dependencies and scripts ( `vite-cep-plugin` - usually contains the most frequent updates ). Make sure to re-install dependencies after updating.
 2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
 3. `vite.es.config.ts` - Like the previous config, unless you've modified it yourself, you can just copy the contents of the latest into yours.
 4. `cep.config.ts` - Check if any new properties have been added that don't exist in your config.
 5. `src/js/lib` - Update this entire folder.
-6. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
-7. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.
+6. `src/js/main/index.html` - Update the index HTML file
+7. `src/js/main/index-[framework].[ext]` - Update the index file for your framework (React, Vue, Svelte)
+8. `src/jsx/index.ts` - Check if any new properties have been added that don't exist in your config.
+9. `src/shared/universals.d.ts` - Check if any new properties have been added that don't exist in your config.
 
 **ZXPSignCmd Permissions issues on Mac**:
 
