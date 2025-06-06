@@ -2,6 +2,7 @@
   "name": "bolt-cep", // BOLT_ID_REPLACE
   "private": true,
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "watch": "tsc && vite build --watch true",
