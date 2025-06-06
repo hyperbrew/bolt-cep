@@ -2,6 +2,7 @@
 
 import { main } from "meta-bolt";
 import type { BoltInitData, ArgOpt } from "meta-bolt";
+import { ResArgs } from "meta-bolt/dist/types";
 
 export const frameworkOptions: ArgOpt[] = [
   {
@@ -158,6 +159,10 @@ const initData: BoltInitData = {
   ],
 };
 
+export const createBoltCEP = async (overrideArgs: ResArgs = {}) => {
+  return await main(initData, overrideArgs);
+};
+
 //* if not using as a module, run immediately
 console.log("BOLT_MODULEONLY", process.env.BOLT_MODULEONLY);
-if (!process.env.BOLT_MODULEONLY) main(initData);
+if (!process.env.BOLT_MODULEONLY) createBoltCEP();

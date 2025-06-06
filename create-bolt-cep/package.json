@@ -18,7 +18,8 @@
     "prepare": "npm run build",
     "publish": "npm publish --access public",
     "start": "node dist/index.js",
-    "test": "node scripts/test.js"
+    "test": "cross-env BOLT_MODULEONLY=true tsx scripts/test.ts",
+    "clean": "cross-env BOLT_MODULEONLY=true tsx scripts/clean.ts"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,9 @@
     "bolt-cep": "^2.0.0",
     "meta-bolt": "^0.0.15"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.19.4"
+  }
 }
