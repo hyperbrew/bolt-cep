@@ -29,7 +29,7 @@
     "fs-extra": "^10.0.0",
     "jszip": "^3.10.1",
     "magic-string": "^0.25.7",
-    "meta-bolt": "^0.0.15",
+    "meta-bolt": "^0.0.16",
     "prettify-xml": "^1.2.0"
   },
   "optionalDependencies": {

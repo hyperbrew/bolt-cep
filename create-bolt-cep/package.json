@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "bolt-cep": "^2.0.0",
-    "meta-bolt": "^0.0.15"
+    "meta-bolt": "^0.0.16"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
