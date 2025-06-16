@@ -1,6 +1,6 @@
 <img src="src/js/assets/bolt-cep.svg" alt="Bolt CEP" title="Bolt CEP" width="400" />
 
-A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or Svelte built on Vite + TypeScript + Sass
+A lightning-fast boilerplate for building Adobe CEP Extensions in Svelte, React, or Vue  built on Vite + TypeScript + Sass
 
 ![npm](https://img.shields.io/npm/v/bolt-cep)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hyperbrew/bolt-cep/blob/master/LICENSE)
@@ -10,6 +10,7 @@ A lightning-fast boilerplate for building Adobe CEP Extensions in React, Vue, or
 
 - Lightning Fast Hot Module Replacement (HMR)
 - Write Modern ES6 in both the JavaScript and ExtendScript layers
+- Choose Svelte, React, or Vue for your frontend framework
 - Type-safe ExtendScript with Types-for-Adobe
 - End-to-End Type Safety with evalTS()
 - Easily configure in cep.config.ts
@@ -32,12 +33,12 @@ _Full Blog Post:_ https://hyperbrew.co/blog/bolt-cep-build-extensions-faster/
 
 ## Backers
 
-Huge thanks to our backers who have made this project possible!
+Huge thanks to our backers who have helped make this project even better!
 
 <a href="https://battleaxe.co/" target="_blank">
 <img src="https://battleaxe.dev/servile/logotype_lightgrey.png" alt="Battle Axe" title="Battle Axe" width="200" /></a>
 
-If you're interested in supporting this open-source project, please [contact the Hyper Brew team](https://hyperbrew.co/contact/).
+If you're interested in supporting this open-source project, please [see our sponsor page](https://github.com/sponsors/hyperbrew).
 
 ---
 
@@ -104,7 +105,7 @@ Bolt CEP Info Page Link: https://hyperbrew.co/resources/bolt-cep
 
 ## Quick Start
 
-<img src="src/js/assets/create-bolt-cep--demo.gif" alt="Bolt CEP">
+<img src="src/js/assets/bolt-cep-cli.gif" alt="Bolt CEP">
 
 Create your new Bolt CEP project (follow CLI prompts)
 
