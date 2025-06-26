@@ -446,10 +446,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-bolt-cep@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bolt-cep/-/bolt-cep-2.1.0.tgz#f776da15276ffe9af90d4fb20abc3578523260a9"
-  integrity sha512-QQCcGiIGvHxue1NrFVhT5u4q/MPgMJDe6UuJseuElTcutF3x4kfbC0sWD/r1rWDpoiZWOxN/kdcxoCUrw8bbkw==
+bolt-cep@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/bolt-cep/-/bolt-cep-2.1.1.tgz#7f4f97054ace9482733044d191a661a64a34dbc0"
+  integrity sha512-7TFqu8uzmUe4S85j/TUILNv97kGjpjw5F2Oy37hSY9i8IaVm6BKYd36IESdyU7unHdMk2zzdywt+4YZGFmfBXw==
   dependencies:
     react "^19.1.0"
     react-dom "^19.1.0"
@@ -944,10 +944,10 @@ merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-meta-bolt@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.16.tgz#6142b33c0d1e31cca87c4de475d6709d4f4bd3d8"
-  integrity sha512-6E5xiqxY1fd2GtvP8qNfhA8FHhP8BsbEVTu6LJfSHBxspvHokTlQNEfbKkO4YCeeO0TkuSQH6kX/J52HGHHqQg==
+meta-bolt@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.17.tgz#d9053ad8092320c50c146b4eb0a38f673be0a438"
+  integrity sha512-GIiQbuHJ5wtHEy+D1RjNiIyB+Z1bjEYOsVYzAFBWowKxXf/aS9PnHfiM584Igv6s0rez2VxIODKIdc8L7M1sMQ==
   dependencies:
     "@clack/prompts" "^0.7.0"
     "@types/prettier" "^3.0.0"

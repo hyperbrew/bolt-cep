@@ -4197,10 +4197,10 @@ merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-meta-bolt@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.16.tgz#6142b33c0d1e31cca87c4de475d6709d4f4bd3d8"
-  integrity sha512-6E5xiqxY1fd2GtvP8qNfhA8FHhP8BsbEVTu6LJfSHBxspvHokTlQNEfbKkO4YCeeO0TkuSQH6kX/J52HGHHqQg==
+meta-bolt@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.17.tgz#d9053ad8092320c50c146b4eb0a38f673be0a438"
+  integrity sha512-GIiQbuHJ5wtHEy+D1RjNiIyB+Z1bjEYOsVYzAFBWowKxXf/aS9PnHfiM584Igv6s0rez2VxIODKIdc8L7M1sMQ==
   dependencies:
     "@clack/prompts" "^0.7.0"
     "@types/prettier" "^3.0.0"
@@ -5229,17 +5229,17 @@ v8-compile-cache-lib@^3.0.1:
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
 
-vite-cep-plugin@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-2.1.0.tgz#07355b7cd4be500fe083b5f4e51a51019fc23301"
-  integrity sha512-dN5uAhLGOgdiw0AWXz10Wo4Hwddn0l/Qf7qKRe755vmT+MG51SBYexte+pwVHATlXLMYu2+pTLYb6gIJrmRzlw==
+vite-cep-plugin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vite-cep-plugin/-/vite-cep-plugin-2.1.1.tgz#d52bf18d61ab5961797d50fdb4ad9a0776424e00"
+  integrity sha512-EAS72IowHtqtNjFcU8/d9CT5X3DFmn8xXJ1fWtIgEkIsB2NB9+2mpFI4XECagqhezwlBztyQy/BmWdwFpOnnOg==
   dependencies:
     "@types/archiver" "^5.3.1"
     archiver "^5.3.1"
     fs-extra "^10.0.0"
     jszip "^3.10.1"
     magic-string "^0.25.7"
-    meta-bolt "^0.0.16"
+    meta-bolt "^0.0.17"
     prettify-xml "^1.2.0"
   optionalDependencies:
     jsxbin "^2.3.0"

@@ -1,6 +1,6 @@
 {
   "name": "vite-cep-plugin",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A Vite Plugin for building Adobe CEP Extension Panels",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -29,7 +29,7 @@
     "fs-extra": "^10.0.0",
     "jszip": "^3.10.1",
     "magic-string": "^0.25.7",
-    "meta-bolt": "^0.0.16",
+    "meta-bolt": "^0.0.17",
     "prettify-xml": "^1.2.0"
   },
   "optionalDependencies": {

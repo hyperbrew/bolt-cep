@@ -631,7 +631,6 @@ export const runAction = (opts: CepOptions, action: string) => {
   } else if (action === "delsymlink") {
     removeSymlink(symlinkSrc, symlinkDst);
   } else if (action === "dependencyCheck") {
-    console.log("Checking Dependencies");
     packageSync();
   } else {
     console.warn(`Unknown Action: ${action}`);
