@@ -1,6 +1,6 @@
 <img src="src/js/assets/bolt-cep.svg" alt="Bolt CEP" title="Bolt CEP" width="400" />
 
-A lightning-fast boilerplate for building Adobe CEP Extensions in Svelte, React, or Vue  built on Vite + TypeScript + Sass
+A lightning-fast boilerplate for building Adobe CEP Extensions in Svelte, React, or Vue built on Vite + TypeScript + Sass
 
 ![npm](https://img.shields.io/npm/v/bolt-cep)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hyperbrew/bolt-cep/blob/master/LICENSE)
@@ -468,6 +468,12 @@ ReactDOM.render(
 ```
 
 ## Misc Troubleshooting
+
+**Can't build JSXBIN on MacOS with PNPM**
+
+There is a known bug with pnpm not running postinstall scripts [more info](https://github.com/pnpm/pnpm/issues/4649) [and here](https://github.com/pnpm/pnpm/issues/4649)
+
+Since the [jsxbin](https://github.com/runegan/jsxbin) package requires the `postinstall` script, to fix this for now, cd into `node_modules/jsxbin` and run `pnpm run postinstall` to create the needed binaries. Now building JSXBIN will work successfully.
 
 **React Spectrum won't allow certain UI items to be clicked on MacOS**:
 
