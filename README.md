@@ -431,14 +431,37 @@ To make one or more of your panels an invisible panel, aka hidden from the Exten
   ]
 ```
 
+If you want the extension to be completely headless without any UI, make sure to set the `type` to Custom as well:
+
+```js
+  panels: [
+    {
+      mainPath: "./main/index.html",
+      name: "Invisible Bolt CEP",
+      panelDisplayName: "",
+      type: "Custom",
+      ...
+    }
+  ]
+```
+
 You'll want to ensure your panel can be launched from another panel with `csi.requestOpenExtension()` or with an auto-start event in `startOnEvents` in `cep.config.ts` event depending on the app:
 
 ```js
-    startOnEvents: [
-      "com.adobe.csxs.events.ApplicationActivate",
-      "com.adobe.csxs.events.ApplicationInitialized",
-      "applicationActivate",
-    ],
+  panels: [
+    {
+      mainPath: "./main/index.html",
+      name: "Invisible Bolt CEP",
+      panelDisplayName: "",
+      type: "Custom",
+      startOnEvents: [
+        "com.adobe.csxs.events.ApplicationActivate",
+        "com.adobe.csxs.events.ApplicationInitialized",
+        "applicationActivate",
+      ],
+      ...
+    }
+  ]
 ```
 
 Reference the [Adobe CEP Cookbook](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md) for more info on [invisible panels](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md#invisible-html-extensions) and [CEP events](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md#invisible-html-extensions)
