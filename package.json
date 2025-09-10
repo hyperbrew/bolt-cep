@@ -62,7 +62,7 @@
     "types-for-adobe": "^7.2.3",
     "types-for-adobe-extras": "^0.0.9",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5",
+    "vite": "^6.3.6",
     "vite-cep-plugin": "^2.1.1"
   },
   "main": "index.js",
