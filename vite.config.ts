@@ -83,6 +83,8 @@ export default defineConfig({
         // esModule: false,
         preserveModules: false,
         format: "cjs",
+        entryFileNames: "assets/[name]-[hash].cjs",
+        chunkFileNames: "assets/[name]-[hash].cjs",
       },
     },
     target: "chrome74",
