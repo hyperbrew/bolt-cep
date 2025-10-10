@@ -129,8 +129,8 @@ interface CepOptions {
   debugReact: boolean;
   isServe: boolean;
   cepDist: string;
-  zxpDir: string;
-  zipDir: string;
+  zxpOutput: string;
+  zipOutput: string;
   packages: string[];
 }
 export const cep = (opts: CepOptions) => {
@@ -143,8 +143,8 @@ export const cep = (opts: CepOptions) => {
     isServe,
     debugReact,
     cepDist,
-    zxpDir,
-    zipDir,
+    zxpOutput,
+    zipOutput,
     packages,
   } = opts;
 
@@ -333,11 +333,13 @@ export const cep = (opts: CepOptions) => {
       const input = path.join(dir, cepDist);
       await removeZeroByteFiles(input);
       if (isPackage) {
-        const zxpPath = await signZXP(cepConfig, input, zxpDir, tmpDir);
+        const zxpPath = await signZXP(cepConfig, input, zxpOutput, tmpDir);
         if (isMetaPackage) {
-          const name = `${cepConfig.displayName}_${cepConfig.version}`;
+          const zipName = path.basename(opts.zipOutput)
+          const zipDir = path.dirname(opts.zipOutput)
+          const zxpDir = path.dirname(zxpPath);
           await zipPackage(
-            name,
+            zipName,
             zipDir,
             zxpDir,
             cepConfig.copyZipAssets,
@@ -613,7 +615,7 @@ export const runAction = (opts: CepOptions, action: string) => {
     isServe,
     debugReact,
     cepDist,
-    zxpDir,
+    zxpOutput,
     packages,
   } = opts;
 
