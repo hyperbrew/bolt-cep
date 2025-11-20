@@ -15,6 +15,7 @@ export const signZXP = async (
   tmpDir: string,
 ) => {
   const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : `./ZXPSignCmd`;
+  zxpFile = zxpFile + ".zxp";
 
   if (os.platform() === "darwin") {
     const zxpsignCmdPath = path.join(__dirname, "..", "bin", "ZXPSignCmd");

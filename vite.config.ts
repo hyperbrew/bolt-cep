@@ -40,8 +40,8 @@ const config: CepOptions = {
   debugReact,
   dir: `${__dirname}/${devDist}`,
   cepDist: cepDist,
-  zxpOutput: `${__dirname}/${devDist}/zxp/${cepConfig.id}.zxp`,
-  zipOutput: `${__dirname}/${devDist}/zip/${cepConfig.displayName}_${cepConfig.version}.zip`,
+  zxpOutput: `${__dirname}/${devDist}/zxp/${cepConfig.id}`,
+  zipOutput: `${__dirname}/${devDist}/zip/${cepConfig.displayName}_${cepConfig.version}`,
   packages: cepConfig.installModules || [],
 };
 
