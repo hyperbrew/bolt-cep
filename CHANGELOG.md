@@ -1,5 +1,9 @@
 # Bolt CEP Changelog
 
+## Version 2.2.0 (2025-11-20)
+
+- Added zxpOutput & zipOutput to config
+
 ## Version 2.1.1 (2025-06-16)
 
 - Add Changelog

@@ -120,7 +120,7 @@ const injectRequire = fs.readFileSync(
 
 let foundPackages: string[] = [];
 
-interface CepOptions {
+export interface CepOptions {
   cepConfig: CEP_Config;
   dir: string;
   isProduction: boolean;
@@ -306,7 +306,8 @@ export const cep = (opts: CepOptions) => {
           };
           fs.writeFileSync(destPath, panelHtmlFile.source);
           console.log(
-            `${conColors.white}   > ${path.dirname(relativePath)}: ${conColors.cyan
+            `${conColors.white}   > ${path.dirname(relativePath)}: ${
+              conColors.cyan
             }http://localhost:${cepConfig.port}/${posix(
               path.dirname(relativePath),
             )}/`,
@@ -335,8 +336,8 @@ export const cep = (opts: CepOptions) => {
       if (isPackage) {
         const zxpPath = await signZXP(cepConfig, input, zxpOutput, tmpDir);
         if (isMetaPackage) {
-          const zipName = path.basename(opts.zipOutput)
-          const zipDir = path.dirname(opts.zipOutput)
+          const zipName = path.basename(opts.zipOutput);
+          const zipDir = path.dirname(opts.zipOutput);
           const zxpDir = path.dirname(zxpPath);
           await zipPackage(
             zipName,
@@ -350,7 +351,8 @@ export const cep = (opts: CepOptions) => {
     },
     async generateBundle(output: any, bundle: any) {
       console.log(
-        `${conColors.green}cep process: ${(isPackage && "zxp package") || (isProduction && "build") || "dev"
+        `${conColors.green}cep process: ${
+          (isPackage && "zxp package") || (isProduction && "build") || "dev"
         }`,
       );
 
@@ -656,7 +658,10 @@ export const jsxBin = (jsxBinMode?: JSXBIN_MODE) => {
           const jsxbin = require("jsxbin");
           await jsxbin(srcFilePathTmp, dstFilePathTmp);
           if (fs.existsSync(dstFilePathTmp) === false) {
-            console.warn("JSXBIN generation failed. File not found:", dstFilePathTmp);
+            console.warn(
+              "JSXBIN generation failed. File not found:",
+              dstFilePathTmp,
+            );
           }
           const output = fs.readFileSync(dstFilePathTmp, { encoding: "utf-8" });
           const jsxBinFile = {
