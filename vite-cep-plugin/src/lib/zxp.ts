@@ -11,10 +11,11 @@ import { existsSync, readdirSync } from "fs";
 export const signZXP = async (
   config: CEP_Config,
   input: string,
-  zxpDir: string,
+  zxpFile: string,
   tmpDir: string,
 ) => {
   const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : `./ZXPSignCmd`;
+  zxpFile = zxpFile + ".zxp";
 
   if (os.platform() === "darwin") {
     const zxpsignCmdPath = path.join(__dirname, "..", "bin", "ZXPSignCmd");
@@ -29,13 +30,13 @@ export const signZXP = async (
 
   const name = config.id;
   const data = config.zxp;
-  const output = path.join(zxpDir, `${name}.zxp`);
+  const zxpDir = path.dirname(zxpFile);
   const certPath = path.join(tmpDir, `${name}-cert.p12`);
   const signPrepStr = `${zxpCmd} -selfSignedCert ${data.country} ${data.province} ${data.org} ${name} ${data.password} "${certPath}"`;
   const cwdDir = path.join(__dirname, "..", "bin");
 
   removeIfExists(certPath);
-  removeIfExists(output);
+  removeIfExists(zxpFile);
   safeCreate(zxpDir);
   console.log({ signPrepStr });
   execSync(signPrepStr, { cwd: cwdDir, encoding: "utf-8" });
@@ -47,7 +48,7 @@ export const signZXP = async (
     await pause(100);
   }
 
-  let signStr = `${zxpCmd} -sign "${input}" "${output}" "${certPath}" ${data.password}`;
+  let signStr = `${zxpCmd} -sign "${input}" "${zxpFile}" "${certPath}" ${data.password}`;
 
   let numTSAs = 0;
   if (data.tsa) {
@@ -95,6 +96,6 @@ export const signZXP = async (
     }
   }
 
-  log("built zxp", true, output);
-  return output;
+  log("built zxp", true, zxpFile);
+  return zxpFile;
 };

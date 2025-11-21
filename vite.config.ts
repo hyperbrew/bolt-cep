@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue"; // BOLT_VUE_ONLY
 import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT_SVELTE_ONLY
 // import sveltePreprocess from "svelte-preprocess"; // BOLT_SVELTE_ONLY
 
-import { cep, runAction } from "vite-cep-plugin";
+import { cep, CepOptions, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
 import { extendscriptConfig } from "./vite.es.config";
@@ -26,12 +26,12 @@ const isPackage = process.env.ZXP_PACKAGE === "true" || isMetaPackage;
 const isServe = process.env.SERVE_PANEL === "true";
 const action = process.env.BOLT_ACTION;
 
-let input = {};
+let input: { [key: string]: string } = {};
 cepConfig.panels.map((panel) => {
   input[panel.name] = path.resolve(root, panel.mainPath);
 });
 
-const config = {
+const config: CepOptions = {
   cepConfig,
   isProduction,
   isPackage,
@@ -40,8 +40,8 @@ const config = {
   debugReact,
   dir: `${__dirname}/${devDist}`,
   cepDist: cepDist,
-  zxpDir: `${__dirname}/${devDist}/zxp`,
-  zipDir: `${__dirname}/${devDist}/zip`,
+  zxpOutput: `${__dirname}/${devDist}/zxp/${cepConfig.id}`,
+  zipOutput: `${__dirname}/${devDist}/zip/${cepConfig.displayName}_${cepConfig.version}`,
   packages: cepConfig.installModules || [],
 };
 
