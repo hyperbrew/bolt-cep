@@ -117,7 +117,7 @@ Create your new Bolt CEP project (follow CLI prompts)
 
 - yarn - `yarn create bolt-cep`
 - npm - `npx create-bolt-cep`
-- pnpm - `pnpm create-bolt-cep`
+- pnpm - `pnpm create bolt-cep`
 
 Change directory to the new project
 
