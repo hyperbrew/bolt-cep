@@ -8,6 +8,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT_SVELTE_ONLY
 import { cep, CepOptions, runAction } from "vite-cep-plugin";
 import cepConfig from "./cep.config";
 import path from "path";
+import fs from "fs-extra";
 import { extendscriptConfig } from "./vite.es.config";
 
 const extensions = [".js", ".ts", ".tsx"];
@@ -29,6 +30,12 @@ const action = process.env.BOLT_ACTION;
 let input: { [key: string]: string } = {};
 cepConfig.panels.map((panel) => {
   input[panel.name] = path.resolve(root, panel.mainPath);
+});
+
+// Ensure output directories exist for initial build
+cepConfig.panels.forEach((panel) => {
+  const panelDir = path.resolve(outDir, panel.name);
+  fs.ensureDirSync(panelDir);
 });
 
 const config: CepOptions = {
