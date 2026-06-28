@@ -1,6 +1,6 @@
 {
   "name": "bolt-cep",
-  "version": "2.2.0",
+  "version": "2.2.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -63,7 +63,7 @@
     "types-for-adobe-extras": "^0.0.9",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vite-cep-plugin": "^2.2.0"
+    "vite-cep-plugin": "^2.2.3"
   },
   "main": "index.js",
   "license": "MIT",
@@ -72,6 +72,7 @@
     "package.react.jsonc",
     "package.svelte.jsonc",
     "package.vue.jsonc",
+    "svelte.config.js",
     "src/**/*",
     ".github/**/*",
     ".vscode/**/*",

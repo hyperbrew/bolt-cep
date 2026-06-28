@@ -57,7 +57,7 @@
     alert(
       `Node.js ${process.version}\nPlatform: ${
         os.platform
-      }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`
+      }\nFolder: ${path.basename(window.cep_node.global.__dirname)}`,
     );
   };
   // BOLT_SAMPLECODE_END

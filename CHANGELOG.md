@@ -1,4 +1,9 @@
-# Bolt CEP Changelog
+`# Bolt CEP Changelog
+
+## Version 2.2.3 (2026-06-28)
+
+- Fix Assets for CJS Files
+- Fix Svelte HTML Path Issue with svelte.config.js
 
 ## Version 2.2.0 (2025-11-20)
 

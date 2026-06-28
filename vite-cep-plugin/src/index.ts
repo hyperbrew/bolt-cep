@@ -245,7 +245,7 @@ export const cep = (opts: CepOptions) => {
       opts.bundle[jsName].code = newCode;
 
       Object.keys(opts.bundle).map((key) => {
-        if (path.extname(key) === ".js") {
+        if ([".js", ".cjs"].includes(path.extname(key))) {
           let { code, source } = opts.bundle[key];
           if (code && code.replace) {
             opts.bundle[key].code = fixAssetPathJS(code);

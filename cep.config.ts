@@ -1,4 +1,4 @@
-import { CEP_Config } from "vite-cep-plugin";
+import type { CEP_Config } from "vite-cep-plugin";
 import { version } from "./package.json";
 
 const config: CEP_Config = {

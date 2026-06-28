@@ -12,6 +12,7 @@ export const frameworkOptions: ArgOpt[] = [
       "src/js/main/index-svelte.ts",
       "src/js/main/main.svelte",
       "src/js/main/vite-env.d.ts",
+      "svelte.config.js",
       "package.svelte.jsonc",
       "tsconfig.svelte.json",
     ],
